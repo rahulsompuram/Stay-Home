@@ -15,7 +15,6 @@
 		7746BFA524229467000E3D66 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA424229467000E3D66 /* Home.swift */; };
 		7746BFA724229471000E3D66 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA624229471000E3D66 /* Profile.swift */; };
 		7746BFA92422A1E0000E3D66 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA82422A1E0000E3D66 /* MapView.swift */; };
-		7746BFAD2422C704000E3D66 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFAC2422C704000E3D66 /* LocationManager.swift */; };
 		7746BFAF2422C8C0000E3D66 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFAE2422C8C0000E3D66 /* LocationManager.swift */; };
 		B76BFCC92422AA6C00ED44D8 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCC82422AA6C00ED44D8 /* StartView.swift */; };
 		B76BFCCE2422B0C300ED44D8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCCD2422B0C300ED44D8 /* User.swift */; };
@@ -60,12 +59,11 @@
 		7746BFA424229467000E3D66 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		7746BFA624229471000E3D66 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		7746BFA82422A1E0000E3D66 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		7746BFAC2422C704000E3D66 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationManager.swift; path = "/Users/vishnuravi/repos/Stay-Home/ios/Stay Home ios/LocationManager.swift"; sourceTree = "<absolute>"; };
 		7746BFAE2422C8C0000E3D66 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B76BFCC82422AA6C00ED44D8 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		B76BFCCD2422B0C300ED44D8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B76BFCD02422B15F00ED44D8 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
-		B79E4B5A2422734A001863F7 /* Stay Home ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stay Home ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B79E4B5A2422734A001863F7 /* Stay Home.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stay Home.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B79E4B5D2422734A001863F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B79E4B5F2422734A001863F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B79E4B622422734A001863F7 /* Stay_Home_ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stay_Home_ios.xcdatamodel; sourceTree = "<group>"; };
@@ -156,7 +154,7 @@
 		B79E4B5B2422734A001863F7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B79E4B5A2422734A001863F7 /* Stay Home ios.app */,
+				B79E4B5A2422734A001863F7 /* Stay Home.app */,
 				B79E4B7324227352001863F7 /* Stay Home iosTests.xctest */,
 				B79E4B7E24227352001863F7 /* Stay Home iosUITests.xctest */,
 			);
@@ -170,7 +168,6 @@
 				B76BFCCC2422B0B700ED44D8 /* Models */,
 				B79E4B9024227448001863F7 /* GoogleService-Info.plist */,
 				B79E4B5D2422734A001863F7 /* AppDelegate.swift */,
-				7746BFAC2422C704000E3D66 /* LocationManager.swift */,
 				B79E4B5F2422734A001863F7 /* SceneDelegate.swift */,
 				B79E4B642422734A001863F7 /* ContentView.swift */,
 				7746BFAE2422C8C0000E3D66 /* LocationManager.swift */,
@@ -247,7 +244,7 @@
 			);
 			name = "Stay Home ios";
 			productName = "Stay Home ios";
-			productReference = B79E4B5A2422734A001863F7 /* Stay Home ios.app */;
+			productReference = B79E4B5A2422734A001863F7 /* Stay Home.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B79E4B7224227352001863F7 /* Stay Home iosTests */ = {
@@ -481,7 +478,6 @@
 				7746BFAF2422C8C0000E3D66 /* LocationManager.swift in Sources */,
 				B76BFCCE2422B0C300ED44D8 /* User.swift in Sources */,
 				B76BFCD12422B15F00ED44D8 /* UserDataViewModel.swift in Sources */,
-				7746BFAD2422C704000E3D66 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,8 +653,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Stay-Home.Stay-Home-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "Stay-Home.Stay-Home-iOS";
+				PRODUCT_NAME = "Stay Home";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -679,8 +675,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Stay-Home.Stay-Home-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "Stay-Home.Stay-Home-iOS";
+				PRODUCT_NAME = "Stay Home";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
