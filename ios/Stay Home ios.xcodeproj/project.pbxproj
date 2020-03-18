@@ -14,6 +14,7 @@
 		7746BFA324229453000E3D66 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA224229453000E3D66 /* Leaderboard.swift */; };
 		7746BFA524229467000E3D66 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA424229467000E3D66 /* Home.swift */; };
 		7746BFA724229471000E3D66 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA624229471000E3D66 /* Profile.swift */; };
+		7746BFA92422A1E0000E3D66 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA82422A1E0000E3D66 /* MapView.swift */; };
 		B79E4B5E2422734A001863F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B5D2422734A001863F7 /* AppDelegate.swift */; };
 		B79E4B602422734A001863F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B5F2422734A001863F7 /* SceneDelegate.swift */; };
 		B79E4B632422734A001863F7 /* Stay_Home_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B612422734A001863F7 /* Stay_Home_ios.xcdatamodeld */; };
@@ -53,6 +54,7 @@
 		7746BFA224229453000E3D66 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
 		7746BFA424229467000E3D66 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		7746BFA624229471000E3D66 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		7746BFA82422A1E0000E3D66 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B79E4B5A2422734A001863F7 /* Stay Home ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stay Home ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B79E4B5D2422734A001863F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B79E4B5F2422734A001863F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				7746BFA0242293F5000E3D66 /* TabHomeView.swift */,
 				7746BFA224229453000E3D66 /* Leaderboard.swift */,
 				7746BFA424229467000E3D66 /* Home.swift */,
+				7746BFA82422A1E0000E3D66 /* MapView.swift */,
 				7746BFA624229471000E3D66 /* Profile.swift */,
 				B79E4B6624227352001863F7 /* Assets.xcassets */,
 				B79E4B6B24227352001863F7 /* LaunchScreen.storyboard */,
@@ -441,6 +444,7 @@
 				7746BFA524229467000E3D66 /* Home.swift in Sources */,
 				B79E4B652422734A001863F7 /* ContentView.swift in Sources */,
 				7746BFA1242293F5000E3D66 /* TabHomeView.swift in Sources */,
+				7746BFA92422A1E0000E3D66 /* MapView.swift in Sources */,
 				B79E4B602422734A001863F7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
