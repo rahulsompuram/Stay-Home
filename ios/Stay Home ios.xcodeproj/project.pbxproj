@@ -3,13 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		21617D984612385169C54279 /* Pods_Stay_Home_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6ACC7C7222FE95DE964D9B /* Pods_Stay_Home_iosTests.framework */; };
 		46A94E1ED82930C35C980581 /* Pods_Stay_Home_ios_Stay_Home_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93BC670982A86725BC64BA7 /* Pods_Stay_Home_ios_Stay_Home_iosUITests.framework */; };
 		70D3DEEDF347797917409FCD /* Pods_Stay_Home_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6956D34DBF22D22E7F02EB7F /* Pods_Stay_Home_ios.framework */; };
+		7746BFA1242293F5000E3D66 /* TabHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA0242293F5000E3D66 /* TabHomeView.swift */; };
+		7746BFA324229453000E3D66 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA224229453000E3D66 /* Leaderboard.swift */; };
+		7746BFA524229467000E3D66 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA424229467000E3D66 /* Home.swift */; };
+		7746BFA724229471000E3D66 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA624229471000E3D66 /* Profile.swift */; };
 		B79E4B5E2422734A001863F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B5D2422734A001863F7 /* AppDelegate.swift */; };
 		B79E4B602422734A001863F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B5F2422734A001863F7 /* SceneDelegate.swift */; };
 		B79E4B632422734A001863F7 /* Stay_Home_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B612422734A001863F7 /* Stay_Home_ios.xcdatamodeld */; };
@@ -45,6 +49,10 @@
 		4EF9FE5EAB1152FF1433FAD6 /* Pods-Stay Home ios-Stay Home iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stay Home ios-Stay Home iosUITests.release.xcconfig"; path = "Target Support Files/Pods-Stay Home ios-Stay Home iosUITests/Pods-Stay Home ios-Stay Home iosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		62D41EC1AB8DB80AA5380B40 /* Pods-Stay Home iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stay Home iosTests.debug.xcconfig"; path = "Target Support Files/Pods-Stay Home iosTests/Pods-Stay Home iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6956D34DBF22D22E7F02EB7F /* Pods_Stay_Home_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stay_Home_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7746BFA0242293F5000E3D66 /* TabHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHomeView.swift; sourceTree = "<group>"; };
+		7746BFA224229453000E3D66 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
+		7746BFA424229467000E3D66 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		7746BFA624229471000E3D66 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		B79E4B5A2422734A001863F7 /* Stay Home ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stay Home ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B79E4B5D2422734A001863F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B79E4B5F2422734A001863F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +142,10 @@
 				B79E4B5D2422734A001863F7 /* AppDelegate.swift */,
 				B79E4B5F2422734A001863F7 /* SceneDelegate.swift */,
 				B79E4B642422734A001863F7 /* ContentView.swift */,
+				7746BFA0242293F5000E3D66 /* TabHomeView.swift */,
+				7746BFA224229453000E3D66 /* Leaderboard.swift */,
+				7746BFA424229467000E3D66 /* Home.swift */,
+				7746BFA624229471000E3D66 /* Profile.swift */,
 				B79E4B6624227352001863F7 /* Assets.xcassets */,
 				B79E4B6B24227352001863F7 /* LaunchScreen.storyboard */,
 				B79E4B6E24227352001863F7 /* Info.plist */,
@@ -179,7 +191,6 @@
 				62D41EC1AB8DB80AA5380B40 /* Pods-Stay Home iosTests.debug.xcconfig */,
 				4E8B462C9A4D4460D379902F /* Pods-Stay Home iosTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -424,8 +435,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B79E4B632422734A001863F7 /* Stay_Home_ios.xcdatamodeld in Sources */,
+				7746BFA724229471000E3D66 /* Profile.swift in Sources */,
+				7746BFA324229453000E3D66 /* Leaderboard.swift in Sources */,
 				B79E4B5E2422734A001863F7 /* AppDelegate.swift in Sources */,
+				7746BFA524229467000E3D66 /* Home.swift in Sources */,
 				B79E4B652422734A001863F7 /* ContentView.swift in Sources */,
+				7746BFA1242293F5000E3D66 /* TabHomeView.swift in Sources */,
 				B79E4B602422734A001863F7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
