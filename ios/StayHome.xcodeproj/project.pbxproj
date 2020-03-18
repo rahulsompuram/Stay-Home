@@ -18,6 +18,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* StayHomeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* StayHomeTests.m */; };
 		8E9B0622BAD0BC2DC691D246 /* libPods-StayHome-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 752A61ED69BB79E91388DD76 /* libPods-StayHome-tvOSTests.a */; };
+		B79E4B112421BF8C001863F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B79E4B102421BF8C001863F7 /* GoogleService-Info.plist */; };
 		BC8A0797023F1E1C0CADF1A6 /* libPods-StayHomeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3903A03B41944A9D716C8005 /* libPods-StayHomeTests.a */; };
 		C0188DDE1F2E7CF1F8546C29 /* libPods-StayHome-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4CF2D17D3249BD30C5E67E /* libPods-StayHome-tvOS.a */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		7B7C4A7ADA58175357AF2509 /* Pods-StayHome-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StayHome-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-StayHome-tvOSTests/Pods-StayHome-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7DD1043A8A5924B5506347AF /* Pods-StayHomeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StayHomeTests.debug.xcconfig"; path = "Target Support Files/Pods-StayHomeTests/Pods-StayHomeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8B4CF2D17D3249BD30C5E67E /* libPods-StayHome-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StayHome-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B79E4B102421BF8C001863F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		ED4FF574302C4180CF234016 /* Pods-StayHome-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StayHome-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-StayHome-tvOSTests/Pods-StayHome-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		13B07FAE1A68108700A75B9A /* StayHome */ = {
 			isa = PBXGroup;
 			children = (
+				B79E4B102421BF8C001863F7 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -194,7 +197,6 @@
 				7DD1043A8A5924B5506347AF /* Pods-StayHomeTests.debug.xcconfig */,
 				5CFE12B50297BEE1AC16857C /* Pods-StayHomeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -309,6 +311,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -339,6 +342,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				B79E4B112421BF8C001863F7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
