@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "735695241280",
+    "firebase_url": "https://stay-home-app.firebaseio.com",
+    "project_id": "stay-home-app",
+    "storage_bucket": "stay-home-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:735695241280:android:f61da24140074981d89fa5",
+        "android_client_info": {
+          "package_name": "com.stayhome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "735695241280-k18uirb23gu6470fg8oah920cd079vji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwkYBUAfN3YSb4ynht6ta2fJzBdcPOUY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "735695241280-k18uirb23gu6470fg8oah920cd079vji.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "735695241280-hbojmiia7pj0r6me2l5j6emundvnn61o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.StayHome"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
