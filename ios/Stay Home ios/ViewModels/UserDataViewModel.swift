@@ -9,6 +9,7 @@
 import Combine
 import Firebase
 import FBSDKLoginKit
+import MapKit
 
 final class UserDataViewModel: ObservableObject {
     

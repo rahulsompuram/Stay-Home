@@ -13,6 +13,12 @@ class LocationManager: NSObject, ObservableObject {
     
     private let locationManager = CLLocationManager()
     
+    @Published var locationStatus: CLAuthorizationStatus?
+    
+    @Published var lastLocation: CLLocation?
+    
+    @Published var homeCoordinates = CLLocationCoordinate2D()
+    
     override init(){
         super.init()
         self.locationManager.delegate = self
@@ -20,10 +26,6 @@ class LocationManager: NSObject, ObservableObject {
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
     }
-    
-    @Published var locationStatus: CLAuthorizationStatus?
-    
-    @Published var lastLocation: CLLocation?
     
     var statusString: String {
         guard let status = locationStatus else {

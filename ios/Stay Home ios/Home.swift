@@ -11,26 +11,19 @@ import MapKit
 
 struct Home: View {
     
-    @State private var centerCoordinate = CLLocationCoordinate2D()
+    @State private var centerCoordinates = CLLocationCoordinate2D()
     
     @ObservedObject var locationManager = LocationManager()
     
-    var userLatitude: String {
-        return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
-    }
-
-    var userLongitude: String {
-        return "\(locationManager.lastLocation?.coordinate.longitude ?? 0)"
+    var currentCoordinates: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: locationManager.lastLocation?.coordinate.latitude ?? 0, longitude: locationManager.lastLocation?.coordinate.longitude ?? 0)
     }
     
     var body: some View {
         ZStack {
-            MapView(centerCoordinate: $centerCoordinate)
-                .edgesIgnoringSafeArea(.all)
-            HStack {
-                Text("latitude: \(userLatitude)")
-                Text("longitude: \(userLongitude)")
-            }
+            MapView(centerCoordinates: $centerCoordinates, homeCoordinates: $locationManager.homeCoordinates)
+                .edgesIgnoringSafeArea(.vertical)
+            
             // Current location circle
             Circle()
                 .fill(Color.blue)
@@ -38,6 +31,7 @@ struct Home: View {
                 .frame(width: 32, height: 32)
             
             VStack{
+                
                 // Virus guy button
                 HStack{
                     Spacer()
@@ -52,7 +46,7 @@ struct Home: View {
                     Spacer()
                     HStack {
                         Button(action: {
-                            // create a new location
+                            self.locationManager.homeCoordinates = self.currentCoordinates
                         }) {
                             Text("Change Home")
                         }
