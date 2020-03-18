@@ -15,6 +15,9 @@
 		7746BFA524229467000E3D66 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA424229467000E3D66 /* Home.swift */; };
 		7746BFA724229471000E3D66 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA624229471000E3D66 /* Profile.swift */; };
 		7746BFA92422A1E0000E3D66 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA82422A1E0000E3D66 /* MapView.swift */; };
+		B76BFCC92422AA6C00ED44D8 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCC82422AA6C00ED44D8 /* StartView.swift */; };
+		B76BFCCE2422B0C300ED44D8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCCD2422B0C300ED44D8 /* User.swift */; };
+		B76BFCD12422B15F00ED44D8 /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCD02422B15F00ED44D8 /* UserDataViewModel.swift */; };
 		B79E4B5E2422734A001863F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B5D2422734A001863F7 /* AppDelegate.swift */; };
 		B79E4B602422734A001863F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B5F2422734A001863F7 /* SceneDelegate.swift */; };
 		B79E4B632422734A001863F7 /* Stay_Home_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B612422734A001863F7 /* Stay_Home_ios.xcdatamodeld */; };
@@ -55,6 +58,9 @@
 		7746BFA424229467000E3D66 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		7746BFA624229471000E3D66 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		7746BFA82422A1E0000E3D66 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		B76BFCC82422AA6C00ED44D8 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		B76BFCCD2422B0C300ED44D8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B76BFCD02422B15F00ED44D8 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
 		B79E4B5A2422734A001863F7 /* Stay Home ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stay Home ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B79E4B5D2422734A001863F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B79E4B5F2422734A001863F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +121,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B76BFCCC2422B0B700ED44D8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B76BFCCD2422B0C300ED44D8 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B76BFCCF2422B14000ED44D8 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B76BFCD02422B15F00ED44D8 /* UserDataViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		B79E4B512422734A001863F7 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +162,8 @@
 		B79E4B5C2422734A001863F7 /* Stay Home ios */ = {
 			isa = PBXGroup;
 			children = (
+				B76BFCCF2422B14000ED44D8 /* ViewModels */,
+				B76BFCCC2422B0B700ED44D8 /* Models */,
 				B79E4B9024227448001863F7 /* GoogleService-Info.plist */,
 				B79E4B5D2422734A001863F7 /* AppDelegate.swift */,
 				B79E4B5F2422734A001863F7 /* SceneDelegate.swift */,
@@ -147,6 +171,7 @@
 				7746BFA0242293F5000E3D66 /* TabHomeView.swift */,
 				7746BFA224229453000E3D66 /* Leaderboard.swift */,
 				7746BFA424229467000E3D66 /* Home.swift */,
+				B76BFCC82422AA6C00ED44D8 /* StartView.swift */,
 				7746BFA82422A1E0000E3D66 /* MapView.swift */,
 				7746BFA624229471000E3D66 /* Profile.swift */,
 				B79E4B6624227352001863F7 /* Assets.xcassets */,
@@ -438,6 +463,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B79E4B632422734A001863F7 /* Stay_Home_ios.xcdatamodeld in Sources */,
+				B76BFCC92422AA6C00ED44D8 /* StartView.swift in Sources */,
 				7746BFA724229471000E3D66 /* Profile.swift in Sources */,
 				7746BFA324229453000E3D66 /* Leaderboard.swift in Sources */,
 				B79E4B5E2422734A001863F7 /* AppDelegate.swift in Sources */,
@@ -446,6 +472,8 @@
 				7746BFA1242293F5000E3D66 /* TabHomeView.swift in Sources */,
 				7746BFA92422A1E0000E3D66 /* MapView.swift in Sources */,
 				B79E4B602422734A001863F7 /* SceneDelegate.swift in Sources */,
+				B76BFCCE2422B0C300ED44D8 /* User.swift in Sources */,
+				B76BFCD12422B15F00ED44D8 /* UserDataViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

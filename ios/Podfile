@@ -8,6 +8,10 @@ target 'Stay Home ios' do
   # Pods for Stay Home ios
   pod "Firebase/Database"
   pod "Firebase/Auth"
+  pod "Firebase/Analytics"
+
+  # Pods for Facebook Login
+  pod 'FBSDKLoginKit'
 
   target 'Stay Home iosTests' do
     inherit! :search_paths

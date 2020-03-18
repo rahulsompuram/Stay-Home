@@ -16,22 +16,22 @@ struct TabHomeView: View {
         TabView(selection: $selection) {
             Leaderboard()
                 .tabItem {
-                    Image(systemName: "rosette")
+                    Image(systemName: "rosette").font(.system(size: 30))
             }
             .tag(1)
             
             Home()
                 .tabItem {
-                    Image(systemName: "house")
+                    Image(systemName: "house").font(.system(size: 30))
             }
             .tag(2)
             
             Profile()
                 .tabItem {
-                    Image(systemName: "person.fill")
+                    Image(systemName: "person.crop.circle").font(.system(size: 30))
             }
             .tag(3)
-        }
+            }.accentColor(Color(red: 78/255, green: 89/255, blue: 140/255))
     }
 }
 

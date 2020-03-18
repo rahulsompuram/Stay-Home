@@ -7,10 +7,11 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct Profile: View {
     var body: some View {
-        Text("Profile")
+        Login().frame(width: 300, height: 50).padding()
     }
 }
 
