@@ -31,7 +31,7 @@ struct TabHomeView: View {
                     Image(systemName: "person.crop.circle").font(.system(size: 30))
             }
             .tag(3)
-            }.accentColor(Color(red: 78/255, green: 89/255, blue: 140/255))
+        }.edgesIgnoringSafeArea(.top).accentColor(Color(red: 78/255, green: 89/255, blue: 140/255))
     }
 }
 
