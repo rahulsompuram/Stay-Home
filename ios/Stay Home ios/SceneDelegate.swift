@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import FBSDKCoreKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -66,6 +67,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+      if let openURLContext = URLContexts.first {
+        ApplicationDelegate.shared.application(UIApplication.shared, open:
+        openURLContext.url, sourceApplication:
+        openURLContext.options.sourceApplication, annotation:
+        openURLContext.options.annotation)
+      }
+    }
 
 }
 
