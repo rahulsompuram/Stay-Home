@@ -20,6 +20,7 @@
 		B76BFCCE2422B0C300ED44D8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCCD2422B0C300ED44D8 /* User.swift */; };
 		B76BFCD12422B15F00ED44D8 /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCD02422B15F00ED44D8 /* UserDataViewModel.swift */; };
 		B76BFCD5242332A100ED44D8 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCD4242332A100ED44D8 /* GetStartedView.swift */; };
+		B76BFCD9242434C300ED44D8 /* SpriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCD8242434C300ED44D8 /* SpriteView.swift */; };
 		B79E4B5E2422734A001863F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B5D2422734A001863F7 /* AppDelegate.swift */; };
 		B79E4B602422734A001863F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B5F2422734A001863F7 /* SceneDelegate.swift */; };
 		B79E4B632422734A001863F7 /* Stay_Home_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B612422734A001863F7 /* Stay_Home_ios.xcdatamodeld */; };
@@ -65,6 +66,7 @@
 		B76BFCCD2422B0C300ED44D8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B76BFCD02422B15F00ED44D8 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
 		B76BFCD4242332A100ED44D8 /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
+		B76BFCD8242434C300ED44D8 /* SpriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteView.swift; sourceTree = "<group>"; };
 		B79E4B5A2422734A001863F7 /* Stay Home.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stay Home.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B79E4B5D2422734A001863F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B79E4B5F2422734A001863F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				B79E4B6E24227352001863F7 /* Info.plist */,
 				B79E4B612422734A001863F7 /* Stay_Home_ios.xcdatamodeld */,
 				B79E4B6824227352001863F7 /* Preview Content */,
+				B76BFCD8242434C300ED44D8 /* SpriteView.swift */,
 			);
 			path = "Stay Home ios";
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				7746BFA92422A1E0000E3D66 /* MapView.swift in Sources */,
 				B79E4B602422734A001863F7 /* SceneDelegate.swift in Sources */,
 				7746BFAF2422C8C0000E3D66 /* LocationManager.swift in Sources */,
+				B76BFCD9242434C300ED44D8 /* SpriteView.swift in Sources */,
 				B76BFCD5242332A100ED44D8 /* GetStartedView.swift in Sources */,
 				B76BFCCE2422B0C300ED44D8 /* User.swift in Sources */,
 				B76BFCD12422B15F00ED44D8 /* UserDataViewModel.swift in Sources */,
