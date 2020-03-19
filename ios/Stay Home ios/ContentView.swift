@@ -56,8 +56,22 @@ struct Login : UIViewRepresentable {
                         print((error?.localizedDescription)!)
                         return
                     }
-                    
+
                     print("Success - sign in")
+
+                    var ref: DatabaseReference!
+                    let userID = Auth.auth().currentUser!.uid
+                    ref = Database.database().reference().child("Users").child(userID)
+                    
+                    ref.child("Points").setValue(0)
+                    ref.child("HomeLat").setValue(0)
+                    ref.child("HomeLong").setValue(0)
+                    ref.child("Country").setValue("Unknown")
+                    ref.child("LastRelocTimestamp").setValue(0)
+                    ref.child("LastTickTimestamp").setValue(0)
+                    ref.child("Streak").setValue(0)
+                    ref.child("UnredeemedPoints").setValue(0)
+                    
                 }
             }
         }
