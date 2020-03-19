@@ -29,7 +29,7 @@ class LocationManager: NSObject, ObservableObject {
         }
     }
     
-    @Published var isHome: Bool? // nil if home location isn't set
+    @Published var isHome: Bool? // nil if home location isn't set or user denies/restricts location services
     
     @Published var homeCoordinates: CLLocation?
     
@@ -73,6 +73,10 @@ extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         self.locationStatus = status
         //print(#function, statusString)
+        
+        if status == .restricted || status == .denied || status == .notDetermined {
+            self.isHome = nil
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
