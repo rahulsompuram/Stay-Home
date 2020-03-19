@@ -17,7 +17,7 @@ struct Home: View {
     
     var body: some View {
         ZStack {
-            MapView(centerCoordinates: $centerCoordinates, homeCoordinates: $locationManager.homeCoordinates)
+            MapView(homeCoordinates: $locationManager.homeCoordinates, lastLocation: $locationManager.lastLocation)
                 .edgesIgnoringSafeArea(.vertical)
             
             // Current location circle

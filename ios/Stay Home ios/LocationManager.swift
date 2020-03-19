@@ -26,45 +26,45 @@ class LocationManager: NSObject, ObservableObject {
                 self.isHome = !(distanceInMeters > maxDistanceFromHome)
                 print("\(distanceInMeters)m from home")
             }
-    }
-}
-
-@Published var isHome: Bool? // nil if home location isn't set
-
-@Published var homeCoordinates: CLLocation?
-
-override init(){
-    super.init()
-    self.locationManager.delegate = self
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    self.locationManager.requestWhenInUseAuthorization()
-    self.locationManager.startUpdatingLocation()
-}
-
-func distanceFromHome(location: CLLocation) -> Double? {
-    if let homeCoordinates = self.homeCoordinates {
-        return location.distance(from: homeCoordinates)
-    }else{
-        return nil
-    }
-}
-
-var statusString: String {
-    guard let status = locationStatus else {
-        return "unknown"
+        }
     }
     
-    switch status {
-    case .notDetermined: return "notDetermined"
-    case .authorizedWhenInUse: return "authorizedWhenInUse"
-    case .authorizedAlways: return "authorizedAlways"
-    case .restricted: return "restricted"
-    case .denied: return "denied"
-    default: return "unknown"
+    @Published var isHome: Bool? // nil if home location isn't set
+    
+    @Published var homeCoordinates: CLLocation?
+    
+    override init(){
+        super.init()
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
     }
     
-}
-
+    func distanceFromHome(location: CLLocation) -> Double? {
+        if let homeCoordinates = self.homeCoordinates {
+            return location.distance(from: homeCoordinates)
+        }else{
+            return nil
+        }
+    }
+    
+    var statusString: String {
+        guard let status = locationStatus else {
+            return "unknown"
+        }
+        
+        switch status {
+        case .notDetermined: return "notDetermined"
+        case .authorizedWhenInUse: return "authorizedWhenInUse"
+        case .authorizedAlways: return "authorizedAlways"
+        case .restricted: return "restricted"
+        case .denied: return "denied"
+        default: return "unknown"
+        }
+        
+    }
+    
 }
 
 extension LocationManager: CLLocationManagerDelegate {
