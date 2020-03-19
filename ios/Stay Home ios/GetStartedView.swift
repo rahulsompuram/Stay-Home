@@ -7,9 +7,22 @@
 //
 
 import SwiftUI
+import FirebaseDatabase
+import FirebaseAuth
+
+func getDate()->String {
+    let date = Date()
+    let format = DateFormatter()
+    format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    let formattedDate = format.string(from: date)
+    return(formattedDate)
+}
 
 struct GetStartedView: View {
     @State var username: String
+    @State private var showingAlert = false
+    @State var popupMessage = "blah"
+    @State var goToNextScreen = false
     
     var body: some View {
         ZStack {
@@ -30,6 +43,26 @@ struct GetStartedView: View {
                 
                 VStack(alignment: .center) {
                     Button(action: {
+                        // code that runs when "Done" button is pressed
+                        
+                        if (self.username.count > 12) {
+                            self.popupMessage = "Username cannot be more than 12 characters"
+                            self.showingAlert = true
+                        } else {
+                            var ref: DatabaseReference!
+                            ref = Database.database().reference()
+                            ref.child("UsernameList").observeSingleEvent(of: .value) { (snapshot) in
+                                if (snapshot.hasChild(self.username.lowercased())) {
+                                    self.popupMessage = "Username already taken"
+                                    self.showingAlert = true
+                                } else {
+                                    ref.child("UsernameList").child(self.username.lowercased()).setValue(getDate())
+                                    ref.child("Users").child(Auth.auth().currentUser!.uid).child("Username").setValue(self.username.lowercased())
+                                    self.goToNextScreen = true
+                                }
+                            }
+                        }
+                        
                         
                     }) {
                         Text("Done")
@@ -44,6 +77,9 @@ struct GetStartedView: View {
                     }.padding()
                 }.padding(EdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 15))
             }
+        }
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("Invalid username"), message: Text(self.popupMessage), dismissButton: .default(Text("Got it!")))
         }
     }
 }
