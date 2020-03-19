@@ -13,7 +13,7 @@ struct MapView: UIViewRepresentable {
     
     @Binding var centerCoordinates: CLLocationCoordinate2D
     
-    @Binding var homeCoordinates: CLLocationCoordinate2D
+    @Binding var homeCoordinates: CLLocation?
 
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()

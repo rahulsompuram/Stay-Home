@@ -15,7 +15,7 @@ struct ContentView: View {
     
     var body: some View {
         Group {
-            if userData.user != nil {
+            if userData.user == nil {
                 TabHomeView()
             } else {
                 StartView()

@@ -15,10 +15,6 @@ struct Home: View {
     
     @ObservedObject var locationManager = LocationManager()
     
-    var currentCoordinates: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: locationManager.lastLocation?.coordinate.latitude ?? 0, longitude: locationManager.lastLocation?.coordinate.longitude ?? 0)
-    }
-    
     var body: some View {
         ZStack {
             MapView(centerCoordinates: $centerCoordinates, homeCoordinates: $locationManager.homeCoordinates)
@@ -46,9 +42,11 @@ struct Home: View {
                     Spacer()
                     HStack {
                         Button(action: {
-                            self.locationManager.homeCoordinates = self.currentCoordinates
+                            if let lastLocation = self.locationManager.lastLocation {
+                                self.locationManager.homeCoordinates = lastLocation
+                            }
                         }) {
-                            Text("Change Home")
+                            Text(self.locationManager.homeCoordinates == nil ? "Set Home" : "Change Home")
                         }
                         .padding()
                         .frame(width: 300, height: 50, alignment: .center)
