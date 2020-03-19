@@ -37,6 +37,7 @@ struct Home: View {
                 VStack {
                     Spacer()
                     Text(self.locationManager.isHome != nil ? (self.locationManager.isHome! ? "You're home" : "You're not home") : "")
+                        .font(.custom("AvenirNext-Bold", size: 18))
                         .frame(width: 300, height: 50, alignment: .center)
                     HStack {
                         Button(action: {
@@ -52,12 +53,14 @@ struct Home: View {
                         }) {
                             Text(self.locationManager.homeCoordinates == nil ? "Set Home" : "Change Home")
                         }
+                        .font(.custom("AvenirNext-Medium", size: 20))
                         .padding()
                         .frame(width: 300, height: 50, alignment: .center)
-                        .background(Color(UIColor(red:0.94, green:0.69, blue:0.69, alpha:1.00)))
-                        .cornerRadius(25)
+                        .background(Color(red: 240/255, green: 176/255, blue: 175/255))
                         .foregroundColor(.white)
-                        .font(.title)
+                        .border(Color(red: 240/255, green: 176/255, blue: 175/255), width: 1)
+                        .cornerRadius(25)
+                        .shadow(radius: 10)
                     }
                     Spacer().frame(height: 50)
                 }
