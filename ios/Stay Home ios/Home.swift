@@ -36,6 +36,8 @@ struct Home: View {
                 // Change home button
                 VStack {
                     Spacer()
+                    Text(self.locationManager.isHome != nil ? (self.locationManager.isHome! ? "You're home" : "You're not home") : "")
+                        .frame(width: 300, height: 50, alignment: .center)
                     HStack {
                         Button(action: {
                             if let lastLocation = self.locationManager.lastLocation {
