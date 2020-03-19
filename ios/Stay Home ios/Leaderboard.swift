@@ -38,26 +38,28 @@ struct Leaderboard: View {
             
             UITableView.appearance().separatorColor = .clear
             
-            self.rows = []
             ref = Database.database().reference()
+            
+            var localRows: [Row] = []
             
             // make this max out at ~100 results
             ref.child("Leaderboard").queryOrderedByValue().observeSingleEvent(of: .value) { (snapshot) in
                 
                 var rank = snapshot.childrenCount
                 
-                for rows in snapshot.children.allObjects as! [DataSnapshot] {
+                for user in snapshot.children.allObjects as! [DataSnapshot] {
                     
-                    var username = rows.key
+                    var username = user.key
                     username = username.padding(toLength: 12, withPad: " ", startingAt: 0)
-                    let points = rows.value as! IntegerLiteralType
+                    let points = user.value as! IntegerLiteralType
     
-                self.rows.append(Row(rank: rank, username: username, points: points))
+                localRows.append(Row(rank: rank, username: username, points: points))
                     
                     rank -= 1
                 }
                 
-                self.rows.reverse()
+                localRows.reverse()
+                self.rows = localRows
             }
             
         }
