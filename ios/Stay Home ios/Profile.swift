@@ -37,7 +37,7 @@ struct Profile: View {
                             Spacer()
                             VStack(alignment: .center) {
                                 Text("my points").font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
-                                Text("100,000").font(.custom("AvenirNext-Bold", size: 26)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 15))
+                                Text("1,000").font(.custom("AvenirNext-Bold", size: 26)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 15))
                             }
                             Spacer()
                         }

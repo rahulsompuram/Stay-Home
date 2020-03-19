@@ -61,6 +61,29 @@ struct Leaderboard: View {
                     Spacer()
                 }
                 
+                VStack(alignment: .leading) {
+                    HStack {
+                        Spacer()
+                    }
+                    HStack(alignment: .top) {
+                        Text("#5").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)).font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
+                        
+                        HStack {
+                            Image("pinkboi").resizable().frame(width: 25, height: 25).shadow(radius: 5)
+                            Text("Rahul").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
+                        }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
+                        
+                        VStack(alignment: .trailing) {
+                            Text("1,000pts").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
+                        }
+                    }
+                    HStack {
+                        Spacer()
+                    }
+                }
+                .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
+                .background(Color(red: 240/255, green: 176/255, blue: 175/255))
+                
                 List(self.rows, id: \.id) { item in
                         Row(rank: item.rank, username: item.username, points: item.points)
                     
