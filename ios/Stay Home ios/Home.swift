@@ -13,18 +13,14 @@ struct Home: View {
     
     @State private var centerCoordinates = CLLocationCoordinate2D()
     
+    @State private var locations = [MKPointAnnotation]() // keeps track of home locations
+    
     @ObservedObject var locationManager = LocationManager()
     
     var body: some View {
         ZStack {
-            MapView(homeCoordinates: $locationManager.homeCoordinates, lastLocation: $locationManager.lastLocation)
+            MapView(homeCoordinates: $locationManager.homeCoordinates, lastLocation: $locationManager.lastLocation, annotations: locations)
                 .edgesIgnoringSafeArea(.vertical)
-            
-            // Current location circle
-            Circle()
-                .fill(Color.blue)
-                .opacity(0.3)
-                .frame(width: 32, height: 32)
             
             VStack{
                 
@@ -33,7 +29,7 @@ struct Home: View {
                     Spacer()
                     Circle()
                         .fill(Color.blue)
-                        .frame(width: 32, height: 32)
+                        .frame(width: 50, height: 50)
                         .padding(25)
                 }
                 
@@ -43,7 +39,13 @@ struct Home: View {
                     HStack {
                         Button(action: {
                             if let lastLocation = self.locationManager.lastLocation {
+                                // set home to the most recent location
                                 self.locationManager.homeCoordinates = lastLocation
+                                
+                                // add a pin for the new home location
+                                let newLocation = MKPointAnnotation()
+                                newLocation.coordinate = CLLocationCoordinate2D(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude)
+                                self.locations.append(newLocation)
                             }
                         }) {
                             Text(self.locationManager.homeCoordinates == nil ? "Set Home" : "Change Home")
