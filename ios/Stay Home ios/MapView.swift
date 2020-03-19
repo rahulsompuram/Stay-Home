@@ -21,6 +21,7 @@ struct MapView: UIViewRepresentable {
         let mapView = MKMapView()
         mapView.isZoomEnabled = false
         mapView.isScrollEnabled = false
+        mapView.showsUserLocation = true
         mapView.delegate = context.coordinator
         return mapView
     }
@@ -37,6 +38,7 @@ struct MapView: UIViewRepresentable {
             // add a new pin if there's a new home location
             view.removeAnnotations(view.annotations)
             view.addAnnotation(annotations[annotations.count-1])
+            
         }
     }
 
