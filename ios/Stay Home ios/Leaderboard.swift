@@ -18,12 +18,30 @@ struct Row: View {
     var id: UUID = UUID()
     
     var body: some View {
-        Text("#\(rank) || \(username) || \(points)pts")
-//        HStack {
-//            Text("#\(rank)")
-//            Text("\(username)")
-//            Text("\(points)pts").align
-//        }
+        VStack(alignment: .leading) {
+            HStack {
+                Spacer()
+            }
+            HStack(alignment: .top) {
+                Text("#\(rank)").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)).font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
+                
+                HStack {
+                    Image("pinkboi").resizable().frame(width: 25, height: 25)
+                    Text("\(username)").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
+                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
+                
+                VStack(alignment: .trailing) {
+                    Text("\(points)pts").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
+                }
+            }
+            HStack {
+                Spacer()
+            }
+        }
+        .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0))
+        .background(Color(red: 89/255, green: 123/255, blue: 235/255))
+        .cornerRadius(10)
+        .shadow(radius: 5)
     }
 }
 
@@ -32,36 +50,51 @@ struct Leaderboard: View {
     @State var rows: [Row] = []
         
     var body: some View {
-        List(self.rows, id: \.id) { item in
-            Row(rank: item.rank, username: item.username, points: item.points)
-        }.onAppear() {
+        ZStack {
+            Color.init(red: 78/255, green: 89/255, blue: 140/255)
+            .edgesIgnoringSafeArea(.all)
             
-            UITableView.appearance().separatorColor = .clear
-            
-            ref = Database.database().reference()
-            
-            var localRows: [Row] = []
-            
-            // make this max out at ~100 results
-            ref.child("Leaderboard").queryOrderedByValue().observeSingleEvent(of: .value) { (snapshot) in
-                
-                var rank = snapshot.childrenCount
-                
-                for user in snapshot.children.allObjects as! [DataSnapshot] {
-                    
-                    var username = user.key
-                    username = username.padding(toLength: 12, withPad: " ", startingAt: 0)
-                    let points = user.value as! IntegerLiteralType
-    
-                localRows.append(Row(rank: rank, username: username, points: points))
-                    
-                    rank -= 1
+            VStack {
+                HStack {
+                    Text("Leaderboard")
+                        .font(.custom("AvenirNext-Bold", size: 30)).foregroundColor(Color.white).padding()
+                    Spacer()
                 }
                 
-                localRows.reverse()
-                self.rows = localRows
+                List(self.rows, id: \.id) { item in
+                        Row(rank: item.rank, username: item.username, points: item.points)
+                    
+                    }.onAppear() {
+                        
+                        UITableView.appearance().separatorColor = .clear
+                        UITableView.appearance().backgroundColor = UIColor(red: 78/255, green: 89/255, blue: 140/255, alpha: 1.0)
+                        UITableViewCell.appearance().backgroundColor = UIColor(red: 78/255, green: 89/255, blue: 140/255, alpha: 1.0)
+                        
+                        ref = Database.database().reference()
+                        
+                        var localRows: [Row] = []
+                        
+                        // make this max out at ~100 results
+                        ref.child("Leaderboard").queryOrderedByValue().observeSingleEvent(of: .value) { (snapshot) in
+                            
+                            var rank = snapshot.childrenCount
+                            
+                            for user in snapshot.children.allObjects as! [DataSnapshot] {
+                                
+                                var username = user.key
+                                username = username.padding(toLength: 12, withPad: " ", startingAt: 0)
+                                let points = user.value as! IntegerLiteralType
+                
+                            localRows.append(Row(rank: rank, username: username, points: points))
+                                
+                                rank -= 1
+                            }
+                            
+                            localRows.reverse()
+                            self.rows = localRows
+                        }
+                }
             }
-            
         }
     }
 }

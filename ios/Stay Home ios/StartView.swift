@@ -14,10 +14,17 @@ struct StartView: View {
             Color.init(red: 78/255, green: 89/255, blue: 140/255)
             .edgesIgnoringSafeArea(.all)
 
-            VStack(alignment: .center, spacing: 50) {
-                Text("Stay Home").font(.custom("AvenirNext-Bold", size: 28)).foregroundColor(.white)
-                Login().frame(width: 300, height: 50).padding()
-            }.padding()
+            VStack {
+                VStack {
+                    Spacer()
+                    Image("pinkboi").resizable().frame(width: 150, height: 150, alignment: .center).shadow(radius: 10)
+                    Text("Stay Home").font(.custom("AvenirNext-Bold", size: 28)).foregroundColor(.white)
+                    Spacer()
+                }.padding(EdgeInsets(top: 50, leading: 0, bottom: 15, trailing: 0))
+                
+                Spacer()
+                Login().frame(width: 300, height: 50).padding(EdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 15))
+            }
         }
     }
 }

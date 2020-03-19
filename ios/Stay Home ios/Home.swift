@@ -19,17 +19,21 @@ struct Home: View {
     
     var body: some View {
         ZStack {
-            MapView(homeCoordinates: $locationManager.homeCoordinates, lastLocation: $locationManager.lastLocation, annotations: locations).grayscale(1.0).contrast(2.0)
-                .edgesIgnoringSafeArea(.vertical)
+            MapView(homeCoordinates: $locationManager.homeCoordinates, lastLocation: $locationManager.lastLocation, annotations: locations).saturation(0).edgesIgnoringSafeArea(.vertical)
             
             VStack{
                 
                 // Virus guy button
                 HStack{
                     Spacer()
-                    Image("covid19_resting").resizable().frame(width: 75, height: 75, alignment: .center)
-                    .padding(25)
-                    .shadow(radius: 10)
+            
+                    Button(action: {
+                        // TODO
+                    }) {
+                    Image("pinkboi").renderingMode(.original).resizable().frame(width: 75, height: 75, alignment: .center)
+                        .padding(25)
+                        .shadow(radius: 10)
+                    }
                 }
                 
                 // Change home button

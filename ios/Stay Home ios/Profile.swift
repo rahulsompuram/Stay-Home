@@ -27,8 +27,7 @@ struct Profile: View {
 
                     VStack {
                         VStack {
-                            Image("covid19_resting").resizable().frame(width: 150, height: 150, alignment: .center)
-                            .clipShape(Circle())
+                            Image("pinkboi").resizable().frame(width: 150, height: 150, alignment: .center)
                             .shadow(radius: 10)
                             
                             Text("woz").font(.custom("AvenirNext-Bold", size: 26)).foregroundColor(Color.white)

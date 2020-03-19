@@ -21,7 +21,7 @@ final class UserDataViewModel: ObservableObject {
     }
     
     func trackAuthState() {
-        let handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
+        _ = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
                 self.user = User(email: user.email!)
             } else {
