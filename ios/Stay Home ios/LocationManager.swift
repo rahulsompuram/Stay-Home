@@ -16,7 +16,7 @@ class LocationManager: NSObject, ObservableObject {
     
     private let locationManager = CLLocationManager()
     
-    private let maxDistanceFromHome: Double = 30.0 // meters
+    private let maxDistanceFromHome: Double = 100.0 // meters
     
     @Published var locationStatus: CLAuthorizationStatus?
     
