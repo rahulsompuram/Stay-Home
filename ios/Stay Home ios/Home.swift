@@ -33,7 +33,7 @@ struct Home: View {
     @State var sprites = ["pinkboi", "covid19_resting", "pinkboi", "covid19_resting", "pinkboi", "pinkboi", "pinkboi", "covid19_resting", "covid19_resting", "pinkboi"]
     
     // Shows unlocked sprites based off user level
-    @State var userLevel = 2
+    @State var userLevel = 1
     @State var points: Int = 0
     
     @State var currentSprite = "pinkboi"
@@ -48,6 +48,7 @@ struct Home: View {
     func getUnlockedSprites() -> [String] {
         var counter = 0
         var unlockedSprites : [String] = []
+        var levelCounter = userLevel + 1
         
         while (counter < self.userLevel) {
             unlockedSprites.append(sprites[counter])
@@ -58,7 +59,8 @@ struct Home: View {
         
         if leftover > 0 {
             for _ in (1...leftover) {
-                unlockedSprites.append("color")
+                unlockedSprites.append("Level \(levelCounter)")
+                levelCounter += 1
             }
         }
         
@@ -206,8 +208,11 @@ struct Home: View {
                         HStack{
                             ForEach(getUnlockedSprites(), id: \.self) { sprite in
                                 Group {
-                                    if (sprite == "color") {
-                                        Color(red: 78/255, green: 89/255, blue: 140/255).frame(width: 75, height: 75).opacity(0.5).cornerRadius(8).padding()
+                                    if (sprite.contains("Level")) {
+                                        ZStack {
+                                            Color(red: 78/255, green: 89/255, blue: 140/255).frame(width: 75, height: 75).opacity(0.5).cornerRadius(8).padding()
+                                            Text(sprite).font(.custom("AvenirNext-Bold", size: 14)).foregroundColor(Color.white)
+                                        }
                                     } else {
                                         Button(action: {
                                             self.currentSprite = sprite
