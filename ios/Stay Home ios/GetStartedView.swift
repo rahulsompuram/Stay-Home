@@ -60,7 +60,14 @@ struct GetStartedView: View {
                                     } else {
                                         ref.child("UsernameList").child(self.username.lowercased()).setValue(getDate())
                                         ref.child("Users").child(Auth.auth().currentUser!.uid).child("Username").setValue(self.username.lowercased())
-                                        self.showGameInfoView.toggle()
+                                        
+                                        ref.child("TotalUsers").observeSingleEvent(of: .value) { (snapshot) in
+                                            if let totalUsers = snapshot.value as? Int {
+                                                ref.child("TotalUsers").setValue(totalUsers + 1)
+                                            }
+                                            
+                                            self.showGameInfoView.toggle()
+                                        }
                                     }
                                 }
                             }
