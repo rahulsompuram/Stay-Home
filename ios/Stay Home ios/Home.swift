@@ -26,7 +26,7 @@ struct Home: View {
     @State var sprites = ["pinkboi", "covid19_resting", "pinkboi", "covid19_resting", "pinkboi", "pinkboi", "pinkboi", "covid19_resting", "covid19_resting", "pinkboi"]
     
     // Shows unlocked sprites based off user level
-    @State var userLevel = 1
+    @State var userLevel = 2
     
     @State var currentSprite = "pinkboi"
     
@@ -64,7 +64,7 @@ struct Home: View {
                         .saturation(0)
                         .edgesIgnoringSafeArea(.vertical)
                 }else{
-                    Text("Getting your location...")
+                    Text("Getting your location...").font(.custom("AvenirNext-Medium", size: 18))
                 }
                 
                 VStack{

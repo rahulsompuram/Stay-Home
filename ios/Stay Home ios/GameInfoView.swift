@@ -26,7 +26,7 @@ struct GameInfoView: View {
                     VStack(alignment: .center) {
                         Text("The game is simple").font(.custom("AvenirNext-Bold", size: 24)).foregroundColor(Color.white)
                         .padding(EdgeInsets(top: 0, leading: 15, bottom: 50, trailing: 15))
-                        Text("Stay home and help flatten the curve for corona virus!\n\nTurn on your location and stay home to earn points and unlock sprites.").font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white)
+                        Text("Stay home and help flatten the curve for corona virus!\n\nFirst enable your location and set your home (don't worry you can change it once a day). Then, stay there to earn points and unlock sprites.\n\nKeep the app running in the background to accumulate points!").font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white)
                         .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
                     }
                     
