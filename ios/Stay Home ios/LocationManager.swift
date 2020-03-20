@@ -34,8 +34,10 @@ class LocationManager: NSObject, ObservableObject {
     }
     
     func updateFirebase(isHome: Bool) {
+        guard let user = Auth.auth().currentUser else { return }
+        
         var ref: DatabaseReference!
-        let userID = Auth.auth().currentUser!.uid
+        let userID = user.uid
         ref = Database.database().reference().child("Users").child(userID)
         let timeInterval = NSDate().timeIntervalSince1970
         
