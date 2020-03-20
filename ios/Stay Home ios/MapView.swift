@@ -8,6 +8,8 @@
 
 import SwiftUI
 import MapKit
+import FirebaseAuth
+import FirebaseDatabase
 
 struct MapView: UIViewRepresentable {
     
@@ -39,6 +41,12 @@ struct MapView: UIViewRepresentable {
             // add a new pin if there's a new home location
             view.removeAnnotations(view.annotations)
             view.addAnnotation(annotations[annotations.count-1])
+            
+            // push to firebase
+            var ref: DatabaseReference!
+            ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
+            ref.child("HomeLat").setValue(annotations[annotations.count-1].coordinate.latitude)
+            ref.child("HomeLong").setValue(annotations[annotations.count-1].coordinate.longitude)
         }
     }
 
