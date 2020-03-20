@@ -31,7 +31,7 @@ struct Row: View {
                 }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
                 Spacer()
                 VStack(alignment: .trailing) {
-                    Text("\(points)pts").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 5)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
+                    Text("\(points) pts").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 5)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
                 }
             }
             HStack {
@@ -74,7 +74,7 @@ struct Leaderboard: View {
                         }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
                         Spacer()
                         VStack(alignment: .trailing) {
-                            Text("1,000pts").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 5)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
+                            Text("1,000 pts").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 5)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
                         }
                     }
                     HStack {
