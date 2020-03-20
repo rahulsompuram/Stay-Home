@@ -8,6 +8,7 @@
 
 import SwiftUI
 import FirebaseDatabase
+import FirebaseAuth
 
 var ref: DatabaseReference!
 
@@ -50,7 +51,9 @@ struct Leaderboard: View {
     @State var rows: [Row] = []
         
     var body: some View {
+        
         ZStack {
+            
             Color.init(red: 78/255, green: 89/255, blue: 140/255)
             .edgesIgnoringSafeArea(.all)
             

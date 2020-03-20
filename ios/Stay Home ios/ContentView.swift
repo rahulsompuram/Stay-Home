@@ -12,6 +12,8 @@ import Firebase
 
 struct ContentView: View {
     @EnvironmentObject var userData: UserDataViewModel
+    @State var showGetStartedView = false
+    @State var showStartView = false
     
     var body: some View {
         Group {
@@ -42,6 +44,7 @@ struct Login : UIViewRepresentable {
     }
     
     class Coordinator : NSObject, LoginButtonDelegate {
+        
         func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
             if error != nil {
                 print((error?.localizedDescription)!)
@@ -64,6 +67,7 @@ struct Login : UIViewRepresentable {
                     ref.observeSingleEvent(of: .value) { (snapshot) in
                         if(!snapshot.exists()) {
                             print("New user!")
+                            // GO TO GetStartedView(username: "")
                             ref.child("Points").setValue(0)
                             ref.child("HomeLat").setValue(0)
                             ref.child("HomeLong").setValue(0)
@@ -73,6 +77,7 @@ struct Login : UIViewRepresentable {
                             ref.child("Streak").setValue(0)
                             ref.child("UnredeemedPoints").setValue(0)
                         } else {
+                            // GO TO TabHomeView()
                             print("Existing user!")
                         }
                     }
