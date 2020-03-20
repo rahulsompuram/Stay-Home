@@ -8,6 +8,7 @@
 
 import SwiftUI
 import MapKit
+import Firebase
 
 struct Home: View {
     
@@ -15,7 +16,11 @@ struct Home: View {
     
     @State private var locations = [MKPointAnnotation]() // keeps track of home locations
     
+    @State private var homePin = MKPointAnnotation() // pin for the home location
+    
     @ObservedObject var locationManager = LocationManager()
+    
+    @State var firebaseDataLoaded = false
     
     @State var showSpriteModal = false
     @State var sprites = ["pinkboi", "covid19_resting", "pinkboi", "covid19_resting", "pinkboi", "pinkboi", "pinkboi", "covid19_resting", "covid19_resting", "pinkboi"]
@@ -53,7 +58,14 @@ struct Home: View {
     var body: some View {
         ZStack {
             ZStack {
-                MapView(homeCoordinates: $locationManager.homeCoordinates, lastLocation: $locationManager.lastLocation, annotations: locations).saturation(0).edgesIgnoringSafeArea(.vertical)
+                
+                if(self.locationManager.lastLocation != nil && self.firebaseDataLoaded){
+                    MapView(homeCoordinates: $locationManager.homeCoordinates, lastLocation: $locationManager.lastLocation, annotations: locations, homePin: homePin)
+                        .saturation(0)
+                        .edgesIgnoringSafeArea(.vertical)
+                }else{
+                    Text("Getting your location...")
+                }
                 
                 VStack{
                     
@@ -82,10 +94,17 @@ struct Home: View {
                                     // set home to the most recent location
                                     self.locationManager.homeCoordinates = lastLocation
                                     
-                                    // add a pin for the new home location
-                                    let newLocation = MKPointAnnotation()
-                                    newLocation.coordinate = CLLocationCoordinate2D(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude)
-                                    self.locations.append(newLocation)
+                                    // push new home location to firebase
+                                    var ref: DatabaseReference!
+                                    ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
+                                    ref.child("HomeLat").setValue(lastLocation.coordinate.latitude)
+                                    ref.child("HomeLong").setValue(lastLocation.coordinate.longitude)
+                                    
+                                    // set home pin
+                                    let newHomePin = MKPointAnnotation()
+                                    newHomePin.coordinate = CLLocationCoordinate2D(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude)
+                                    self.homePin = newHomePin
+                                    
                                 }
                             }) {
                                 Text(self.locationManager.homeCoordinates == nil ? "Set Home" : "Change Home")
@@ -164,6 +183,32 @@ struct Home: View {
                     
                     Spacer()
                 }
+            }
+        }.onAppear {
+            // check firebase for existing home location
+            let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
+            ref.observeSingleEvent(of: .value) { (snapshot) in
+                var homeLat: Double = 0.0
+                var homeLong: Double = 0.0
+                
+                if let hlat = snapshot.childSnapshot(forPath: "HomeLat").value as? Double {
+                    homeLat = hlat
+                }
+                if let hlong = snapshot.childSnapshot(forPath: "HomeLong").value as? Double {
+                    homeLong = hlong
+                }
+                
+                if (homeLat != 0 && homeLong != 0){
+                    // if home coordinates exist in firebase, set them locally.
+                    self.locationManager.homeCoordinates = CLLocation(latitude: homeLat, longitude: homeLong)
+                    
+                    // add a pin for the new home location
+                    let newHomePin = MKPointAnnotation()
+                    newHomePin.coordinate = CLLocationCoordinate2D(latitude: homeLat, longitude: homeLong)
+                    self.homePin = newHomePin
+                }
+                
+                self.firebaseDataLoaded = true
             }
         }
     }
