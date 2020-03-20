@@ -32,6 +32,22 @@ struct MapView: UIViewRepresentable {
             mapView.setRegion(region, animated: false)
         }
         
+        let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
+        ref.observeSingleEvent(of: .value) { (snapshot) in
+            var homeLat: Double = 0.0
+            var homeLong: Double = 0.0
+            
+            if let hlat = snapshot.childSnapshot(forPath: "HomeLat").value as? Double {
+                homeLat = hlat
+            }
+            if let hlong = snapshot.childSnapshot(forPath: "HomeLong").value as? Double {
+                homeLong = hlong
+            }
+            
+            // if homeLat or homeLong are 0, zoom in once on user
+            // if both are nonzero, zoom in on (homeLat, homeLong)
+        }
+        
         return mapView
     }
 
