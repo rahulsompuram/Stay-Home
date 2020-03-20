@@ -42,6 +42,8 @@ struct Home: View {
     @State var progress : CGFloat = 1
     @State var outOfProgess : CGFloat = 6
     
+    @State private var showingAlert = false
+    
     
     func getUnlockedSprites() -> [String] {
         var counter = 0
@@ -110,19 +112,34 @@ struct Home: View {
                         HStack {
                             Button(action: {
                                 if let lastLocation = self.locationManager.lastLocation {
-                                    // set home to the most recent location
-                                    self.locationManager.homeCoordinates = lastLocation
                                     
-                                    // push new home location to firebase
-                                    var ref: DatabaseReference!
-                                    ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
-                                    ref.child("HomeLat").setValue(lastLocation.coordinate.latitude)
-                                    ref.child("HomeLong").setValue(lastLocation.coordinate.longitude)
-                    
-                                    // set home pin
-                                    let newHomePin = MKPointAnnotation()
-                                    newHomePin.coordinate = CLLocationCoordinate2D(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude)
-                                    self.homePin = newHomePin
+                                    let timeInterval = NSDate().timeIntervalSince1970
+                                    
+                                    let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
+                                    
+                                    // check if there's already been a relocation in the last 24 hours
+                                    ref.child("LastRelocTimestamp").observeSingleEvent(of: .value) { (snapshot) in
+                                        let lastRelocTimestamp = snapshot.value as! Double
+                                        let delta_t = timeInterval - lastRelocTimestamp
+                                        
+                                        if (delta_t < 86400) {
+                                            self.showingAlert = true
+                                        } else {
+                                            // set home to the most recent location
+                                            self.locationManager.homeCoordinates = lastLocation
+                                            
+                                            // push new home location to firebase
+                                            ref.child("HomeLat").setValue(lastLocation.coordinate.latitude)
+                                            ref.child("HomeLong").setValue(lastLocation.coordinate.longitude)
+                            
+                                            // set home pin
+                                            let newHomePin = MKPointAnnotation()
+                                            newHomePin.coordinate = CLLocationCoordinate2D(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude)
+                                            self.homePin = newHomePin
+                                            
+                                            ref.child("LastRelocTimestamp").setValue(NSDate().timeIntervalSince1970)
+                                        }
+                                    }
                                     
                                 }
                             }) {
@@ -213,7 +230,13 @@ struct Home: View {
                     Spacer()
                 }
             }
-        }.onAppear {
+        }
+        
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("Cannot change home location"), message: Text("You can only change your home location once per day"), dismissButton: .default(Text("Got it!")))
+        }
+        
+        .onAppear {
             // check firebase for existing home location
             let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
             ref.observeSingleEvent(of: .value) { (snapshot) in
