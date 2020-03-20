@@ -22,6 +22,7 @@
 		B76BFCD12422B15F00ED44D8 /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCD02422B15F00ED44D8 /* UserDataViewModel.swift */; };
 		B76BFCD5242332A100ED44D8 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCD4242332A100ED44D8 /* GetStartedView.swift */; };
 		B76BFCDB242435E100ED44D8 /* GameInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCDA242435E100ED44D8 /* GameInfoView.swift */; };
+		B76BFCDD242563A000ED44D8 /* MoreInfoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCDC2425639F00ED44D8 /* MoreInfoModal.swift */; };
 		B79E4B5E2422734A001863F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B5D2422734A001863F7 /* AppDelegate.swift */; };
 		B79E4B602422734A001863F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B5F2422734A001863F7 /* SceneDelegate.swift */; };
 		B79E4B632422734A001863F7 /* Stay_Home_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B612422734A001863F7 /* Stay_Home_ios.xcdatamodeld */; };
@@ -68,6 +69,7 @@
 		B76BFCD02422B15F00ED44D8 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
 		B76BFCD4242332A100ED44D8 /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
 		B76BFCDA242435E100ED44D8 /* GameInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoView.swift; sourceTree = "<group>"; };
+		B76BFCDC2425639F00ED44D8 /* MoreInfoModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoModal.swift; sourceTree = "<group>"; };
 		B79E4B5A2422734A001863F7 /* Stay Home.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stay Home.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B79E4B5D2422734A001863F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B79E4B5F2422734A001863F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				7746BFA0242293F5000E3D66 /* TabHomeView.swift */,
 				7746BFA224229453000E3D66 /* Leaderboard.swift */,
 				7746BFA424229467000E3D66 /* Home.swift */,
+				B76BFCDC2425639F00ED44D8 /* MoreInfoModal.swift */,
 				B76BFCC82422AA6C00ED44D8 /* StartView.swift */,
 				B76BFCD4242332A100ED44D8 /* GetStartedView.swift */,
 				B76BFCDA242435E100ED44D8 /* GameInfoView.swift */,
@@ -489,6 +492,7 @@
 				7746BFA1242293F5000E3D66 /* TabHomeView.swift in Sources */,
 				7746BFA92422A1E0000E3D66 /* MapView.swift in Sources */,
 				B79E4B602422734A001863F7 /* SceneDelegate.swift in Sources */,
+				B76BFCDD242563A000ED44D8 /* MoreInfoModal.swift in Sources */,
 				7746BFAF2422C8C0000E3D66 /* LocationManager.swift in Sources */,
 				B76BFCD5242332A100ED44D8 /* GetStartedView.swift in Sources */,
 				B76BFCCE2422B0C300ED44D8 /* User.swift in Sources */,

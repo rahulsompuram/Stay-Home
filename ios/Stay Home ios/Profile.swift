@@ -56,7 +56,7 @@ struct Profile: View {
             }
         }.onAppear {
             let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
-            ref.observeSingleEvent(of: .value) { (snapshot) in
+            ref.observe(.value) { (snapshot) in
                 if let username = snapshot.childSnapshot(forPath: "Username").value as? String {
                     self.username = username
                 }

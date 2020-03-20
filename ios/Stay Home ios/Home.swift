@@ -25,6 +25,8 @@ struct Home: View {
     @State var firebaseDataLoaded = false
     
     @State var isAnimating = true
+
+    @State var showInfoModal = false
     
     @State var showSpriteModal = false
     
@@ -32,6 +34,7 @@ struct Home: View {
     
     // Shows unlocked sprites based off user level
     @State var userLevel = 2
+    @State var points: Int = 0
     
     @State var currentSprite = "pinkboi"
     
@@ -61,6 +64,7 @@ struct Home: View {
     }
     
     var body: some View {
+        
         ZStack {
             ZStack {
                 
@@ -76,6 +80,16 @@ struct Home: View {
                     
                     // Virus guy button
                     HStack{
+                        Button(action: {
+                            self.showInfoModal.toggle()
+                        }) {
+                            Image(systemName: "info.circle.fill").renderingMode(.original).resizable().frame(width: 25, height: 25, alignment: .center)
+                            .padding(25)
+                            .shadow(radius: 10)
+                        }.sheet(isPresented: self.$showInfoModal) {
+                            MoreInfoModal()
+                        }
+                        
                         Spacer()
                 
                         Button(action: {
@@ -104,7 +118,7 @@ struct Home: View {
                                     ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
                                     ref.child("HomeLat").setValue(lastLocation.coordinate.latitude)
                                     ref.child("HomeLong").setValue(lastLocation.coordinate.longitude)
-                                    
+                    
                                     // set home pin
                                     let newHomePin = MKPointAnnotation()
                                     newHomePin.coordinate = CLLocationCoordinate2D(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude)
@@ -126,7 +140,7 @@ struct Home: View {
                         Spacer().frame(height: 50)
                     }
                 }
-            }.blur(radius: self.showSpriteModal ? 10 : 0).animation(.easeOut)
+            }.blur(radius: self.showSpriteModal ? 20 : 0).animation(.easeOut)
                 .onAppear {
                     self.showSpriteModal = false
             }
@@ -139,7 +153,7 @@ struct Home: View {
                     HStack {
                         VStack(alignment: .leading) {
                             Text("my points").font(.custom("AvenirNext-Medium", size: 24)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 5))
-                            Text("100,000,000").font(.custom("AvenirNext-Bold", size: 32)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
+                            Text("\(self.points)").font(.custom("AvenirNext-Bold", size: 32)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
                         }.padding()
                         Spacer()
                         Button(action: {
@@ -224,6 +238,12 @@ struct Home: View {
                 }
                 
                 self.firebaseDataLoaded = true
+            }
+            
+            ref.child("Points").observe(.value) { (snapshot) in
+                if let points = snapshot.value as? Int {
+                    self.points = points
+                }
             }
         }
     }

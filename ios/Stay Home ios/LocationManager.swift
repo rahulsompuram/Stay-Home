@@ -63,7 +63,6 @@ class LocationManager: NSObject, ObservableObject {
                 
                 ref.child("Streak").setValue(newStreak)
                 ref.child("Points").setValue(currentPoints + additionalPoints)
-                print("Points = " + currentPoints.description + " + " + additionalPoints.description)
                 ref.child("UnredeemedPoints").setValue(currentUnredeemedPoints + additionalPoints)
                 
                 // update global leaderboard
