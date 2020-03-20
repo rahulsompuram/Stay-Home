@@ -62,7 +62,7 @@ struct Leaderboard: View {
     
     // for sprite image based off user points
     @State var userSprite = "pinkboi"
-        
+
     var body: some View {
         
         ZStack {

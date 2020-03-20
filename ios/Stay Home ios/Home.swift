@@ -18,7 +18,17 @@ struct Home: View {
     @ObservedObject var locationManager = LocationManager()
     
     @State var showSpriteModal = false
-    @State var sprites = ["pinkboi", "pinkboi", "pinkboi", "pinkboi", "pinkboi", "pinkboi", "pinkboi", "pinkboi", "pinkboi", "pinkboi"]
+    @State var sprites = ["pinkboi", "covid19_resting", "pinkboi", "covid19_resting", "pinkboi", "pinkboi", "pinkboi", "covid19_resting", "covid19_resting", "pinkboi"]
+    
+    // Shows unlocked sprites based off user level
+    @State var userLevel = 5
+    @State var userLevelCounter = 0
+    
+    @State var currentSprite = "pinkboi"
+    
+    // For progress bar for next sprite unlock
+    @State var progress : CGFloat = 1
+    @State var outOfProgess : CGFloat = 6
     
     var body: some View {
         ZStack {
@@ -85,7 +95,7 @@ struct Home: View {
                     HStack {
                         VStack(alignment: .leading) {
                             Text("my points").font(.custom("AvenirNext-Medium", size: 24)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 5))
-                            Text("100,000,000").font(.custom("AvenirNext-Bold", size: 32)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 5))
+                            Text("100,000,000").font(.custom("AvenirNext-Bold", size: 32)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
                         }.padding()
                         Spacer()
                         Button(action: {
@@ -99,7 +109,7 @@ struct Home: View {
                         }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 25))
                     }
                     VStack(alignment: .center) {
-                         Image("pinkboi").resizable().frame(width: 150, height: 150, alignment: .center)
+                        Image(currentSprite).resizable().frame(width: 150, height: 150, alignment: .center)
                          .shadow(radius: 10)
                          Text("COVID Cody").font(.custom("AvenirNext-Bold", size: 22)).foregroundColor(Color.white)
                          Text("Stay home and flatten the curve!").font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white)
@@ -109,9 +119,22 @@ struct Home: View {
                     
                     ScrollView(.horizontal, showsIndicators: false){
                         HStack{
-                            ForEach(sprites, id: \.self) { sprites in
-                                //Image($0).resizable().frame(width: 75, height: 75, alignment: .center)
-                                Color(red: 78/255, green: 89/255, blue: 140/255).frame(width: 75, height: 75).opacity(0.5).cornerRadius(8).padding()
+                            ForEach(sprites, id: \.self) { sprite in
+                                Button(action: {
+                                    self.currentSprite = sprite
+                                }) {
+                                    Image(sprite).renderingMode(.original).resizable().frame(width: 75, height: 75, alignment: .center)
+                                }
+//                                if (userLevelCounter <= userLevel) {
+//                                    Button(action: {
+//                                        self.currentSprite = sprite
+//                                    }) {
+//                                        Image(sprite).renderingMode(.original).resizable().frame(width: 75, height: 75, alignment: .center)
+//                                    }
+//                                    self.userLevelCounter += 1
+//                                } else {
+//                                    Color(red: 78/255, green: 89/255, blue: 140/255).frame(width: 75, height: 75).opacity(0.5).cornerRadius(8).padding()
+//                                }
                             }
                         }
                     }
@@ -120,7 +143,7 @@ struct Home: View {
                     
                     VStack(alignment: .center) {
                         Text("100,000 points until next sprite unlock").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color(red: 78/255, green: 89/255, blue: 140/255)).padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
-                        ProgressBar(progress: .constant(1/6), width: 300, height: 15)
+                        ProgressBar(progress: .constant(self.progress/self.outOfProgess), width: 300, height: 15)
                     }.padding()
                     
                     Spacer()
