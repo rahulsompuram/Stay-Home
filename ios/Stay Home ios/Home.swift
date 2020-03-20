@@ -142,7 +142,11 @@ struct Home: View {
                                             newHomePin.coordinate = CLLocationCoordinate2D(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude)
                                             self.homePin = newHomePin
                                             
-                                            ref.child("LastRelocTimestamp").setValue(NSDate().timeIntervalSince1970)
+                                            if lastRelocTimestamp != 0 {
+                                                ref.child("LastRelocTimestamp").setValue(NSDate().timeIntervalSince1970)
+                                            }else{
+                                                ref.child("LastRelocTimestamp").setValue(1000)
+                                            }
                                         }
                                     }
                                     
