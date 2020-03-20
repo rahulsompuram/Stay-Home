@@ -29,9 +29,9 @@ struct Row: View {
                     Image("pinkboi").resizable().frame(width: 25, height: 25)
                     Text("\(username)").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
                 }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
-                
+                Spacer()
                 VStack(alignment: .trailing) {
-                    Text("\(points)pts").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
+                    Text("\(points)pts").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 5)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
                 }
             }
             HStack {
@@ -72,9 +72,9 @@ struct Leaderboard: View {
                             Image("pinkboi").resizable().frame(width: 25, height: 25).shadow(radius: 5)
                             Text("Rahul").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
                         }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
-                        
+                        Spacer()
                         VStack(alignment: .trailing) {
-                            Text("1,000pts").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
+                            Text("1,000pts").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 5)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
                         }
                     }
                     HStack {
