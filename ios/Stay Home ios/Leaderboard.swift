@@ -101,7 +101,7 @@ struct Leaderboard: View {
                         var localRows: [Row] = []
                         
                         // make this max out at ~100 results
-                        ref.child("Leaderboard").queryOrderedByValue().observeSingleEvent(of: .value) { (snapshot) in
+                        ref.child("Leaderboard").queryLimited(toFirst: 100).queryOrderedByValue().observeSingleEvent(of: .value) { (snapshot) in
                             
                             var rank = snapshot.childrenCount
                             
