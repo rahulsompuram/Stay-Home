@@ -17,8 +17,12 @@ struct ContentView: View {
     
     var body: some View {
         Group {
-            if userData.user != nil {
-                TabHomeView()
+            if userData.user != nil && userData.isNewUser != nil {
+                if userData.isNewUser! {
+                    GetStartedView(username: "")
+                }else{
+                    TabHomeView()
+                }
             } else {
                 StartView()
             }
@@ -60,27 +64,27 @@ struct Login : UIViewRepresentable {
                         return
                     }
 
-                    var ref: DatabaseReference!
-                    let userID = Auth.auth().currentUser!.uid
-                    ref = Database.database().reference().child("Users").child(userID)
-                    
-                    ref.observeSingleEvent(of: .value) { (snapshot) in
-                        if(!snapshot.exists()) {
-                            print("New user!")
-                            // GO TO GetStartedView(username: "")
-                            ref.child("Points").setValue(0)
-                            ref.child("HomeLat").setValue(0)
-                            ref.child("HomeLong").setValue(0)
-                            ref.child("Country").setValue("Unknown")
-                            ref.child("LastRelocTimestamp").setValue(0)
-                            ref.child("LastTickTimestamp").setValue(0)
-                            ref.child("Streak").setValue(0)
-                            ref.child("UnredeemedPoints").setValue(0)
-                        } else {
-                            // GO TO TabHomeView()
-                            print("Existing user!")
-                        }
-                    }
+//                    var ref: DatabaseReference!
+//                    let userID = Auth.auth().currentUser!.uid
+//                    ref = Database.database().reference().child("Users").child(userID)
+//
+//                    ref.observeSingleEvent(of: .value) { (snapshot) in
+//                        if(!snapshot.exists()) {
+//                            print("New user!")
+//                            // GO TO GetStartedView(username: "")
+//                            ref.child("Points").setValue(0)
+//                            ref.child("HomeLat").setValue(0)
+//                            ref.child("HomeLong").setValue(0)
+//                            ref.child("Country").setValue("Unknown")
+//                            ref.child("LastRelocTimestamp").setValue(0)
+//                            ref.child("LastTickTimestamp").setValue(0)
+//                            ref.child("Streak").setValue(0)
+//                            ref.child("UnredeemedPoints").setValue(0)
+//                        } else {
+//                            // GO TO TabHomeView()
+//                            print("Existing user!")
+//                        }
+//                    }
                     
                 }
             }
