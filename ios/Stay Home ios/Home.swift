@@ -35,6 +35,7 @@ struct Home: View {
     // Shows unlocked sprites based off user level
     @State var userLevel = 2
     @State var points: Int = 0
+    @State var pointsToNextLevel: Int = 0
     
     @State var currentSprite = "pinkboi"
     
@@ -223,7 +224,7 @@ struct Home: View {
                     Spacer()
                     
                     VStack(alignment: .center) {
-                        Text("100,000 points until next sprite unlock").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color(red: 78/255, green: 89/255, blue: 140/255)).padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
+                        Text("\(self.pointsToNextLevel) points until next sprite unlock").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color(red: 78/255, green: 89/255, blue: 140/255)).padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
                         ProgressBar(progress: .constant(self.progress/self.outOfProgess), width: 300, height: 15)
                     }.padding()
                     
@@ -266,6 +267,12 @@ struct Home: View {
             ref.child("Points").observe(.value) { (snapshot) in
                 if let points = snapshot.value as? Int {
                     self.points = points
+                    
+                    
+                    // simple linear curve
+                    self.userLevel = Int(points / 100000) + 1
+                    
+                    self.pointsToNextLevel = 100000 - (points % 100000)
                 }
             }
         }
