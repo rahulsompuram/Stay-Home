@@ -21,14 +21,34 @@ struct Home: View {
     @State var sprites = ["pinkboi", "covid19_resting", "pinkboi", "covid19_resting", "pinkboi", "pinkboi", "pinkboi", "covid19_resting", "covid19_resting", "pinkboi"]
     
     // Shows unlocked sprites based off user level
-    @State var userLevel = 5
-    @State var userLevelCounter = 0
+    @State var userLevel = 1
     
     @State var currentSprite = "pinkboi"
     
     // For progress bar for next sprite unlock
     @State var progress : CGFloat = 1
     @State var outOfProgess : CGFloat = 6
+    
+    
+    func getUnlockedSprites() -> [String] {
+        var counter = 0
+        var unlockedSprites : [String] = []
+        
+        while (counter < self.userLevel) {
+            unlockedSprites.append(sprites[counter])
+            counter += 1
+        }
+        
+        let leftover = sprites.count - userLevel
+        
+        if leftover > 0 {
+            for _ in (1...leftover) {
+                unlockedSprites.append("color")
+            }
+        }
+        
+        return unlockedSprites
+    }
     
     var body: some View {
         ZStack {
@@ -119,22 +139,18 @@ struct Home: View {
                     
                     ScrollView(.horizontal, showsIndicators: false){
                         HStack{
-                            ForEach(sprites, id: \.self) { sprite in
-                                Button(action: {
-                                    self.currentSprite = sprite
-                                }) {
-                                    Image(sprite).renderingMode(.original).resizable().frame(width: 75, height: 75, alignment: .center)
+                            ForEach(getUnlockedSprites(), id: \.self) { sprite in
+                                Group {
+                                    if (sprite == "color") {
+                                        Color(red: 78/255, green: 89/255, blue: 140/255).frame(width: 75, height: 75).opacity(0.5).cornerRadius(8).padding()
+                                    } else {
+                                        Button(action: {
+                                            self.currentSprite = sprite
+                                        }) {
+                                        Image(sprite).renderingMode(.original).resizable().frame(width: 75, height: 75, alignment: .center)
+                                        }
+                                    }
                                 }
-//                                if (userLevelCounter <= userLevel) {
-//                                    Button(action: {
-//                                        self.currentSprite = sprite
-//                                    }) {
-//                                        Image(sprite).renderingMode(.original).resizable().frame(width: 75, height: 75, alignment: .center)
-//                                    }
-//                                    self.userLevelCounter += 1
-//                                } else {
-//                                    Color(red: 78/255, green: 89/255, blue: 140/255).frame(width: 75, height: 75).opacity(0.5).cornerRadius(8).padding()
-//                                }
                             }
                         }
                     }
