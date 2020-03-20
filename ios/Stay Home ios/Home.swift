@@ -29,6 +29,7 @@ struct Home: View {
     
     // Shows unlocked sprites based off user level
     @State var userLevel = 2
+    @State var points: Int = 0
     
     @State var currentSprite = "pinkboi"
     
@@ -58,6 +59,7 @@ struct Home: View {
     }
     
     var body: some View {
+        
         ZStack {
             ZStack {
                 
@@ -146,7 +148,7 @@ struct Home: View {
                     HStack {
                         VStack(alignment: .leading) {
                             Text("my points").font(.custom("AvenirNext-Medium", size: 24)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 5))
-                            Text("100,000,000").font(.custom("AvenirNext-Bold", size: 32)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
+                            Text("\(self.points)").font(.custom("AvenirNext-Bold", size: 32)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
                         }.padding()
                         Spacer()
                         Button(action: {
@@ -221,6 +223,12 @@ struct Home: View {
                 }
                 
                 self.firebaseDataLoaded = true
+            }
+            
+            ref.child("Points").observe(.value) { (snapshot) in
+                if let points = snapshot.value as? Int {
+                    self.points = points
+                }
             }
         }
     }
