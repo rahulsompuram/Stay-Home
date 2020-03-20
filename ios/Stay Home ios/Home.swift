@@ -22,6 +22,8 @@ struct Home: View {
     
     @State var firebaseDataLoaded = false
     
+    @State var showInfoModal = false
+    
     @State var showSpriteModal = false
     @State var sprites = ["pinkboi", "covid19_resting", "pinkboi", "covid19_resting", "pinkboi", "pinkboi", "pinkboi", "covid19_resting", "covid19_resting", "pinkboi"]
     
@@ -71,6 +73,16 @@ struct Home: View {
                     
                     // Virus guy button
                     HStack{
+                        Button(action: {
+                            self.showInfoModal.toggle()
+                        }) {
+                            Image(systemName: "info.circle.fill").renderingMode(.original).resizable().frame(width: 25, height: 25, alignment: .center)
+                            .padding(25)
+                            .shadow(radius: 10)
+                        }.sheet(isPresented: self.$showInfoModal) {
+                            MoreInfoModal()
+                        }
+                        
                         Spacer()
                 
                         Button(action: {
@@ -99,7 +111,7 @@ struct Home: View {
                                     ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
                                     ref.child("HomeLat").setValue(lastLocation.coordinate.latitude)
                                     ref.child("HomeLong").setValue(lastLocation.coordinate.longitude)
-                                    
+                    
                                     // set home pin
                                     let newHomePin = MKPointAnnotation()
                                     newHomePin.coordinate = CLLocationCoordinate2D(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude)
@@ -121,7 +133,7 @@ struct Home: View {
                         Spacer().frame(height: 50)
                     }
                 }
-            }.blur(radius: self.showSpriteModal ? 10 : 0).animation(.easeOut)
+            }.blur(radius: self.showSpriteModal ? 20 : 0).animation(.easeOut)
                 .onAppear {
                     self.showSpriteModal = false
             }
