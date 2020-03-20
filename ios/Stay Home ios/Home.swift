@@ -9,6 +9,8 @@
 import SwiftUI
 import MapKit
 import Firebase
+import SDWebImageSwiftUI
+import SDWebImage
 
 struct Home: View {
     
@@ -22,7 +24,10 @@ struct Home: View {
     
     @State var firebaseDataLoaded = false
     
+    @State var isAnimating = true
+    
     @State var showSpriteModal = false
+    
     @State var sprites = ["pinkboi", "covid19_resting", "pinkboi", "covid19_resting", "pinkboi", "pinkboi", "pinkboi", "covid19_resting", "covid19_resting", "pinkboi"]
     
     // Shows unlocked sprites based off user level
@@ -148,8 +153,18 @@ struct Home: View {
                         }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 25))
                     }
                     VStack(alignment: .center) {
-                        Image(currentSprite).resizable().frame(width: 150, height: 150, alignment: .center)
-                         .shadow(radius: 10)
+                        WebImage(url: URL(string: "https://user-images.githubusercontent.com/1212163/77207404-a65b5780-6acf-11ea-948b-bebf01692194.gif"), isAnimating: $isAnimating)
+                        .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
+                        .placeholder(Image(systemName: "photo")) // Placeholder Image
+                        .placeholder {
+                            Rectangle().foregroundColor(.gray)
+                        }
+                        .indicator(.activity) // Activity Indicator
+                        .animation(.easeInOut(duration: 0.5)) // Animation Duration
+                        .transition(.fade) // Fade Transition
+                        .scaledToFit()
+                        .frame(width: 150, height: 150, alignment: .center)
+                        
                          Text("COVID Cody").font(.custom("AvenirNext-Bold", size: 22)).foregroundColor(Color.white)
                          Text("Stay home and flatten the curve!").font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white)
                     }

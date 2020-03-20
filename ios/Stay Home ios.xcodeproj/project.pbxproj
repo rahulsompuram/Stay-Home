@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,7 @@
 		7746BFA724229471000E3D66 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA624229471000E3D66 /* Profile.swift */; };
 		7746BFA92422A1E0000E3D66 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA82422A1E0000E3D66 /* MapView.swift */; };
 		7746BFAF2422C8C0000E3D66 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFAE2422C8C0000E3D66 /* LocationManager.swift */; };
+		775E64122425682300F2ABE0 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 775E64112425682300F2ABE0 /* SDWebImageSwiftUI */; };
 		B76BFCC92422AA6C00ED44D8 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCC82422AA6C00ED44D8 /* StartView.swift */; };
 		B76BFCCE2422B0C300ED44D8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCCD2422B0C300ED44D8 /* User.swift */; };
 		B76BFCD12422B15F00ED44D8 /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCD02422B15F00ED44D8 /* UserDataViewModel.swift */; };
@@ -94,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				775E64122425682300F2ABE0 /* SDWebImageSwiftUI in Frameworks */,
 				70D3DEEDF347797917409FCD /* Pods_Stay_Home_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +251,9 @@
 			dependencies = (
 			);
 			name = "Stay Home ios";
+			packageProductDependencies = (
+				775E64112425682300F2ABE0 /* SDWebImageSwiftUI */,
+			);
 			productName = "Stay Home ios";
 			productReference = B79E4B5A2422734A001863F7 /* Stay Home.app */;
 			productType = "com.apple.product-type.application";
@@ -324,6 +329,9 @@
 				Base,
 			);
 			mainGroup = B79E4B512422734A001863F7;
+			packageReferences = (
+				775E64102425682300F2ABE0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = B79E4B5B2422734A001863F7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -818,6 +826,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		775E64102425682300F2ABE0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		775E64112425682300F2ABE0 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 775E64102425682300F2ABE0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B79E4B612422734A001863F7 /* Stay_Home_ios.xcdatamodeld */ = {
