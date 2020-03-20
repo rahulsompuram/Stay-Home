@@ -22,60 +22,61 @@ struct GetStartedView: View {
     @State var username: String
     @State private var showingAlert = false
     @State var popupMessage = "blah"
-    @State var goToNextScreen = false
+    @State var showGameInfoView = false
     
     var body: some View {
         ZStack {
-            Color.init(red: 78/255, green: 89/255, blue: 140/255)
-            .edgesIgnoringSafeArea(.all)
-            
-            VStack  {
-                Spacer()
+            if self.showGameInfoView {
+                GameInfoView()
+            } else {
+                Color.init(red: 78/255, green: 89/255, blue: 140/255)
+                .edgesIgnoringSafeArea(.all)
                 
-                VStack {
-                    Text("Enter a username").font(.custom("AvenirNext-Bold", size: 24)).foregroundColor(Color.white)
-                    .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
-                    TextFieldWithLine(placeholder: "", text: $username).foregroundColor(Color.white).padding(25)
-                }
-                
-                Spacer()
-                Spacer()
-                
-                VStack(alignment: .center) {
-                    Button(action: {
-                        // code that runs when "Done" button is pressed
-                        
-                        if (self.username.count > 12) {
-                            self.popupMessage = "Username cannot be more than 12 characters"
-                            self.showingAlert = true
-                        } else {
-                            var ref: DatabaseReference!
-                            ref = Database.database().reference()
-                            ref.child("UsernameList").observeSingleEvent(of: .value) { (snapshot) in
-                                if (snapshot.hasChild(self.username.lowercased())) {
-                                    self.popupMessage = "Username already taken"
-                                    self.showingAlert = true
-                                } else {
-                                    ref.child("UsernameList").child(self.username.lowercased()).setValue(getDate())
-                                    ref.child("Users").child(Auth.auth().currentUser!.uid).child("Username").setValue(self.username.lowercased())
-                                    self.goToNextScreen = true
+                VStack  {
+                    Spacer()
+                    
+                    VStack {
+                        Text("Enter a username").font(.custom("AvenirNext-Bold", size: 24)).foregroundColor(Color.white)
+                        .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
+                        TextFieldWithLine(placeholder: "", text: $username).foregroundColor(Color.white).padding(25)
+                    }
+                    
+                    Spacer()
+                    Spacer()
+                    
+                    VStack(alignment: .center) {
+                        Button(action: {
+                            // code that runs when "Done" button is pressed
+                            if (self.username.count > 12) {
+                                self.popupMessage = "Username cannot be more than 12 characters"
+                                self.showingAlert = true
+                            } else {
+                                var ref: DatabaseReference!
+                                ref = Database.database().reference()
+                                ref.child("UsernameList").observeSingleEvent(of: .value) { (snapshot) in
+                                    if (snapshot.hasChild(self.username.lowercased())) {
+                                        self.popupMessage = "Username already taken"
+                                        self.showingAlert = true
+                                    } else {
+                                        ref.child("UsernameList").child(self.username.lowercased()).setValue(getDate())
+                                        ref.child("Users").child(Auth.auth().currentUser!.uid).child("Username").setValue(self.username.lowercased())
+                                        self.showGameInfoView.toggle()
+                                    }
                                 }
                             }
-                        }
-                        
-                        
-                    }) {
-                        Text("Done")
-                            .font(.custom("AvenirNext-Medium", size: 20))
-                            .padding()
-                            .frame(width: 300, height: 50, alignment: .center)
-                            .background(Color(red: 240/255, green: 176/255, blue: 175/255))
-                            .foregroundColor(.white)
-                            .border(Color(red: 240/255, green: 176/255, blue: 175/255), width: 1)
-                            .cornerRadius(25)
-                            .shadow(radius: 10)
-                    }.padding()
-                }.padding(EdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 15))
+                        }) {
+                            Text("Done")
+                                .font(.custom("AvenirNext-Medium", size: 20))
+                                .padding()
+                                .frame(width: 300, height: 50, alignment: .center)
+                                .background(Color(red: 240/255, green: 176/255, blue: 175/255))
+                                .foregroundColor(.white)
+                                .border(Color(red: 240/255, green: 176/255, blue: 175/255), width: 1)
+                                .cornerRadius(25)
+                                .shadow(radius: 10)
+                        }.padding()
+                    }.padding(EdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 15))
+                }
             }
         }
         .alert(isPresented: $showingAlert) {
