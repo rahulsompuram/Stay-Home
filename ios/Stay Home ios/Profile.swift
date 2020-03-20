@@ -14,6 +14,9 @@ struct Profile: View {
     @State var username = ""
     @State var points = 0
     
+    // sprite image to choose based off user points
+    @State var spriteBadge = "pinkboi"
+    
     var body: some View {
         ZStack {
             Color.init(red: 78/255, green: 89/255, blue: 140/255)
@@ -31,7 +34,7 @@ struct Profile: View {
 
                     VStack {
                         VStack {
-                            Image("pinkboi").resizable().frame(width: 150, height: 150, alignment: .center)
+                            Image(spriteBadge).resizable().frame(width: 150, height: 150, alignment: .center)
                             .shadow(radius: 10)
                             
                             Text("\(self.username)").font(.custom("AvenirNext-Bold", size: 26)).foregroundColor(Color.white)
@@ -52,7 +55,7 @@ struct Profile: View {
                 Login().frame(width: 300, height: 50).padding(EdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 15))
             }
         }.onAppear {
-            var ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
+            let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
             ref.observeSingleEvent(of: .value) { (snapshot) in
                 if let username = snapshot.childSnapshot(forPath: "Username").value as? String {
                     self.username = username

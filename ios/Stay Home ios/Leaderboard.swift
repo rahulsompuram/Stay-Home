@@ -53,6 +53,12 @@ struct Leaderboard: View {
     @State var points = 0
     @State var rank = 0
     @State var username = " "
+    
+    // for estimated rank of current user
+    @State var estimatedRank = 500
+    
+    // for total user count
+    @ State var totalUsers = 100000
         
     var body: some View {
         
@@ -72,16 +78,18 @@ struct Leaderboard: View {
                     HStack {
                         Spacer()
                     }
-                    HStack(alignment: .top) {
-                        Text(/*"#\(self.rank)"*/"").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)).font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
-                        
-                        HStack {
-                            Image("pinkboi").resizable().frame(width: 25, height: 25).shadow(radius: 5)
-                            Text(self.username).padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
-                        }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
-                        Spacer()
-                        VStack(alignment: .trailing) {
-                            Text("\(self.points) pts").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 5)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            HStack {
+                                Text("#\(estimatedRank)").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color.white)
+                                Image("pinkboi").resizable().frame(width: 25, height: 25).shadow(radius: 5)
+                                Text(self.username).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
+                                Spacer()
+                                VStack(alignment: .trailing) {
+                                    Text("\(self.points) pts").font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
+                                }
+                            }
+                            Text("out of \(totalUsers) users").padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0)).font(.custom("AvenirNext-Medium", size: 16)).foregroundColor(Color.white)
                         }
                     }
                     HStack {
