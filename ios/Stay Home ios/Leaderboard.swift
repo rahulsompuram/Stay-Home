@@ -58,7 +58,10 @@ struct Leaderboard: View {
     @State var estimatedRank = 500
     
     // for total user count
-    @ State var totalUsers = 100000
+    @State var totalUsers = 100000
+    
+    // for sprite image based off user points
+    @State var userSprite = "pinkboi"
         
     var body: some View {
         
@@ -82,7 +85,7 @@ struct Leaderboard: View {
                         VStack(alignment: .leading) {
                             HStack {
                                 Text("#\(estimatedRank)").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color.white)
-                                Image("pinkboi").resizable().frame(width: 25, height: 25).shadow(radius: 5)
+                                Image(userSprite).resizable().frame(width: 25, height: 25).shadow(radius: 5)
                                 Text(self.username).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
                                 Spacer()
                                 VStack(alignment: .trailing) {
