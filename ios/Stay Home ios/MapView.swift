@@ -25,6 +25,7 @@ struct MapView: UIViewRepresentable {
         let mapView = MKMapView()
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
+        mapView.showsUserLocation = true
         mapView.delegate = context.coordinator
         
         // if home is set, use that as the center, else use the last location
@@ -42,18 +43,9 @@ struct MapView: UIViewRepresentable {
             // update the pins if anything changes
             view.removeAnnotations(view.annotations)
             
-            // home pin
+            // set the home pin
             homePin.title = "Home"
             view.addAnnotation(homePin)
-            
-            // your location pin
-            if let lastLocation = self.lastLocation {
-                let currentPin = MKPointAnnotation()
-                currentPin.coordinate = lastLocation.coordinate
-                currentPin.title = "You"
-                view.addAnnotation(currentPin)
-            }
-        
     }
 
     func makeCoordinator() -> Coordinator {
