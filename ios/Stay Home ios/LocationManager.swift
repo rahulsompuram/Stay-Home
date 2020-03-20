@@ -1,6 +1,6 @@
 //
 //  LocationManager.swift
-//  
+//
 //
 //  Created by Vishnu Ravi on 3/18/20.
 //
@@ -65,6 +65,11 @@ class LocationManager: NSObject, ObservableObject {
                 ref.child("Points").setValue(currentPoints + additionalPoints)
                 print("Points = " + currentPoints.description + " + " + additionalPoints.description)
                 ref.child("UnredeemedPoints").setValue(currentUnredeemedPoints + additionalPoints)
+                
+                // update global leaderboard
+                if let username = snapshot.childSnapshot(forPath: "Username").value as? String {
+                    Database.database().reference().child("Leaderboard").child(username).setValue(currentPoints + additionalPoints)
+                }
                 
             } else {
                 
