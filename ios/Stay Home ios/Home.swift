@@ -14,6 +14,8 @@ import SDWebImage
 
 struct Home: View {
     
+    let pointsPerLevel = 50000
+    
     @State private var centerCoordinates = CLLocationCoordinate2D()
     
     @State private var locations = [MKPointAnnotation]() // keeps track of home locations
@@ -225,7 +227,7 @@ struct Home: View {
                     
                     VStack(alignment: .center) {
                         Text("\(self.pointsToNextLevel) points until next sprite unlock").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color(red: 78/255, green: 89/255, blue: 140/255)).padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
-                        ProgressBar(progress: .constant(self.progress/self.outOfProgess), width: 300, height: 15)
+                        ProgressBar(progress: .constant(1 - CGFloat(self.pointsToNextLevel) / CGFloat(self.pointsPerLevel)), width: 300, height: 15)
                     }.padding()
                     
                     Spacer()
@@ -270,9 +272,9 @@ struct Home: View {
                     
                     
                     // simple linear curve
-                    self.userLevel = Int(points / 100000) + 1
+                    self.userLevel = Int(points / self.pointsPerLevel) + 1
                     
-                    self.pointsToNextLevel = 100000 - (points % 100000)
+                    self.pointsToNextLevel = self.pointsPerLevel - (points % self.pointsPerLevel)
                 }
             }
         }
