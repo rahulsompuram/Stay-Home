@@ -127,7 +127,7 @@ struct Home: View {
                                         let lastRelocTimestamp = snapshot.value as! Double
                                         let delta_t = timeInterval - lastRelocTimestamp
                                         
-                                        if (delta_t < 86400) {
+                                        if (delta_t < 86400 && lastRelocTimestamp != 0) {
                                             self.showingAlert = true
                                         } else {
                                             // set home to the most recent location
@@ -189,7 +189,7 @@ struct Home: View {
                         }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 25))
                     }
                     VStack(alignment: .center) {
-                        WebImage(url: URL(string: "https://user-images.githubusercontent.com/1212163/77207404-a65b5780-6acf-11ea-948b-bebf01692194.gif"), isAnimating: $isAnimating)
+                        WebImage(url: URL(string: "https://user-images.githubusercontent.com/1212163/77212444-803cb400-6add-11ea-9ba3-3b173e7ce264.gif"), isAnimating: $isAnimating)
                         .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
                         .placeholder(Image(systemName: "photo")) // Placeholder Image
                         .placeholder {
