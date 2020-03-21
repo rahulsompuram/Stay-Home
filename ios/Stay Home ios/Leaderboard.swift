@@ -122,7 +122,12 @@ struct Leaderboard: View {
                         ref.child("Users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
                             if let points = snapshot.childSnapshot(forPath: "Points").value as? Int {
                                 self.points = points
-                                self.level = Int(points / self.pointsPerLevel) + 1
+                                
+                                var level = Int(points / self.pointsPerLevel) + 1
+                                if (level > 10) {
+                                    level = 10
+                                }
+                                self.level = level
                             }
                             
                             if let username = snapshot.childSnapshot(forPath: "Username").value as? String {
