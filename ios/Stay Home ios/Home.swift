@@ -33,13 +33,12 @@ struct Home: View {
     
     @State var showSpriteModal = false
     
-    @State var currentSprite = ""
     @State var gifURL = ""
     @State var nickname = ""
     @State var description = ""
-    @State var sprites = ["pinkboi", "soapboi", "maskboi", "gloveboi", "sanitizer", "Window", "TP", "Sir_Six_Feet", "Juiceboi", "lungs"]
+    let sprites = ["pinkboi", "soapboi", "maskboi", "gloveboi", "sanitizer", "Window", "TP", "Sir_Six_Feet", "Juiceboi", "lungs"]
     
-    @State var spriteDict = ["1": ["name": "pinkboi", "gif": url + "pinkboi.gif", "nickname": "Covid Cody", "desc": "Together we can beat corona virus!"],
+    let spriteDict = ["1": ["name": "pinkboi", "gif": url + "pinkboi.gif", "nickname": "Covid Cody", "desc": "Together we can beat corona virus!"],
                              "2": ["name": "soapboi", "gif": url + "soapboi.gif", "nickname": "Soapy Sam", "desc": "Soap and water is extremely effective. Wash your hands!"],
                              "3": ["name": "maskboi", "gif": url + "maskboi.gif", "nickname": "Frank", "desc": "These guys can help prevent the viral spread if used properly."],
                              "4": ["name": "gloveboi", "gif": url + "gloveboi.gif", "nickname": "Hans", "desc": "Keeping your hands off of your face keeps the virus off too."],
@@ -50,7 +49,7 @@ struct Home: View {
                              "9": ["name": "Juiceboi", "gif": url + "Juiceboi.gif", "nickname": "Jésus", "desc": "Vitamin C won't prevent covid, but staying hydrated keeps your immune system healthy!"],
                              "10": ["name": "lungs", "gif": url + "lungs.gif", "nickname": "Lisa & Larry", "desc": "These superheros keep the wind in your sails. STAY home to keep them protected!"]
                             ]
-    @State var reverseDict = ["pinkboi": 1, "soapboi": 2, "maskboi": 3, "gloveboi": 4, "sanitizer": 5, "Window": 6, "TP": 7, "Sir_Six_Feet": 8, "Juiceboi": 9, "lungs": 10]
+    let reverseDict = ["pinkboi": 1, "soapboi": 2, "maskboi": 3, "gloveboi": 4, "sanitizer": 5, "Window": 6, "TP": 7, "Sir_Six_Feet": 8, "Juiceboi": 9, "lungs": 10]
     
     // Shows unlocked sprites based off user level
     @State var userLevel = 1
@@ -65,7 +64,6 @@ struct Home: View {
     
     // Initializes sprite information based off user level
     func initSpriteInfo(currentUserLevel: Int) {
-        self.currentSprite = self.spriteDict["\(currentUserLevel)"]!["name"]!
         self.gifURL = self.spriteDict["\(currentUserLevel)"]!["gif"]!
         self.nickname = self.spriteDict["\(currentUserLevel)"]!["nickname"]!
         self.description = self.spriteDict["\(currentUserLevel)"]!["desc"]!
@@ -264,55 +262,72 @@ struct Home: View {
                                     .animation(.default)
                                     .padding(.trailing, 50)
                             }
-                            WebImage(url: URL(string: self.gifURL), isAnimating: $isAnimating)
-                        .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
-                        .placeholder(Image(systemName: "photo")) // Placeholder Image
-                        .placeholder {
-                            Rectangle().foregroundColor(.gray)
                         }
-                        .indicator(.activity) // Activity Indicator
-                        .animation(.easeInOut(duration: 0.5)) // Animation Duration
-                        .transition(.fade) // Fade Transition
-                        .scaledToFit()
-                        .frame(width: 150, height: 150, alignment: .center)
-                        .gesture(tapSprite)
-                        }
+                        
+                        ScrollView(.horizontal, showsIndicators: false){
+                            HStack{
+                                ForEach(getUnlockedSprites(), id: \.self) { sprite in
+                                    Group {
+                                        if (sprite.contains("Level")) {
+                                            ZStack {
+                                                Color(red: 78/255, green: 89/255, blue: 140/255).frame(width: 200, height: 200).opacity(0.5).cornerRadius(8).padding()
+                                                Text(sprite).font(.custom("AvenirNext-Bold", size: 20)).foregroundColor(Color.white)
+                                            }
+                                        } else {
+                                            VStack {
+                                                Button(action: {
+                                                    // toggle +1 on
+                                                    self.plusOneActive.toggle()
+                                                    
+                                                    let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
+                                                    ref.observeSingleEvent(of: .value) { (snapshot) in
+                                                        let points = snapshot.childSnapshot(forPath: "Points").value as! Int
+                                                        let unredeemedPoints = snapshot.childSnapshot(forPath: "UnredeemedPoints").value as! Int
+                                                        let username = snapshot.childSnapshot(forPath: "Username").value as! String
+                                                        
+                                                        ref.child("Points").setValue(points + 1)
+                                                        ref.child("UnredeemedPoints").setValue(unredeemedPoints + 1)
+                                                        
+                                                        Database.database().reference().child("Leaderboard").child(username).setValue(unredeemedPoints + 1)
 
-                        VStack(alignment: .center) {
-                            Text(self.nickname).font(.custom("AvenirNext-Bold", size: 22)).foregroundColor(Color.white)
-                            HStack {
-                                Spacer()
-                                Text(self.description).font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white)
-                                Spacer()
-                            }
-                        }
-                    }
-                    
-                    Spacer()
-                    
-                    ScrollView(.horizontal, showsIndicators: false){
-                        HStack{
-                            ForEach(getUnlockedSprites(), id: \.self) { sprite in
-                                Group {
-                                    if (sprite.contains("Level")) {
-                                        ZStack {
-                                            Color(red: 78/255, green: 89/255, blue: 140/255).frame(width: 75, height: 75).opacity(0.5).cornerRadius(8).padding()
-                                            Text(sprite).font(.custom("AvenirNext-Bold", size: 14)).foregroundColor(Color.white)
-                                        }
-                                    } else {
-                                        Button(action: {
-                                            self.currentSprite = sprite
-                                            self.setCurrentSprite(spriteName: sprite)
-                                        }) {
-                                        Image(sprite).renderingMode(.original).resizable().frame(width: 75, height: 75, alignment: .center)
+                                                    }
+                                                    
+                                                    // wait 0.5s then toggle +1 off
+                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                                        self.plusOneActive.toggle()
+                                                    }
+                                                    
+                                                    self.setCurrentSprite(spriteName: sprite)
+                                                }) {
+                                                        WebImage(url: URL(string: self.spriteDict[String(self.reverseDict[sprite] ?? 1)]!["gif"] ?? ""), isAnimating: self.$isAnimating)
+                                                        .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
+                                                        .placeholder(Image(systemName: "photo")) // Placeholder Image
+                                                        .placeholder {
+                                                            Rectangle().foregroundColor(.gray)
+                                                        }
+                                                        .renderingMode(.original)
+                                                        .indicator(.activity) // Activity Indicator
+                                                        .animation(.easeInOut(duration: 0.5)) // Animation Duration
+                                                        .transition(.fade) // Fade Transition
+                                                        .scaledToFit()
+                                                        .frame(width: 200, height: 200, alignment: .center)
+                                                      
+                                                }
+                                                VStack(alignment: .center) {
+                                                    Text(self.spriteDict[String(self.reverseDict[sprite] ?? 1)]!["nickname"] ?? "").font(.custom("AvenirNext-Bold", size: 22)).foregroundColor(Color.white)
+                                                    HStack {
+                                                        Spacer()
+                                                        Text(self.spriteDict[String(self.reverseDict[sprite] ?? 1)]!["desc"] ?? "").lineLimit(nil).font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white)
+                                                        Spacer()
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                    
-                    Spacer()
                     
                     VStack(alignment: .center) {
                         Text("\(self.pointsToNextLevel) points until next sprite unlock").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color(red: 78/255, green: 89/255, blue: 140/255)).padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
