@@ -262,63 +262,63 @@ struct Home: View {
                                     .animation(.default)
                                     .padding(.trailing, 50)
                             }
-                        }
-                        
-                        ScrollView(.horizontal, showsIndicators: false){
-                            HStack{
-                                ForEach(getUnlockedSprites(), id: \.self) { sprite in
-                                    Group {
-                                        if (sprite.contains("Level")) {
-                                            ZStack {
-                                                Color(red: 78/255, green: 89/255, blue: 140/255).frame(width: 200, height: 200).opacity(0.5).cornerRadius(8).padding()
-                                                Text(sprite).font(.custom("AvenirNext-Bold", size: 20)).foregroundColor(Color.white)
-                                            }
-                                        } else {
-                                            VStack {
-                                                Button(action: {
-                                                    // toggle +1 on
-                                                    self.plusOneActive.toggle()
-                                                    
-                                                    let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
-                                                    ref.observeSingleEvent(of: .value) { (snapshot) in
-                                                        let points = snapshot.childSnapshot(forPath: "Points").value as! Int
-                                                        let unredeemedPoints = snapshot.childSnapshot(forPath: "UnredeemedPoints").value as! Int
-                                                        let username = snapshot.childSnapshot(forPath: "Username").value as! String
-                                                        
-                                                        ref.child("Points").setValue(points + 1)
-                                                        ref.child("UnredeemedPoints").setValue(unredeemedPoints + 1)
-                                                        
-                                                        Database.database().reference().child("Leaderboard").child(username).setValue(unredeemedPoints + 1)
-
-                                                    }
-                                                    
-                                                    // wait 0.5s then toggle +1 off
-                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                                        self.plusOneActive.toggle()
-                                                    }
-                                                    
-                                                    self.setCurrentSprite(spriteName: sprite)
-                                                }) {
-                                                        WebImage(url: URL(string: self.spriteDict[String(self.reverseDict[sprite] ?? 1)]!["gif"] ?? ""), isAnimating: self.$isAnimating)
-                                                        .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
-                                                        .placeholder(Image(systemName: "photo")) // Placeholder Image
-                                                        .placeholder {
-                                                            Rectangle().foregroundColor(.gray)
-                                                        }
-                                                        .renderingMode(.original)
-                                                        .indicator(.activity) // Activity Indicator
-                                                        .animation(.easeInOut(duration: 0.5)) // Animation Duration
-                                                        .transition(.fade) // Fade Transition
-                                                        .scaledToFit()
-                                                        .frame(width: 200, height: 200, alignment: .center)
-                                                      
+                            
+                            ScrollView(.horizontal, showsIndicators: false){
+                                HStack{
+                                    ForEach(getUnlockedSprites(), id: \.self) { sprite in
+                                        Group {
+                                            if (sprite.contains("Level")) {
+                                                ZStack {
+                                                    Color(red: 78/255, green: 89/255, blue: 140/255).frame(width: 200, height: 200).opacity(0.5).cornerRadius(8).padding()
+                                                    Text(sprite).font(.custom("AvenirNext-Bold", size: 20)).foregroundColor(Color.white)
                                                 }
-                                                VStack(alignment: .center) {
-                                                    Text(self.spriteDict[String(self.reverseDict[sprite] ?? 1)]!["nickname"] ?? "").font(.custom("AvenirNext-Bold", size: 22)).foregroundColor(Color.white)
-                                                    HStack {
-                                                        Spacer()
-                                                        Text(self.spriteDict[String(self.reverseDict[sprite] ?? 1)]!["desc"] ?? "").lineLimit(nil).font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white)
-                                                        Spacer()
+                                            } else {
+                                                VStack {
+                                                    Button(action: {
+                                                        // toggle +1 on
+                                                        self.plusOneActive.toggle()
+                                                        
+                                                        let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
+                                                        ref.observeSingleEvent(of: .value) { (snapshot) in
+                                                            let points = snapshot.childSnapshot(forPath: "Points").value as! Int
+                                                            let unredeemedPoints = snapshot.childSnapshot(forPath: "UnredeemedPoints").value as! Int
+                                                            let username = snapshot.childSnapshot(forPath: "Username").value as! String
+                                                            
+                                                            ref.child("Points").setValue(points + 1)
+                                                            ref.child("UnredeemedPoints").setValue(unredeemedPoints + 1)
+                                                            
+                                                            Database.database().reference().child("Leaderboard").child(username).setValue(unredeemedPoints + 1)
+
+                                                        }
+                                                        
+                                                        // wait 0.5s then toggle +1 off
+                                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                                            self.plusOneActive.toggle()
+                                                        }
+                                                        
+                                                        self.setCurrentSprite(spriteName: sprite)
+                                                    }) {
+                                                            WebImage(url: URL(string: self.spriteDict[String(self.reverseDict[sprite] ?? 1)]!["gif"] ?? ""), isAnimating: self.$isAnimating)
+                                                            .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
+                                                            .placeholder(Image(systemName: "photo")) // Placeholder Image
+                                                            .placeholder {
+                                                                Rectangle().foregroundColor(.gray)
+                                                            }
+                                                            .renderingMode(.original)
+                                                            .indicator(.activity) // Activity Indicator
+                                                            .animation(.easeInOut(duration: 0.5)) // Animation Duration
+                                                            .transition(.fade) // Fade Transition
+                                                            .scaledToFit()
+                                                            .frame(width: 200, height: 200, alignment: .center)
+                                                          
+                                                    }
+                                                    VStack(alignment: .center) {
+                                                        Text(self.spriteDict[String(self.reverseDict[sprite] ?? 1)]!["nickname"] ?? "").font(.custom("AvenirNext-Bold", size: 22)).foregroundColor(Color.white)
+                                                        HStack {
+                                                            Spacer()
+                                                            Text(self.spriteDict[String(self.reverseDict[sprite] ?? 1)]!["desc"] ?? "").lineLimit(nil).font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white)
+                                                            Spacer()
+                                                        }
                                                     }
                                                 }
                                             }
@@ -326,6 +326,7 @@ struct Home: View {
                                     }
                                 }
                             }
+
                         }
                     }
                     
