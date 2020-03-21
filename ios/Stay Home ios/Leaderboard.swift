@@ -53,6 +53,8 @@ struct Leaderboard: View {
     @State var points = 0
     @State var rank = 0
     @State var username = " "
+    @State var level = 1
+    let pointsPerLevel = 50000
     
     // for estimated rank of current user
     @State var estimatedRank: UInt = 0
@@ -118,6 +120,7 @@ struct Leaderboard: View {
                         ref.child("Users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
                             if let points = snapshot.childSnapshot(forPath: "Points").value as? Int {
                                 self.points = points
+                                self.level = Int(points / self.pointsPerLevel) + 1
                             }
                             
                             if let username = snapshot.childSnapshot(forPath: "Username").value as? String {

@@ -13,6 +13,8 @@ struct Profile: View {
     
     @State var username = ""
     @State var points = 0
+    @State var level = 1
+    let pointsPerLevel = 50000
     
     // sprite image to choose based off user points
     @State var spriteBadge = "pinkboi"
@@ -63,6 +65,7 @@ struct Profile: View {
                 
                 if let points = snapshot.childSnapshot(forPath: "Points").value as? Int {
                     self.points = points
+                    self.level = Int(points / self.pointsPerLevel) + 1
                 }
             }
         }

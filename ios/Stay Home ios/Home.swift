@@ -106,6 +106,15 @@ struct Home: View {
                 // toggle +1 on
                 self.plusOneActive.toggle()
                 
+                let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
+                ref.observeSingleEvent(of: .value) { (snapshot) in
+                    let points = snapshot.childSnapshot(forPath: "Points").value as! Int
+                    let unredeemedPoints = snapshot.childSnapshot(forPath: "UnredeemedPoints").value as! Int
+                    
+                    ref.child("Points").setValue(points + 1)
+                    ref.child("UnredeemedPoints").setValue(unredeemedPoints + 1)
+                }
+                
                 // wait 0.5s then toggle +1 off
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.plusOneActive.toggle()
