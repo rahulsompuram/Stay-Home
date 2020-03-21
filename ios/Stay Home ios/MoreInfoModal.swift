@@ -13,7 +13,7 @@ struct MoreInfoModal: View {
     
     var body: some View {
         ZStack {
-            Color.init(red: 78/255, green: 89/255, blue: 140/255)
+            Color.init(red: 78/255, green: 89/255, blue: 140/255).edgesIgnoringSafeArea(.all)
             
             VStack {
                 Spacer()

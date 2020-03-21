@@ -32,14 +32,29 @@ struct Home: View {
     
     @State var showSpriteModal = false
     
-    @State var sprites = ["pinkboi", "covid19_resting", "pinkboi", "covid19_resting", "pinkboi", "pinkboi", "pinkboi", "covid19_resting", "covid19_resting", "pinkboi"]
+    @State var currentSprite = "pinkboi"
+    @State var gifURL = "https://user-images.githubusercontent.com/1212163/77212444-803cb400-6add-11ea-9ba3-3b173e7ce264.gif"
+    @State var nickname = "COVID Cody"
+    @State var description = "Stay home and flatten the curve!"
+    @State var sprites = ["pinkboi", "covid19_resting", "facemask", "hands", "sanitizer", "window", "toiletpaper", "tapemeasure", "juice", "lungs"]
+    
+    @State var spriteDict = ["1": ["name": "pinkboi", "gif": "https://user-images.githubusercontent.com/1212163/77212444-803cb400-6add-11ea-9ba3-3b173e7ce264.gif", "nickname": "COVID Cody", "desc": "Stay home and flatten the curve!"],
+                             "2": ["name": "covid19_resting", "gif": "", "nickname": "Soap Sam", "desc": "Soap and water is extremely effective!"],
+                             "3": ["name": "facemask", "gif": "", "nickname": "Facemask Frank", "desc": "Keeping your hands off of your face keeps the virus off too!"],
+                             "4": ["name": "hands", "gif": "", "nickname": "Hands Hans", "desc": "Soap and water is extremely effective!"],
+                             "5": ["name": "sanitizer", "gif": "", "nickname": "Soap Sam", "desc": "Soap and water is extremely effective!"],
+                             "6": ["name": "window", "gif": "", "nickname": "Soap Sam", "desc": "Soap and water is extremely effective!"],
+                             "7": ["name": "toiletpaper", "gif": "", "nickname": "Soap Sam", "desc": "Soap and water is extremely effective!"],
+                             "8": ["name": "tapemeasure", "gif": "", "nickname": "Soap Sam", "desc": "Soap and water is extremely effective!"],
+                             "9": ["name": "juice", "gif": "", "nickname": "Soap Sam", "desc": "Soap and water is extremely effective!"],
+                             "10": ["name": "lungs", "gif": "", "nickname": "Soap Sam", "desc": "Soap and water is extremely effective!"]
+                            ]
+    @State var reverseDict = ["pinkboi": 1, "covid19_resting": 2, "facemask": 3, "hands": 4, "sanitizer": 5, "window": 6, "toiletpaper": 7, "tapemeasure": 8, "juice": 9, "lungs": 10]
     
     // Shows unlocked sprites based off user level
     @State var userLevel = 1
     @State var points: Int = 0
     @State var pointsToNextLevel: Int = 0
-    
-    @State var currentSprite = "pinkboi"
     
     // For progress bar for next sprite unlock
     @State var progress : CGFloat = 1
@@ -47,6 +62,19 @@ struct Home: View {
     
     @State private var showingAlert = false
     
+    // Initializes sprite information based off user level
+    func initSpriteInfo(currentUserLevel: Int) {
+        self.currentSprite = self.spriteDict["\(currentUserLevel)"]!["name"]!
+        self.gifURL = self.spriteDict["\(currentUserLevel)"]!["gif"]!
+        self.nickname = self.spriteDict["\(currentUserLevel)"]!["nickname"]!
+        self.description = self.spriteDict["\(currentUserLevel)"]!["desc"]!
+    }
+    
+    // Sets current sprite when user chooses in horizontal picker
+    func setCurrentSprite(spriteName: String) {
+        let currentUserLevel = self.reverseDict[spriteName]!
+        initSpriteInfo(currentUserLevel: currentUserLevel)
+    }
     
     func getUnlockedSprites() -> [String] {
         var counter = 0
@@ -193,7 +221,7 @@ struct Home: View {
                         }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 25))
                     }
                     VStack(alignment: .center) {
-                        WebImage(url: URL(string: "https://user-images.githubusercontent.com/1212163/77212444-803cb400-6add-11ea-9ba3-3b173e7ce264.gif"), isAnimating: $isAnimating)
+                        WebImage(url: URL(string: self.gifURL), isAnimating: $isAnimating)
                         .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
                         .placeholder(Image(systemName: "photo")) // Placeholder Image
                         .placeholder {
@@ -205,8 +233,8 @@ struct Home: View {
                         .scaledToFit()
                         .frame(width: 150, height: 150, alignment: .center)
                         
-                         Text("COVID Cody").font(.custom("AvenirNext-Bold", size: 22)).foregroundColor(Color.white)
-                         Text("Stay home and flatten the curve!").font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white)
+                        Text(self.nickname).font(.custom("AvenirNext-Bold", size: 22)).foregroundColor(Color.white)
+                        Text(self.description).font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white)
                     }
                     
                     Spacer()
@@ -223,6 +251,7 @@ struct Home: View {
                                     } else {
                                         Button(action: {
                                             self.currentSprite = sprite
+                                            self.setCurrentSprite(spriteName: sprite)
                                         }) {
                                         Image(sprite).renderingMode(.original).resizable().frame(width: 75, height: 75, alignment: .center)
                                         }
@@ -240,6 +269,8 @@ struct Home: View {
                     }.padding()
                     
                     Spacer()
+                }.onAppear {
+                    self.initSpriteInfo(currentUserLevel: self.userLevel)
                 }
             }
         }
