@@ -138,7 +138,7 @@ struct SpriteModal: View {
                     .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
                     .placeholder(Image(systemName: "photo")) // Placeholder Image
                     .placeholder {
-                        Rectangle().foregroundColor(.gray)
+                        Circle().foregroundColor(Color(red: 89/255, green: 123/255, blue: 235/255))
                     }
                     .indicator(.activity) // Activity Indicator
                     .animation(.easeInOut(duration: 0.5)) // Animation Duration
@@ -184,8 +184,13 @@ struct SpriteModal: View {
                 Spacer()
                 
                 VStack(alignment: .center) {
-                    Text("\(self.pointsToNextLevel) points until next sprite unlock").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color(red: 89/255, green: 123/255, blue: 235/255)).padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
-                    ProgressBar(progress: .constant(1 - CGFloat(self.pointsToNextLevel) / CGFloat(self.pointsPerLevel)), width: 300, height: 15)
+                    if (self.pointsToNextLevel == 999999999) {
+                       Text("All current levels are unlocked!").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color(red: 89/255, green: 123/255, blue: 235/255)).padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
+                        ProgressBar(progress: .constant(CGFloat(1.0)), width: 300, height: 15)
+                    } else {
+                        Text("\(self.pointsToNextLevel) points until next sprite unlock").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color(red: 89/255, green: 123/255, blue: 235/255)).padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
+                        ProgressBar(progress: .constant(1 - CGFloat(self.pointsToNextLevel) / CGFloat(self.pointsPerLevel)), width: 300, height: 15)
+                    }
                 }.padding()
                 
                 Spacer()
@@ -199,9 +204,18 @@ struct SpriteModal: View {
                     
                     
                     // simple linear curve
-                    self.userLevel = Int(points / self.pointsPerLevel) + 1
+                    var userLevel = Int(points / self.pointsPerLevel) + 1
+                    if (userLevel > 10) {
+                        userLevel = 10
+                    }
+                    self.userLevel = userLevel
                     
-                    self.pointsToNextLevel = self.pointsPerLevel - (points % self.pointsPerLevel)
+                    if (self.userLevel == 10) {
+                        self.pointsToNextLevel = 999999999
+                    } else {
+                        self.pointsToNextLevel = self.pointsPerLevel - (points % self.pointsPerLevel)
+                    }
+                    
                 }
             }
         }
