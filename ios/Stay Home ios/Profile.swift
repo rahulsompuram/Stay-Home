@@ -17,7 +17,7 @@ struct Profile: View {
     let pointsPerLevel = 50000
     
     // sprite image to choose based off user points
-    @State var spriteDict = [1: "pinkboi", 2: "covid19_resting", 3: "facemask", 4: "hands", 5: "sanitizer", 6: "window", 7: "toiletpaper", 8: "tapemeasure", 9: "juice", 10: "lungs"]
+    @State var spriteDict = [1: "pinkboi", 2: "soapboi", 3: "maskboi", 4: "gloveboi", 5: "sanitizer", 6: "Window", 7: "TP", 8: "Sir_Six_Feet", 9: "Juiceboi", 10: "lungs"]
     
     var body: some View {
         ZStack {

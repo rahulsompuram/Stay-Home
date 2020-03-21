@@ -17,15 +17,6 @@ struct Row: View {
     var username: String
     var points: IntegerLiteralType
     var id: UUID = UUID()
-//    var level: Int
-//
-//    @State var sprite = ""
-//    @State var spriteDict = [1: "pinkboi", 2: "covid19_resting", 3: "facemask", 4: "hands", 5: "sanitizer", 6: "window", 7: "toiletpaper", 8: "tapemeasure", 9: "juice", 10: "lungs"]
-//
-//    // Initializes sprite information based off user level
-//    func initSprite(currentUserLevel: Int) {
-//        self.sprite = self.spriteDict[currentUserLevel]!
-//    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -52,9 +43,6 @@ struct Row: View {
         .background(Color(red: 89/255, green: 123/255, blue: 235/255))
         .cornerRadius(10)
         .shadow(radius: 5)
-//        .onAppear {
-//            self.initSprite(currentUserLevel: self.level)
-//        }
     }
 }
 
@@ -76,9 +64,9 @@ struct Leaderboard: View {
     
     // for sprite image based off user points
     @State var userSprite = ""
-    
-    @State var spriteDict = [1: "pinkboi", 2: "covid19_resting", 3: "facemask", 4: "hands", 5: "sanitizer", 6: "window", 7: "toiletpaper", 8: "tapemeasure", 9: "juice", 10: "lungs"]
+    @State var spriteDict = [1: "pinkboi", 2: "soapboi", 3: "maskboi", 4: "gloveboi", 5: "sanitizer", 6: "Window", 7: "TP", 8: "Sir_Six_Feet", 9: "Juiceboi", 10: "lungs"]
 
+  
     var body: some View {
         
         ZStack {

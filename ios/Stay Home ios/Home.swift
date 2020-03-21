@@ -15,6 +15,7 @@ import SDWebImage
 struct Home: View {
     
     let pointsPerLevel = 50000
+    static let url = "https://rahulsompuram.github.io/Stay-Home/"
     
     @State private var centerCoordinates = CLLocationCoordinate2D()
     
@@ -32,24 +33,24 @@ struct Home: View {
     
     @State var showSpriteModal = false
     
-    @State var currentSprite = "pinkboi"
-    @State var gifURL = "https://user-images.githubusercontent.com/1212163/77212444-803cb400-6add-11ea-9ba3-3b173e7ce264.gif"
-    @State var nickname = "COVID Cody"
-    @State var description = "Stay home and flatten the curve!"
-    @State var sprites = ["pinkboi", "covid19_resting", "facemask", "hands", "sanitizer", "window", "toiletpaper", "tapemeasure", "juice", "lungs"]
+    @State var currentSprite = ""
+    @State var gifURL = ""
+    @State var nickname = ""
+    @State var description = ""
+    @State var sprites = ["pinkboi", "soapboi", "maskboi", "gloveboi", "sanitizer", "Window", "TP", "Sir_Six_Feet", "Juiceboi", "lungs"]
     
-    @State var spriteDict = ["1": ["name": "pinkboi", "gif": "https://user-images.githubusercontent.com/1212163/77212444-803cb400-6add-11ea-9ba3-3b173e7ce264.gif", "nickname": "COVID Cody", "desc": "Stay home and flatten the curve!"],
-                             "2": ["name": "covid19_resting", "gif": "", "nickname": "Soap Sam", "desc": "Soap and water is extremely effective!"],
-                             "3": ["name": "facemask", "gif": "", "nickname": "Facemask Frank", "desc": "Keeping your hands off of your face keeps the virus off too!"],
-                             "4": ["name": "hands", "gif": "", "nickname": "Hands Hans", "desc": "Soap and water is extremely effective!"],
-                             "5": ["name": "sanitizer", "gif": "", "nickname": "Soap Sam", "desc": "Soap and water is extremely effective!"],
-                             "6": ["name": "window", "gif": "", "nickname": "Soap Sam", "desc": "Soap and water is extremely effective!"],
-                             "7": ["name": "toiletpaper", "gif": "", "nickname": "Soap Sam", "desc": "Soap and water is extremely effective!"],
-                             "8": ["name": "tapemeasure", "gif": "", "nickname": "Soap Sam", "desc": "Soap and water is extremely effective!"],
-                             "9": ["name": "juice", "gif": "", "nickname": "Soap Sam", "desc": "Soap and water is extremely effective!"],
-                             "10": ["name": "lungs", "gif": "", "nickname": "Soap Sam", "desc": "Soap and water is extremely effective!"]
+    @State var spriteDict = ["1": ["name": "pinkboi", "gif": url + "pinkboi.gif", "nickname": "Covid Cody", "desc": "Together we can beat corona virus!"],
+                             "2": ["name": "soapboi", "gif": url + "soapboi.gif", "nickname": "Soapy Sam", "desc": "Soap and water is extremely effective. Wash your hands!"],
+                             "3": ["name": "maskboi", "gif": url + "maskboi.gif", "nickname": "Frank", "desc": "These guys can help prevent the viral spread if used properly."],
+                             "4": ["name": "gloveboi", "gif": url + "gloveboi.gif", "nickname": "Hans", "desc": "Keeping your hands off of your face keeps the virus off too."],
+                             "5": ["name": "sanitizer", "gif": url + "sanitizer.gif", "nickname": "Suzy", "desc": "You've seen this one on the news."],
+                             "6": ["name": "Window", "gif": url + "Window.gif", "nickname": "Windy", "desc": "Open windows or adjust airconditioning to improve ventilation!"],
+                             "7": ["name": "TP", "gif": url + "TP.gif", "nickname": "T.P.", "desc": "The way some people buy toilet paper...you gotta wonder what goes on in the bathroom!"],
+                             "8": ["name": "Sir_Six_Feet", "gif": url + "Sir_Six_Feet.gif", "nickname": "Sir Six Feet", "desc": "If you have to go out, maintain safe distance of 6 feet!"],
+                             "9": ["name": "Juiceboi", "gif": url + "Juiceboi.gif", "nickname": "Jésus", "desc": "Vitamin C won't prevent covid, but staying hydrated keeps your immune system healthy!"],
+                             "10": ["name": "lungs", "gif": url + "lungs.gif", "nickname": "Lisa & Larry", "desc": "These superheros keep the wind in your sails. STAY home to keep them protected!"]
                             ]
-    @State var reverseDict = ["pinkboi": 1, "covid19_resting": 2, "facemask": 3, "hands": 4, "sanitizer": 5, "window": 6, "toiletpaper": 7, "tapemeasure": 8, "juice": 9, "lungs": 10]
+    @State var reverseDict = ["pinkboi": 1, "soapboi": 2, "maskboi": 3, "gloveboi": 4, "sanitizer": 5, "Window": 6, "TP": 7, "Sir_Six_Feet": 8, "Juiceboi": 9, "lungs": 10]
     
     // Shows unlocked sprites based off user level
     @State var userLevel = 1
@@ -157,7 +158,7 @@ struct Home: View {
                         Button(action: {
                             self.showSpriteModal.toggle()
                         }) {
-                        Image("pinkboi").renderingMode(.original).resizable().frame(width: 75, height: 75, alignment: .center)
+                            Image(self.spriteDict["\(self.userLevel)"]!["name"]!).renderingMode(.original).resizable().frame(width: 75, height: 75, alignment: .center)
                             .padding(25)
                             .shadow(radius: 10)
                         }
@@ -251,9 +252,9 @@ struct Home: View {
                         ZStack{
                             HStack{
                                 Spacer()
-                                Text("+1")
+                                Image("plus1")
                                     .opacity(self.plusOneActive ? 1 : 0)
-                                    .scaleEffect(self.plusOneActive ? 3 : 1)
+                                    .scaleEffect(self.plusOneActive ? 1.25 : 1)
                                     .animation(.default)
                                     .padding(.trailing, 50)
                             }
