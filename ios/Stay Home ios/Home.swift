@@ -98,6 +98,24 @@ struct Home: View {
         return unlockedSprites
     }
     
+    
+    // tap gesture for sprite
+    var tapSprite: some Gesture {
+        TapGesture(count: 1)
+            .onEnded {
+                // toggle +1 on
+                self.plusOneActive.toggle()
+                
+                // wait 0.5s then toggle +1 off
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.plusOneActive.toggle()
+                }
+                
+        }
+    }
+    
+    @State var plusOneActive = false
+    
     var body: some View {
         
         ZStack {
@@ -221,6 +239,15 @@ struct Home: View {
                         }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 25))
                     }
                     VStack(alignment: .center) {
+                        ZStack{
+                            HStack{
+                                Spacer()
+                                Text("+1")
+                                    .opacity(self.plusOneActive ? 1 : 0)
+                                    .scaleEffect(self.plusOneActive ? 3 : 1)
+                                    .animation(.default)
+                                    .padding(.trailing, 50)
+                            }
                         WebImage(url: URL(string: self.gifURL), isAnimating: $isAnimating)
                         .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
                         .placeholder(Image(systemName: "photo")) // Placeholder Image
@@ -232,6 +259,9 @@ struct Home: View {
                         .transition(.fade) // Fade Transition
                         .scaledToFit()
                         .frame(width: 150, height: 150, alignment: .center)
+                        .gesture(tapSprite)
+                        }
+
                         
                         Text(self.nickname).font(.custom("AvenirNext-Bold", size: 22)).foregroundColor(Color.white)
                         Text(self.description).font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white)
