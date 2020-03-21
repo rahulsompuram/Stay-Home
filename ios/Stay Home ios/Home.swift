@@ -178,9 +178,18 @@ struct Home: View {
                     
                     
                     // simple linear curve
-                    self.userLevel = Int(points / self.pointsPerLevel) + 1
+                    var userLevel = Int(points / self.pointsPerLevel) + 1
+                    if (userLevel > 10) {
+                        userLevel = 10
+                    }
+                    self.userLevel = userLevel
                     
-                    self.pointsToNextLevel = self.pointsPerLevel - (points % self.pointsPerLevel)
+                    if (self.userLevel == 10) {
+                        self.pointsToNextLevel = 999999999
+                    } else {
+                        self.pointsToNextLevel = self.pointsPerLevel - (points % self.pointsPerLevel)
+                    }
+                    
                 }
             }
         }
