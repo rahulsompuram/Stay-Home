@@ -17,7 +17,7 @@ struct Profile: View {
     let pointsPerLevel = 50000
     
     // sprite image to choose based off user points
-    @State var spriteBadge = "pinkboi"
+    @State var spriteDict = [1: "pinkboi", 2: "covid19_resting", 3: "facemask", 4: "hands", 5: "sanitizer", 6: "window", 7: "toiletpaper", 8: "tapemeasure", 9: "juice", 10: "lungs"]
     
     var body: some View {
         ZStack {
@@ -36,7 +36,7 @@ struct Profile: View {
 
                     VStack {
                         VStack {
-                            Image(spriteBadge).resizable().frame(width: 150, height: 150, alignment: .center)
+                            Image(self.spriteDict[self.level]!).resizable().frame(width: 150, height: 150, alignment: .center)
                             .shadow(radius: 10)
                             
                             Text("\(self.username)").font(.custom("AvenirNext-Bold", size: 26)).foregroundColor(Color.white)
@@ -69,11 +69,5 @@ struct Profile: View {
                 }
             }
         }
-    }
-}
-
-struct Profile_Previews: PreviewProvider {
-    static var previews: some View {
-        Profile()
     }
 }

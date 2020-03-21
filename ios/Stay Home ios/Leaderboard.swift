@@ -17,6 +17,15 @@ struct Row: View {
     var username: String
     var points: IntegerLiteralType
     var id: UUID = UUID()
+//    var level: Int
+//
+//    @State var sprite = ""
+//    @State var spriteDict = [1: "pinkboi", 2: "covid19_resting", 3: "facemask", 4: "hands", 5: "sanitizer", 6: "window", 7: "toiletpaper", 8: "tapemeasure", 9: "juice", 10: "lungs"]
+//
+//    // Initializes sprite information based off user level
+//    func initSprite(currentUserLevel: Int) {
+//        self.sprite = self.spriteDict[currentUserLevel]!
+//    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -27,7 +36,7 @@ struct Row: View {
                 Text("#\(rank)").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)).font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
                 
                 HStack {
-                    Image("pinkboi").resizable().frame(width: 25, height: 25)
+                    //Image(sprite).resizable().frame(width: 25, height: 25)
                     Text("\(username)").padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
                 }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
                 Spacer()
@@ -43,6 +52,9 @@ struct Row: View {
         .background(Color(red: 89/255, green: 123/255, blue: 235/255))
         .cornerRadius(10)
         .shadow(radius: 5)
+//        .onAppear {
+//            self.initSprite(currentUserLevel: self.level)
+//        }
     }
 }
 
@@ -63,7 +75,9 @@ struct Leaderboard: View {
     @State var totalUsers = 0
     
     // for sprite image based off user points
-    @State var userSprite = "pinkboi"
+    @State var userSprite = ""
+    
+    @State var spriteDict = [1: "pinkboi", 2: "covid19_resting", 3: "facemask", 4: "hands", 5: "sanitizer", 6: "window", 7: "toiletpaper", 8: "tapemeasure", 9: "juice", 10: "lungs"]
 
     var body: some View {
         
@@ -87,7 +101,7 @@ struct Leaderboard: View {
                         VStack(alignment: .leading) {
                             HStack {
                                 Text("#\(estimatedRank)").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color.white)
-                                Image(userSprite).resizable().frame(width: 25, height: 25).shadow(radius: 5)
+                                Image(self.spriteDict[self.level]!).resizable().frame(width: 25, height: 25).shadow(radius: 5)
                                 Text(self.username).font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
                                 Spacer()
                                 VStack(alignment: .trailing) {
@@ -105,7 +119,7 @@ struct Leaderboard: View {
                 .background(Color(red: 240/255, green: 176/255, blue: 175/255))
                 
                 List(self.rows, id: \.id) { item in
-                        Row(rank: item.rank, username: item.username, points: item.points)
+                    Row(rank: item.rank, username: item.username, points: item.points)
                     
                     }.onAppear() {
                         
