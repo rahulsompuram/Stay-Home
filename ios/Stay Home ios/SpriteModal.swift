@@ -133,8 +133,9 @@ struct SpriteModal: View {
                                 .scaleEffect(self.plusOneActive ? 3 : 1)
                                 .animation(.default)
                                 .padding(.trailing, 50)
+                            Text("LEVEL: \(self.userLevel)").foregroundColor(Color.white)
                         }
-                        WebImage(url: URL(string: self.spriteDict["\(self.userLevel)"]!["gif"]!), isAnimating: $isAnimating)
+W                        WebImage(url: URL(string: self.spriteDict["\(self.userLevel)"]!["gif"]!), isAnimating: $isAnimating)
                     .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
                     .placeholder(Image(systemName: "photo")) // Placeholder Image
                     .placeholder {
