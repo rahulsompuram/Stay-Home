@@ -74,7 +74,9 @@ struct Home: View {
     // Sets current sprite when user chooses in horizontal picker
     func setCurrentSprite(spriteName: String) {
         let currentUserLevel = self.reverseDict[spriteName]!
-        initSpriteInfo(currentUserLevel: currentUserLevel)
+        self.gifURL = self.spriteDict["\(currentUserLevel)"]!["gif"]!
+        self.nickname = self.spriteDict["\(currentUserLevel)"]!["nickname"]!
+        self.description = self.spriteDict["\(currentUserLevel)"]!["desc"]!
     }
     
     func getUnlockedSprites() -> [String] {
@@ -262,7 +264,7 @@ struct Home: View {
                                     .animation(.default)
                                     .padding(.trailing, 50)
                             }
-                        WebImage(url: URL(string: self.gifURL), isAnimating: $isAnimating)
+                            WebImage(url: URL(string: self.gifURL), isAnimating: $isAnimating)
                         .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
                         .placeholder(Image(systemName: "photo")) // Placeholder Image
                         .placeholder {
