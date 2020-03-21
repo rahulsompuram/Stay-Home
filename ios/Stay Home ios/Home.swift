@@ -44,7 +44,7 @@ struct Home: View {
                              "3": ["name": "maskboi", "gif": url + "maskboi.gif", "nickname": "Frank", "desc": "These guys can help prevent the viral spread if used properly."],
                              "4": ["name": "gloveboi", "gif": url + "gloveboi.gif", "nickname": "Hans", "desc": "Keeping your hands off of your face keeps the virus off too."],
                              "5": ["name": "sanitizer", "gif": url + "sanitizer.gif", "nickname": "Suzy", "desc": "You've seen this one on the news."],
-                             "6": ["name": "Window", "gif": url + "Window.gif", "nickname": "Windy", "desc": "Open windows or adjust airconditioning to improve ventilation!"],
+                             "6": ["name": "Window", "gif": url + "Window.gif", "nickname": "Windy", "desc": "Open windows to improve ventilation!"],
                              "7": ["name": "TP", "gif": url + "TP.gif", "nickname": "T.P.", "desc": "The way some people buy toilet paper...you gotta wonder what goes on in the bathroom!"],
                              "8": ["name": "Sir_Six_Feet", "gif": url + "Sir_Six_Feet.gif", "nickname": "Sir Six Feet", "desc": "If you have to go out, maintain safe distance of 6 feet!"],
                              "9": ["name": "Juiceboi", "gif": url + "Juiceboi.gif", "nickname": "Jésus", "desc": "Vitamin C won't prevent covid, but staying hydrated keeps your immune system healthy!"],
@@ -82,7 +82,7 @@ struct Home: View {
         var unlockedSprites : [String] = []
         var levelCounter = userLevel + 1
         
-        while (counter < self.userLevel) {
+        while (counter < self.userLevel && counter < 10) {
             unlockedSprites.append(sprites[counter])
             counter += 1
         }
@@ -276,9 +276,14 @@ struct Home: View {
                         .gesture(tapSprite)
                         }
 
-                        
-                        Text(self.nickname).font(.custom("AvenirNext-Bold", size: 22)).foregroundColor(Color.white)
-                        Text(self.description).font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white)
+                        VStack(alignment: .center) {
+                            Text(self.nickname).font(.custom("AvenirNext-Bold", size: 22)).foregroundColor(Color.white)
+                            HStack {
+                                Spacer()
+                                Text(self.description).font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white)
+                                Spacer()
+                            }
+                        }
                     }
                     
                     Spacer()
