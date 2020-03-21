@@ -110,9 +110,13 @@ struct Home: View {
                 ref.observeSingleEvent(of: .value) { (snapshot) in
                     let points = snapshot.childSnapshot(forPath: "Points").value as! Int
                     let unredeemedPoints = snapshot.childSnapshot(forPath: "UnredeemedPoints").value as! Int
+                    let username = snapshot.childSnapshot(forPath: "Username").value as! String
                     
                     ref.child("Points").setValue(points + 1)
                     ref.child("UnredeemedPoints").setValue(unredeemedPoints + 1)
+                    
+                    Database.database().reference().child("Leaderboard").child(username).setValue(unredeemedPoints + 1)
+
                 }
                 
                 // wait 0.5s then toggle +1 off
