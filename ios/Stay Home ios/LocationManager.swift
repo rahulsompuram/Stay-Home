@@ -33,6 +33,7 @@ class LocationManager: NSObject, ObservableObject {
         }
     }
     
+    private var tickNum = 0
     func updateFirebase(isHome: Bool) {
         guard let user = Auth.auth().currentUser else { return }
         
@@ -41,26 +42,31 @@ class LocationManager: NSObject, ObservableObject {
         ref = Database.database().reference().child("Users").child(userID)
         let timeInterval = NSDate().timeIntervalSince1970
         
+        tickNum += 1
+        
+        if (tickNum % 5 != 0) {
+            return
+        }
+        
         ref.observeSingleEvent(of: .value) { (snapshot) in
             let lastTickTimestamp = snapshot.childSnapshot(forPath: "LastTickTimestamp").value as? Double ?? 0.0
             let timeSinceLastTick = timeInterval - lastTickTimestamp
             
             // they are at home
-            if (isHome && timeSinceLastTick < 10) {
+            if (isHome && timeSinceLastTick < 30) {
                 let currentStreak = snapshot.childSnapshot(forPath: "Streak").value as? IntegerLiteralType ?? 0
                 let currentPoints = snapshot.childSnapshot(forPath: "Points").value as? IntegerLiteralType ?? 0
                 let currentUnredeemedPoints = snapshot.childSnapshot(forPath: "UnredeemedPoints").value as? IntegerLiteralType ?? 0
                 
-                var additionalPoints = 1
+                var additionalPoints = 5
                 let newStreak = currentStreak + 1
                 
-                if (newStreak % 3600 == 0) {
+                if (newStreak % 720 == 0) {
                     additionalPoints += 1000
                 }
                 
-                if (newStreak % 86400 == 0) {
-                    let bonus = 20000 + 10000 * log2(Double(newStreak / 500))
-                    additionalPoints += Int(bonus)
+                if (newStreak % 17280 == 0) {
+                    additionalPoints += 20000
                 }
                 
                 ref.child("Streak").setValue(newStreak)
