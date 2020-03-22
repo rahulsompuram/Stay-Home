@@ -58,7 +58,7 @@ class LocationManager: NSObject, ObservableObject {
                 let currentPoints = snapshot.childSnapshot(forPath: "Points").value as? IntegerLiteralType ?? 0
                 let currentUnredeemedPoints = snapshot.childSnapshot(forPath: "UnredeemedPoints").value as? IntegerLiteralType ?? 0
                 
-                var additionalPoints = Int(timeSinceLastTick)
+                let additionalPoints = Int(timeSinceLastTick)
                 let newStreak = currentStreak + Int(timeSinceLastTick)
                 
 //                if (newStreak % 3600 == 0) {
