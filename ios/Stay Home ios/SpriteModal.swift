@@ -23,7 +23,7 @@ struct SpriteModal: View {
     
     @State var sprites = ["pinkboi", "soapboi", "maskboi", "gloveboi", "sanitizer", "Window", "TP", "Sir_Six_Feet", "Juiceboi", "lungs"]
     
-    @State var spriteDict = ["1": ["name": "pinkboi", "gif": url + "pinkboi.gif", "nickname": "Covid Cody", "desc": "Together we can beat corona virus!"],
+    @State var spriteDict = ["1": ["name": "pinkboi", "gif": url + "pinkboi.gif", "nickname": "Viral Vince", "desc": "Together we can beat germs like me!"],
                              "2": ["name": "soapboi", "gif": url + "soapboi.gif", "nickname": "Soapy Sam", "desc": "Soap and water is extremely effective. Wash your hands!"],
                              "3": ["name": "maskboi", "gif": url + "maskboi.gif", "nickname": "Facemask Frank", "desc": "These guys can help prevent the viral spread if used properly."],
                              "4": ["name": "gloveboi", "gif": url + "gloveboi.gif", "nickname": "Hands Hans", "desc": "Keeping your hands off of your face keeps the virus off too."],
@@ -31,7 +31,7 @@ struct SpriteModal: View {
                              "6": ["name": "Window", "gif": url + "Window.gif", "nickname": "Window Windy", "desc": "Open windows to improve ventilation!"],
                              "7": ["name": "TP", "gif": url + "TP.gif", "nickname": "T.P.", "desc": "The way some people buy toilet paper...you gotta wonder what goes on in the bathroom!"],
                              "8": ["name": "Sir_Six_Feet", "gif": url + "Sir_Six_Feet.gif", "nickname": "Sir Six Feet", "desc": "If you have to go out, maintain safe distance of 6 feet!"],
-                             "9": ["name": "Juiceboi", "gif": url + "Juiceboi.gif", "nickname": "Juice Jésus", "desc": "Vitamin C won't prevent covid, but staying hydrated keeps your immune system healthy!"],
+                             "9": ["name": "Juiceboi", "gif": url + "Juiceboi.gif", "nickname": "Juice Jésus", "desc": "Vitamin C and staying hydrated keeps your immune system healthy!"],
                              "10": ["name": "lungs", "gif": url + "lungs.gif", "nickname": "Lisa & Larry", "desc": "These superheros keep the wind in your sails. STAY home to keep them protected!"]
     ]
     @State var reverseDict = ["pinkboi": 1, "soapboi": 2, "maskboi": 3, "gloveboi": 4, "sanitizer": 5, "Window": 6, "TP": 7, "Sir_Six_Feet": 8, "Juiceboi": 9, "lungs": 10]
