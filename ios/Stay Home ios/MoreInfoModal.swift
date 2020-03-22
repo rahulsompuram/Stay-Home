@@ -21,7 +21,7 @@ struct MoreInfoModal: View {
                 VStack(alignment: .center) {
                     Text("Game information").font(.custom("AvenirNext-Bold", size: 24)).foregroundColor(Color.white)
                     .padding(EdgeInsets(top: 0, leading: 15, bottom: 50, trailing: 15))
-                    Text("Stay home and help flatten the curve for corona virus!\n\nEarn points the longer you stay at home. Gain bonuses for hour-long and day-long streaks!\n\nAs you level up, you'll unlock cool new animations along with tips for staying safe.\n\nYou can set your home location a max of once per day. Make sure to enable location services and keep the app running in the background to keep getting points!\n\n(Hint: tap on your sprite and see what happens!)").font(.custom("AvenirNext-Medium", size: 16)).foregroundColor(Color.white)
+                    Text("Stay home and help flatten the curve for corona virus!\n\nEarn points the longer you stay at home.\n\nAs you level up, you'll unlock cool new animations along with tips for staying safe.\n\nYou can set your home location a max of once per day. Make sure to enable location services and keep the app running in the background to keep getting points!\n\n(Hint: tap on your sprite and see what happens!)").font(.custom("AvenirNext-Medium", size: 16)).foregroundColor(Color.white)
                     .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
                 }
                 
