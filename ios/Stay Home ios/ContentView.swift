@@ -21,8 +21,7 @@ struct ContentView: View {
                 if userData.isNewUser! {
                     GetStartedView(username: "")
                 }else{
-                    //TabHomeView()
-                    GetStartedView(username: "")
+                    TabHomeView()
                 }
             } else {
                 StartView()

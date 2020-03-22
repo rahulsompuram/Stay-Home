@@ -148,10 +148,10 @@ struct SpriteModal: View {
                                 .animation(.easeInOut(duration: 0.5)) // Animation Duration
                                 .transition(.fade) // Fade Transition
                                 .scaledToFit()
-                                .frame(width: 200, height: 200, alignment: .center)
+                                .frame(width: 150, height: 150, alignment: .center)
                                 .gesture(tapSprite)
                         }else{
-                            Spacer().frame(height: 200)
+                            Spacer().frame(height: 150)
                         }
                         
                     }
@@ -160,7 +160,7 @@ struct SpriteModal: View {
                         Text(self.spriteDict["\(self.userLevel)"]!["nickname"]!).font(.custom("AvenirNext-Bold", size: 22)).foregroundColor(Color.white)
                         HStack {
                             Spacer()
-                            Text(self.spriteDict["\(self.userLevel)"]!["desc"]!).font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white).multilineTextAlignment(.center)
+                            Text(self.spriteDict["\(self.userLevel)"]!["desc"]!).font(.custom("AvenirNext-Medium", size: 16)).foregroundColor(Color.white).multilineTextAlignment(.center)
                             Spacer()
                         }
                     }
