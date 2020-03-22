@@ -16,9 +16,11 @@ struct SpriteModal: View {
     
     let pointsPerLevel = 50000
     static let url = "https://rahulsompuram.github.io/Stay-Home/"
-        
+    
     @State var isAnimating = true
-        
+    
+    @State var firebaseLoading = true
+    
     @State var sprites = ["pinkboi", "soapboi", "maskboi", "gloveboi", "sanitizer", "Window", "TP", "Sir_Six_Feet", "Juiceboi", "lungs"]
     
     @State var spriteDict = ["1": ["name": "pinkboi", "gif": url + "pinkboi.gif", "nickname": "Covid Cody", "desc": "Together we can beat corona virus!"],
@@ -31,7 +33,7 @@ struct SpriteModal: View {
                              "8": ["name": "Sir_Six_Feet", "gif": url + "Sir_Six_Feet.gif", "nickname": "Sir Six Feet", "desc": "If you have to go out, maintain safe distance of 6 feet!"],
                              "9": ["name": "Juiceboi", "gif": url + "Juiceboi.gif", "nickname": "Juice Jésus", "desc": "Vitamin C won't prevent covid, but staying hydrated keeps your immune system healthy!"],
                              "10": ["name": "lungs", "gif": url + "lungs.gif", "nickname": "Lisa & Larry", "desc": "These superheros keep the wind in your sails. STAY home to keep them protected!"]
-                            ]
+    ]
     @State var reverseDict = ["pinkboi": 1, "soapboi": 2, "maskboi": 3, "gloveboi": 4, "sanitizer": 5, "Window": 6, "TP": 7, "Sir_Six_Feet": 8, "Juiceboi": 9, "lungs": 10]
     
     // Shows unlocked sprites based off user level
@@ -42,7 +44,7 @@ struct SpriteModal: View {
     // For progress bar for next sprite unlock
     @State var progress : CGFloat = 1
     @State var outOfProgess : CGFloat = 6
-        
+    
     func getUnlockedSprites() -> [String] {
         var counter = 0
         var unlockedSprites : [String] = []
@@ -83,7 +85,7 @@ struct SpriteModal: View {
                     ref.child("UnredeemedPoints").setValue(unredeemedPoints + 1)
                     
                     Database.database().reference().child("Leaderboard").child(username).setValue(unredeemedPoints + 1)
-
+                    
                 }
                 
                 // wait 0.5s then toggle +1 off
@@ -108,24 +110,24 @@ struct SpriteModal: View {
                     }.padding()
                     Spacer()
                     Button(action: {
-                            self.presentationMode.wrappedValue.dismiss()
-                        }){
-                            Image(systemName: "xmark")
-                                .resizable()
-                                .font(Font.title.weight(.heavy))
-                                .foregroundColor(Color(red: 240/255, green: 176/255, blue: 175/255))
-                                .frame(width: 20, height: 20).padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 25))
+                        self.presentationMode.wrappedValue.dismiss()
+                    }){
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .font(Font.title.weight(.heavy))
+                            .foregroundColor(Color(red: 240/255, green: 176/255, blue: 175/255))
+                            .frame(width: 20, height: 20).padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 25))
                     }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 25))
                 }
                 VStack(alignment: .center) {
                     ZStack{
                         HStack{
                             Text("+1")
-                            .foregroundColor(Color(red: 240/255, green: 176/255, blue: 175/255))
-                            .opacity(self.plusOneActive ? 1 : 0)
-                            .scaleEffect(self.plusOneActive ? 3 : 1)
-                            .animation(.default)
-                            .padding(.leading, 50)
+                                .foregroundColor(Color(red: 240/255, green: 176/255, blue: 175/255))
+                                .opacity(self.plusOneActive ? 1 : 0)
+                                .scaleEffect(self.plusOneActive ? 3 : 1)
+                                .animation(.default)
+                                .padding(.leading, 50)
                             Spacer()
                             Text("+1")
                                 .foregroundColor(Color(red: 240/255, green: 176/255, blue: 175/255))
@@ -135,20 +137,26 @@ struct SpriteModal: View {
                                 .padding(.trailing, 50)
                             Text("LEVEL: \(self.userLevel)").foregroundColor(Color.white)
                         }
-                        WebImage(url: URL(string: self.spriteDict["\(self.userLevel)"]!["gif"]!), isAnimating: $isAnimating)
-                    .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
-                    .placeholder(Image(systemName: "photo")) // Placeholder Image
-                    .placeholder {
-                        Circle().foregroundColor(Color(red: 89/255, green: 123/255, blue: 235/255))
+                        if(!self.firebaseLoading){
+                            
+                            WebImage(url: URL(string: self.spriteDict["\(self.userLevel)"]!["gif"]!), isAnimating: $isAnimating)
+                                .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
+                                .placeholder(Image(systemName: "photo")) // Placeholder Image
+                                .placeholder {
+                                    Circle().foregroundColor(Color(red: 89/255, green: 123/255, blue: 235/255))
+                            }
+                                .indicator(.activity) // Activity Indicator
+                                .animation(.easeInOut(duration: 0.5)) // Animation Duration
+                                .transition(.fade) // Fade Transition
+                                .scaledToFit()
+                                .frame(width: 200, height: 200, alignment: .center)
+                                .gesture(tapSprite)
+                        }else{
+                            Spacer().frame(height: 200)
+                        }
+                        
                     }
-                    .indicator(.activity) // Activity Indicator
-                    .animation(.easeInOut(duration: 0.5)) // Animation Duration
-                    .transition(.fade) // Fade Transition
-                    .scaledToFit()
-                    .frame(width: 200, height: 200, alignment: .center)
-                    .gesture(tapSprite)
-                    }
-
+                    
                     VStack(alignment: .center) {
                         Text(self.spriteDict["\(self.userLevel)"]!["nickname"]!).font(.custom("AvenirNext-Bold", size: 22)).foregroundColor(Color.white)
                         HStack {
@@ -180,13 +188,13 @@ struct SpriteModal: View {
                         }
                     }
                 }
-
+                
                 
                 Spacer()
                 
                 VStack(alignment: .center) {
                     if (self.pointsToNextLevel == 999999999) {
-                       Text("All current levels are unlocked!").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color(red: 89/255, green: 123/255, blue: 235/255)).padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
+                        Text("All current levels are unlocked!").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color(red: 89/255, green: 123/255, blue: 235/255)).padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
                         ProgressBar(progress: .constant(CGFloat(1.0)), width: 300, height: 15)
                     } else {
                         Text("\(self.pointsToNextLevel) points until next sprite unlock").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color(red: 89/255, green: 123/255, blue: 235/255)).padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
@@ -198,7 +206,7 @@ struct SpriteModal: View {
             }
         }.onAppear {
             let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
-
+            
             ref.child("Points").observe(.value) { (snapshot) in
                 if let points = snapshot.value as? Int {
                     self.points = points
@@ -216,7 +224,7 @@ struct SpriteModal: View {
                     } else {
                         self.pointsToNextLevel = self.pointsPerLevel - (points % self.pointsPerLevel)
                     }
-                    
+                    self.firebaseLoading = false
                 }
             }
         }
@@ -229,7 +237,7 @@ struct ProgressBar: View {
     var height: CGFloat
     var barColor: Color?
     var bgColor: Color?
-
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
@@ -241,7 +249,7 @@ struct ProgressBar: View {
                     .frame(width: self.progress*geometry.size.width, height: geometry.size.height)
             }
         }
-            .frame(width: width, height: height)
+        .frame(width: width, height: height)
     }
-
+    
 }

@@ -26,7 +26,7 @@ struct Home: View {
     @State var firebaseDataLoaded = false
     
     @State var isAnimating = true
-
+    
     @State var showInfoModal = false
     
     @State var showSpriteModal = false
@@ -61,20 +61,20 @@ struct Home: View {
                             self.showInfoModal.toggle()
                         }) {
                             Image(systemName: "info.circle.fill").renderingMode(.original).resizable().frame(width: 25, height: 25, alignment: .center)
-                            .padding(25)
-                            .shadow(radius: 10)
+                                .padding(25)
+                                .shadow(radius: 10)
                         }.sheet(isPresented: self.$showInfoModal) {
                             MoreInfoModal()
                         }
                         
                         Spacer()
-                
+                        
                         Button(action: {
                             self.showSpriteModal.toggle()
                         }) {
                             Image(self.spriteDict["\(self.userLevel)"]!).renderingMode(.original).resizable().frame(width: 75, height: 75, alignment: .center)
-                            .padding(25)
-                            .shadow(radius: 10)
+                                .padding(25)
+                                .shadow(radius: 10)
                         }.sheet(isPresented: self.$showSpriteModal) {
                             SpriteModal()
                         }
@@ -108,7 +108,7 @@ struct Home: View {
                                             // push new home location to firebase
                                             ref.child("HomeLat").setValue(lastLocation.coordinate.latitude)
                                             ref.child("HomeLong").setValue(lastLocation.coordinate.longitude)
-                            
+                                            
                                             // set home pin
                                             let newHomePin = MKPointAnnotation()
                                             newHomePin.coordinate = CLLocationCoordinate2D(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude)
@@ -140,11 +140,11 @@ struct Home: View {
                 }
             }
         }
-        
+            
         .alert(isPresented: $showingAlert) {
             Alert(title: Text("Cannot change home location"), message: Text("You can only change your home location once per day"), dismissButton: .default(Text("Got it!")))
         }
-        
+            
         .onAppear {
             // check firebase for existing home location
             let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
