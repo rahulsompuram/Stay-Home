@@ -33,7 +33,7 @@ class LocationManager: NSObject, ObservableObject {
         }
     }
     
-    private var tickNum = 0
+    private var lastTickTimestamp: Double = 0
     func updateFirebase(isHome: Bool) {
         guard let user = Auth.auth().currentUser else { return }
         
@@ -42,9 +42,9 @@ class LocationManager: NSObject, ObservableObject {
         ref = Database.database().reference().child("Users").child(userID)
         let timeInterval = NSDate().timeIntervalSince1970
         
-        tickNum += 1
+        let timeSinceLastTick = timeInterval - lastTickTimestamp
         
-        if (tickNum % 5 != 0) {
+        if (timeSinceLastTick < 5) {
             return
         }
         
@@ -58,16 +58,16 @@ class LocationManager: NSObject, ObservableObject {
                 let currentPoints = snapshot.childSnapshot(forPath: "Points").value as? IntegerLiteralType ?? 0
                 let currentUnredeemedPoints = snapshot.childSnapshot(forPath: "UnredeemedPoints").value as? IntegerLiteralType ?? 0
                 
-                var additionalPoints = 5
-                let newStreak = currentStreak + 1
+                var additionalPoints = Int(timeSinceLastTick)
+                let newStreak = currentStreak + Int(timeSinceLastTick)
                 
-                if (newStreak % 720 == 0) {
-                    additionalPoints += 1000
-                }
-                
-                if (newStreak % 17280 == 0) {
-                    additionalPoints += 20000
-                }
+//                if (newStreak % 3600 == 0) {
+//                    additionalPoints += 1000
+//                }
+//
+//                if (newStreak % 86400 == 0) {
+//                    additionalPoints += 20000
+//                }
                 
                 ref.child("Streak").setValue(newStreak)
                 ref.child("Points").setValue(currentPoints + additionalPoints)
@@ -86,6 +86,7 @@ class LocationManager: NSObject, ObservableObject {
             
             
             ref.child("LastTickTimestamp").setValue(timeInterval)
+            self.lastTickTimestamp = timeInterval
         }
         
     }
