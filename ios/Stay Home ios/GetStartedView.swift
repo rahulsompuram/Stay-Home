@@ -47,7 +47,10 @@ struct GetStartedView: View {
                     VStack(alignment: .center) {
                         Button(action: {
                             // code that runs when "Done" button is pressed
-                            if (self.username.count > 12) {
+                            if(self.username.trimmingCharacters(in: .whitespacesAndNewlines) == ""){
+                                self.popupMessage = "Username can't be empty"
+                                self.showingAlert = true
+                            }else if (self.username.count > 12) {
                                 self.popupMessage = "Username cannot be more than 12 characters"
                                 self.showingAlert = true
                             } else {
