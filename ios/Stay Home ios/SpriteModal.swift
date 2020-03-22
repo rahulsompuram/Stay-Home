@@ -135,7 +135,6 @@ struct SpriteModal: View {
                                 .scaleEffect(self.plusOneActive ? 3 : 1)
                                 .animation(.default)
                                 .padding(.trailing, 50)
-                            Text("LEVEL: \(self.userLevel)").foregroundColor(Color.white)
                         }
                         if(!self.firebaseLoading){
                             
