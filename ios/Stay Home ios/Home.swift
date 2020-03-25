@@ -35,11 +35,6 @@ struct Home: View {
     
     @State var spriteDict = ["1": "pinkboi", "2": "soapboi", "3": "maskboi", "4": "gloveboi", "5": "sanitizer", "6": "Window", "7": "TP", "8": "Sir_Six_Feet", "9": "Juiceboi", "10": "lungs"]
     
-    // Shows unlocked sprites based off user level
-    @State var userLevel = 1
-    @State var points: Int = 0
-    @State var pointsToNextLevel: Int = 0
-    
     @State private var showingAlert = false
     
     var body: some View {
@@ -74,7 +69,7 @@ struct Home: View {
                         Button(action: {
                             self.showSpriteModal.toggle()
                         }) {
-                            Image(self.spriteDict["\(self.userLevel)"]!).renderingMode(.original).resizable().frame(width: 75, height: 75, alignment: .center)
+                            Image(self.spriteDict["\(self.userData.user?.level ?? 1)"] ?? "").renderingMode(.original).resizable().frame(width: 75, height: 75, alignment: .center)
                                 .padding(25)
                                 .shadow(radius: 10)
                         }.sheet(isPresented: self.$showSpriteModal) {
@@ -90,11 +85,13 @@ struct Home: View {
                             .frame(width: 300, height: 50, alignment: .center)
                         HStack {
                             Button(action: {
+                                guard let currentUser = Auth.auth().currentUser else { return }
+                                
                                 if let lastLocation = self.locationManager.lastLocation {
                                     
                                     let timeInterval = NSDate().timeIntervalSince1970
                                     
-                                    let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
+                                    let ref = Database.database().reference().child("Users").child(currentUser.uid)
                                     
                                     // check if there's already been a relocation in the last 24 hours
                                     ref.child("LastRelocTimestamp").observeSingleEvent(of: .value) { (snapshot) in
@@ -172,27 +169,6 @@ struct Home: View {
                 }
                 
                 self.firebaseDataLoaded = true
-            }
-            
-            ref.child("Points").observe(.value) { (snapshot) in
-                if let points = snapshot.value as? Int {
-                    self.points = points
-                    
-                    
-                    // simple linear curve
-                    var userLevel = Int(points / self.pointsPerLevel) + 1
-                    if (userLevel > 10) {
-                        userLevel = 10
-                    }
-                    self.userLevel = userLevel
-                    
-                    if (self.userLevel == 10) {
-                        self.pointsToNextLevel = 999999999
-                    } else {
-                        self.pointsToNextLevel = self.pointsPerLevel - (points % self.pointsPerLevel)
-                    }
-                    
-                }
             }
         }
     }
