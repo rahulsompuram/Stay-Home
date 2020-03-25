@@ -78,17 +78,11 @@ struct SpriteModal: View {
                 // toggle +1 on
                 self.plusOneActive.toggle()
                 
-                let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
-                ref.observeSingleEvent(of: .value) { (snapshot) in
-                    let points = snapshot.childSnapshot(forPath: "Points").value as! Int
-                    let unredeemedPoints = snapshot.childSnapshot(forPath: "UnredeemedPoints").value as! Int
-                    let username = snapshot.childSnapshot(forPath: "Username").value as! String
-                    
-                    ref.child("Points").setValue(points + 1)
-                    ref.child("UnredeemedPoints").setValue(unredeemedPoints + 1)
-                    
-                    Database.database().reference().child("Leaderboard").child(username).setValue(unredeemedPoints + 1)
-                    
+                if let user = self.userData.user {
+                    let ref = Database.database().reference()
+                    ref.child("Users").child(Auth.auth().currentUser!.uid).child("Points").setValue(user.points + 1)
+                    ref.child("Users").child(Auth.auth().currentUser!.uid).child("unredeemedPoints").setValue(user.unredeemedPoints)
+                    ref.child("Leaderboard").child(user.username).setValue(user.unredeemedPoints + 1)
                 }
                 
                 // wait 0.5s then toggle +1 off
@@ -109,7 +103,7 @@ struct SpriteModal: View {
                 HStack {
                     VStack(alignment: .leading) {
                         Text("my points").font(.custom("AvenirNext-Medium", size: 24)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 5))
-                        Text("\(self.points)").font(.custom("AvenirNext-Bold", size: 32)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
+                        Text("\(self.userData.user?.points ?? 0)").font(.custom("AvenirNext-Bold", size: 32)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
                     }.padding()
                     Spacer()
                     Button(action: {
@@ -208,27 +202,20 @@ struct SpriteModal: View {
             }
         }.onAppear {
             
-            let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
-            
-            ref.child("Points").observe(.value) { (snapshot) in
-                if let points = snapshot.value as? Int {
-                    self.points = points
-                    
-                    
-                    // simple linear curve
-                    var userLevel = Int(points / self.pointsPerLevel) + 1
-                    if (userLevel > 10) {
-                        userLevel = 10
-                    }
-                    self.userLevel = userLevel
-                    
-                    if (self.userLevel == 10) {
-                        self.pointsToNextLevel = 999999999
-                    } else {
-                        self.pointsToNextLevel = self.pointsPerLevel - (points % self.pointsPerLevel)
-                    }
-                    self.firebaseLoading = false
+            // simple linear curve
+            if let user = self.userData.user {
+                var userLevel = Int(user.points / self.pointsPerLevel) + 1
+                if (userLevel > 10) {
+                    userLevel = 10
                 }
+                self.userLevel = userLevel
+                
+                if (self.userLevel == 10) {
+                    self.pointsToNextLevel = 999999999
+                } else {
+                    self.pointsToNextLevel = self.pointsPerLevel - (user.points % self.pointsPerLevel)
+                }
+                self.firebaseLoading = false
             }
         }
     }
