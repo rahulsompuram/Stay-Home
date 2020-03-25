@@ -42,18 +42,17 @@ class LocationManager: NSObject, ObservableObject {
         ref = Database.database().reference().child("Users").child(userID)
         let timeInterval = NSDate().timeIntervalSince1970
         
-        let timeSinceLastTick = timeInterval - lastTickTimestamp
-        
-        if (timeSinceLastTick < 5) {
-            return
-        }
+//        // only tick every 5 seconds
+//        if (timeSinceLastTick < 5) {
+//            return
+//        }
         
         ref.observeSingleEvent(of: .value) { (snapshot) in
             let lastTickTimestamp = snapshot.childSnapshot(forPath: "LastTickTimestamp").value as? Double ?? 0.0
             let timeSinceLastTick = timeInterval - lastTickTimestamp
             
             // they are at home
-            if (isHome && timeSinceLastTick < 30) {
+            if (isHome) {
                 let currentStreak = snapshot.childSnapshot(forPath: "Streak").value as? IntegerLiteralType ?? 0
                 let currentPoints = snapshot.childSnapshot(forPath: "Points").value as? IntegerLiteralType ?? 0
                 let currentUnredeemedPoints = snapshot.childSnapshot(forPath: "UnredeemedPoints").value as? IntegerLiteralType ?? 0
