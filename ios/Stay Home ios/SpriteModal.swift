@@ -15,6 +15,8 @@ import SDWebImage
 struct SpriteModal: View {
     @Environment(\.presentationMode) var presentationMode
     
+    @EnvironmentObject var userData: UserDataViewModel
+    
     let pointsPerLevel = 50000
     static let url = "https://rahulsompuram.github.io/Stay-Home/"
     

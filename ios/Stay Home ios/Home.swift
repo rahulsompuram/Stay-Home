@@ -78,7 +78,7 @@ struct Home: View {
                                 .padding(25)
                                 .shadow(radius: 10)
                         }.sheet(isPresented: self.$showSpriteModal) {
-                            SpriteModal()
+                            SpriteModal().environmentObject(self.userData)
                         }
                     }
                     
