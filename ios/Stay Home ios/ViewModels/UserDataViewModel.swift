@@ -17,6 +17,46 @@ final class UserDataViewModel: ObservableObject {
     @Published var isNewUser: Bool?
     @Published var errorMessage = ""
     
+    // begin custom sign up / login
+//    func listen() {
+//        handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
+//            if let user = user {
+//                self.session = User(firstName: "", lastName: "", email: user.email ?? "", username: "", id: user.uid, isLoggedIn: false)
+//            } else {
+//                self.session = nil
+//            }
+//        })
+//    }
+    var handle: AuthStateDidChangeListenerHandle?
+    
+    func signUpCustom(email: String, password: String, handler: @escaping AuthDataResultCallback) {
+        Auth.auth().createUser(withEmail: email, password: password, completion: handler)
+    }
+    
+    func signInCustom(email: String, password: String, handler: @escaping AuthDataResultCallback) {
+        Auth.auth().signIn(withEmail: email, password: password, completion: handler)
+    }
+    
+    func signoutCustom() {
+        do {
+            try Auth.auth().signOut()
+            self.user = nil
+        } catch {
+            print("Error signing out")
+        }
+    }
+    
+    func unbind() {
+        if let handle = handle {
+            Auth.auth().removeStateDidChangeListener(handle)
+        }
+    }
+    
+    deinit {
+        unbind()
+    }
+    // end custom sign up / login
+    
     
     func reset(){
         self.user = User()
@@ -96,6 +136,7 @@ final class UserDataViewModel: ObservableObject {
         })
     }
     
+    // Facebook sign in
     func signIn() {
         if AccessToken.current != nil {
             let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)

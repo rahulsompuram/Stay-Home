@@ -16,6 +16,8 @@ struct Profile: View {
     @State var level = 1
     let pointsPerLevel = 50000
     
+    @EnvironmentObject var userData: UserDataViewModel
+    
     // sprite image to choose based off user points
     @State var spriteDict = [1: "pinkboi", 2: "soapboi", 3: "maskboi", 4: "gloveboi", 5: "sanitizer", 6: "Window", 7: "TP", 8: "Sir_Six_Feet", 9: "Juiceboi", 10: "lungs"]
     
@@ -54,7 +56,22 @@ struct Profile: View {
                 }
                 
                 Spacer()
-                Login().frame(width: 300, height: 50).padding(EdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 15))
+                VStack {
+                    Button(action: {
+                        self.userData.signoutCustom()
+                    }) {
+                        Text("Log out")
+                            .font(.custom("AvenirNext-Medium", size: 20))
+                            .padding()
+                            .frame(width: 300, height: 50, alignment: .center)
+                            .background(Color(red: 240/255, green: 176/255, blue: 175/255))
+                            .foregroundColor(.white)
+                            .border(Color(red: 240/255, green: 176/255, blue: 175/255), width: 1)
+                            .cornerRadius(25)
+                            .shadow(radius: 10)
+                    }.padding()
+                    Login().frame(width: 300, height: 50).padding(EdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 15))
+                }
             }
         }.onAppear {
             let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)

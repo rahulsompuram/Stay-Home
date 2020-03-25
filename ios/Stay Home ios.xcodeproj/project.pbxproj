@@ -17,6 +17,10 @@
 		7746BFA92422A1E0000E3D66 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA82422A1E0000E3D66 /* MapView.swift */; };
 		7746BFAF2422C8C0000E3D66 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFAE2422C8C0000E3D66 /* LocationManager.swift */; };
 		775E64122425682300F2ABE0 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 775E64112425682300F2ABE0 /* SDWebImageSwiftUI */; };
+		B760721E242BECC0006C2B8E /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B760721D242BECC0006C2B8E /* SessionStore.swift */; };
+		B7607222242C07BA006C2B8E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7607221242C07BA006C2B8E /* SignUpView.swift */; };
+		B7607224242C09BB006C2B8E /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7607223242C09BB006C2B8E /* SignInView.swift */; };
+		B7607226242C0E18006C2B8E /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7607225242C0E18006C2B8E /* ForgotPasswordView.swift */; };
 		B76BFCC92422AA6C00ED44D8 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCC82422AA6C00ED44D8 /* StartView.swift */; };
 		B76BFCCE2422B0C300ED44D8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCCD2422B0C300ED44D8 /* User.swift */; };
 		B76BFCD12422B15F00ED44D8 /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCD02422B15F00ED44D8 /* UserDataViewModel.swift */; };
@@ -65,6 +69,10 @@
 		7746BFA624229471000E3D66 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		7746BFA82422A1E0000E3D66 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		7746BFAE2422C8C0000E3D66 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		B760721D242BECC0006C2B8E /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		B7607221242C07BA006C2B8E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		B7607223242C09BB006C2B8E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		B7607225242C0E18006C2B8E /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		B76BFCC82422AA6C00ED44D8 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		B76BFCCD2422B0C300ED44D8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B76BFCD02422B15F00ED44D8 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
@@ -174,6 +182,7 @@
 		B79E4B5C2422734A001863F7 /* Stay Home ios */ = {
 			isa = PBXGroup;
 			children = (
+				B760721D242BECC0006C2B8E /* SessionStore.swift */,
 				B76BFCCF2422B14000ED44D8 /* ViewModels */,
 				B76BFCCC2422B0B700ED44D8 /* Models */,
 				B79E4B9024227448001863F7 /* GoogleService-Info.plist */,
@@ -187,6 +196,9 @@
 				B76BFCDE2426C49200ED44D8 /* SpriteModal.swift */,
 				B76BFCDC2425639F00ED44D8 /* MoreInfoModal.swift */,
 				B76BFCC82422AA6C00ED44D8 /* StartView.swift */,
+				B7607223242C09BB006C2B8E /* SignInView.swift */,
+				B7607221242C07BA006C2B8E /* SignUpView.swift */,
+				B7607225242C0E18006C2B8E /* ForgotPasswordView.swift */,
 				B76BFCD4242332A100ED44D8 /* GetStartedView.swift */,
 				B76BFCDA242435E100ED44D8 /* GameInfoView.swift */,
 				7746BFA82422A1E0000E3D66 /* MapView.swift */,
@@ -505,6 +517,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B79E4B632422734A001863F7 /* Stay_Home_ios.xcdatamodeld in Sources */,
+				B7607226242C0E18006C2B8E /* ForgotPasswordView.swift in Sources */,
 				B76BFCC92422AA6C00ED44D8 /* StartView.swift in Sources */,
 				7746BFA724229471000E3D66 /* Profile.swift in Sources */,
 				7746BFA324229453000E3D66 /* Leaderboard.swift in Sources */,
@@ -518,6 +531,9 @@
 				7746BFAF2422C8C0000E3D66 /* LocationManager.swift in Sources */,
 				B76BFCD5242332A100ED44D8 /* GetStartedView.swift in Sources */,
 				B76BFCDF2426C49200ED44D8 /* SpriteModal.swift in Sources */,
+				B7607224242C09BB006C2B8E /* SignInView.swift in Sources */,
+				B760721E242BECC0006C2B8E /* SessionStore.swift in Sources */,
+				B7607222242C07BA006C2B8E /* SignUpView.swift in Sources */,
 				B76BFCCE2422B0C300ED44D8 /* User.swift in Sources */,
 				B76BFCDB242435E100ED44D8 /* GameInfoView.swift in Sources */,
 				B76BFCD12422B15F00ED44D8 /* UserDataViewModel.swift in Sources */,

@@ -38,7 +38,7 @@ struct GetStartedView: View {
                     VStack {
                         Text("Enter a username").font(.custom("AvenirNext-Bold", size: 24)).foregroundColor(Color.white)
                         .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
-                        TextFieldWithLine(placeholder: "", text: $username).foregroundColor(Color.white).padding(25)
+                        TextFieldWithLine(placeholder: "e.g. bob123", text: $username, isSecure: false).foregroundColor(Color.white).padding(25)
                     }
                     
                     Spacer()
@@ -109,6 +109,7 @@ struct HorizontalLine: View {
     }
 }
 
+// FIX THIS TO ADD isSecure to change password placeholder to white color
 struct CustomTextField: View {
     var placeholder: Text
     @Binding var text: String
@@ -118,7 +119,7 @@ struct CustomTextField: View {
     var body: some View {
         ZStack(alignment: .leading) {
             if text.isEmpty { placeholder }
-            TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit)
+            TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit).autocapitalization(.none)
         }
     }
 }
@@ -128,22 +129,53 @@ struct TextFieldWithLine: View {
     
     private var text: Binding<String>
     private var placeholder: String
+    private var isSecure: Bool
     private var lineHeight: CGFloat
     
-    init(placeholder: String, text: Binding<String>, lineHeight: CGFloat = CGFloat(0.5)) {
+    @State var passwordIcon: String = "eye.slash"
+    @State var passwordHidden: Bool = true
+    
+    init(placeholder: String, text: Binding<String>, isSecure: Bool = false, lineHeight: CGFloat = CGFloat(0.5)) {
         self.placeholder = placeholder
         self.text = text
+        self.isSecure = isSecure
         self.lineHeight = lineHeight
     }
     
     var body: some View {
         
         VStack {
-            CustomTextField(
-                placeholder: Text("e.g. bob123").foregroundColor(Color(red: 223/255, green: 230/255, blue: 233/255)),
-                text: text
-            )
-            HorizontalLine(height: lineHeight, color: Color.white)
+            if(isSecure){
+                HStack(){
+                    if(self.passwordHidden){
+                        SecureField(placeholder, text: text)
+                    }else{
+                        //TextField(placeholder, text: text).autocapitalization(.none)
+                        CustomTextField(
+                            placeholder: Text(placeholder).foregroundColor(Color(red: 223/255, green: 230/255, blue: 233/255)),
+                            text: text
+                        )
+                    }
+                    Button(action: {
+                        self.passwordHidden.toggle()
+                        if(self.passwordHidden){
+                            self.passwordIcon = "eye.slash"
+                        }else{
+                            self.passwordIcon = "eye"
+                        }
+                    }){
+                        Image(systemName: self.passwordIcon).padding(5).foregroundColor(Color.white)
+                    }
+                }
+                HorizontalLine(height: lineHeight, color: Color.white)
+            }else{
+                //TextField(placeholder, text: text)
+                CustomTextField(
+                    placeholder: Text(placeholder).foregroundColor(Color(red: 223/255, green: 230/255, blue: 233/255)),
+                    text: text
+                )
+                HorizontalLine(height: lineHeight, color: Color.white)
+            }
         }.padding(.bottom, lineHeight)
     }
 }
