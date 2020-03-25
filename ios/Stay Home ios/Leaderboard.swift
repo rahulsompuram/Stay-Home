@@ -112,9 +112,7 @@ struct Leaderboard: View {
                     Row(rank: item.rank, username: item.username, points: item.points)
                     
                     }.onAppear() {
-                        
-                        print("POINTS: \(self.userData.user?.points ?? 12345)")
-                                                
+                                                                        
                         UITableView.appearance().separatorColor = .clear
                         UITableView.appearance().backgroundColor = UIColor(red: 78/255, green: 89/255, blue: 140/255, alpha: 1.0)
                         UITableViewCell.appearance().backgroundColor = UIColor(red: 78/255, green: 89/255, blue: 140/255, alpha: 1.0)
@@ -123,58 +121,52 @@ struct Leaderboard: View {
                         
                         var localRows: [Row] = []
                         
-                        ref.child("Users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
-                            if let points = snapshot.childSnapshot(forPath: "Points").value as? Int {
-                                self.points = points
-                                
-                                var level = Int(points / self.pointsPerLevel) + 1
-                                if (level > 10) {
-                                    level = 10
-                                }
-                                self.level = level
+                        if let user = self.userData.user {
+                            var level = Int(user.points / self.pointsPerLevel) + 1
+                            if (level > 10) {
+                                level = 10
                             }
+                            self.points = user.points
+                            self.level = level
+                            self.username = user.username
+                        }
+                        
                             
-                            if let username = snapshot.childSnapshot(forPath: "Username").value as? String {
-                                self.username = username
-                            }
-                            
-                            var oneHundredthRankPoints = 0
-                            ref.child("Leaderboard").queryLimited(toFirst: 100).queryOrderedByValue().observeSingleEvent(of: .value) { (snapshot) in
-                                        
-                                        var rank = snapshot.childrenCount
-                                        
-                                        for user in snapshot.children.allObjects as! [DataSnapshot] {
-                                            
-                                            var username = user.key
-                                            
-                                            if (username == self.username) {
-                                                self.estimatedRank = rank
-                                            }
-                                            
-                                            username = username.padding(toLength: 12, withPad: " ", startingAt: 0)
-                                            
-                                            let points = user.value as! IntegerLiteralType
-                            
-                                            localRows.append(Row(rank: rank, username: username, points: points))
-                                            
-                                            rank -= 1
-                                            oneHundredthRankPoints = points
-                                        }
-                                                                        
-                                        localRows.reverse()
-                                        self.rows = localRows
-                                
-                                ref.child("TotalUsers").observeSingleEvent(of: .value) { (snapshot) in
-                                    self.totalUsers = snapshot.value as! Int
+                        var oneHundredthRankPoints = 0
+                        ref.child("Leaderboard").queryLimited(toFirst: 100).queryOrderedByValue().observeSingleEvent(of: .value) { (snapshot) in
                                     
-                                    // if not inside the top 100, estimate
-                                    if (self.estimatedRank == 0) {
-                                        self.estimatedRank = UInt(101 + (self.totalUsers - 100) * (1 - self.points / oneHundredthRankPoints))
-                                    }
-                                }
-                                
+                                    var rank = snapshot.childrenCount
+                                    
+                                    for user in snapshot.children.allObjects as! [DataSnapshot] {
                                         
+                                        var username = user.key
+                                        
+                                        if (username == self.username) {
+                                            self.estimatedRank = rank
+                                        }
+                                        
+                                        username = username.padding(toLength: 12, withPad: " ", startingAt: 0)
+                                        
+                                        let points = user.value as! IntegerLiteralType
+                        
+                                        localRows.append(Row(rank: rank, username: username, points: points))
+                                        
+                                        rank -= 1
+                                        oneHundredthRankPoints = points
                                     }
+                                                                    
+                                    localRows.reverse()
+                                    self.rows = localRows
+                            
+                            ref.child("TotalUsers").observeSingleEvent(of: .value) { (snapshot) in
+                                self.totalUsers = snapshot.value as! Int
+                                
+                                // if not inside the top 100, estimate
+                                if (self.estimatedRank == 0) {
+                                    self.estimatedRank = UInt(101 + (self.totalUsers - 100) * (1 - self.points / oneHundredthRankPoints))
+                                }
+                            }
+                            
                         }
                     }
             }
