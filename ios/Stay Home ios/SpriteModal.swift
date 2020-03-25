@@ -202,19 +202,9 @@ struct SpriteModal: View {
             }
         }.onAppear {
             
-            // simple linear curve
             if let user = self.userData.user {
-                var userLevel = Int(user.points / self.pointsPerLevel) + 1
-                if (userLevel > 10) {
-                    userLevel = 10
-                }
-                self.userLevel = userLevel
-                
-                if (self.userLevel == 10) {
-                    self.pointsToNextLevel = 999999999
-                } else {
-                    self.pointsToNextLevel = self.pointsPerLevel - (user.points % self.pointsPerLevel)
-                }
+                self.userLevel = user.level
+                self.pointsToNextLevel = user.pointsToNextLevel
                 self.firebaseLoading = false
             }
         }

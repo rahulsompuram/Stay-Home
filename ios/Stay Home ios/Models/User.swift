@@ -21,6 +21,9 @@ struct User {
     var unredeemedPoints: Int
     var username: String
     
+    var pointsToNextLevel: Int
+    var level: Int
+    
     
     init(firstName: String = "",
          lastName: String = "",
@@ -41,6 +44,9 @@ struct User {
         self.points = 0
         self.streak = 0
         self.unredeemedPoints = 0
+        
+        self.pointsToNextLevel = 0
+        self.level = 0
     }
          
 }

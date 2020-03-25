@@ -122,12 +122,8 @@ struct Leaderboard: View {
                         var localRows: [Row] = []
                         
                         if let user = self.userData.user {
-                            var level = Int(user.points / self.pointsPerLevel) + 1
-                            if (level > 10) {
-                                level = 10
-                            }
                             self.points = user.points
-                            self.level = level
+                            self.level = user.level
                             self.username = user.username
                         }
                         

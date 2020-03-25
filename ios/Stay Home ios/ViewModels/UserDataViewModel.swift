@@ -22,6 +22,8 @@ final class UserDataViewModel: ObservableObject {
         self.user = User()
     }
     
+    let pointsPerLevel = 50000
+    
     func trackAuthState() {
         _ = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
@@ -53,6 +55,18 @@ final class UserDataViewModel: ObservableObject {
                             }
                             if let points = snapshot.childSnapshot(forPath: "Points").value as? Int {
                                 self.user?.points = points
+                                
+                                var level = Int(points / self.pointsPerLevel) + 1
+                                if (level > 10) {
+                                    level = 10
+                                }
+                                self.user?.level = level
+                                
+                                if (level == 10) {
+                                    self.user?.pointsToNextLevel = 999999999
+                                } else {
+                                    self.user?.pointsToNextLevel = self.pointsPerLevel - (points % self.pointsPerLevel)
+                                }
                             }
                             if let streak = snapshot.childSnapshot(forPath: "Streak").value as? Int {
                                 self.user?.streak = streak
@@ -63,6 +77,7 @@ final class UserDataViewModel: ObservableObject {
                             if let username = snapshot.childSnapshot(forPath: "Username").value as? String {
                                 self.user?.username = username
                             }
+                            
                         }
                         
                         
