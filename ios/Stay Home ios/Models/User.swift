@@ -10,10 +10,16 @@ import Foundation
 struct User {
     var firstName: String
     var lastName: String
-    var username: String
     var email: String
     var id: String?
     var isLoggedIn: Bool
+    
+    var lastRelocTimestamp: Double
+    var lastTickTimestamp: Double
+    var points: Int
+    var streak: Int
+    var unredeemedPoints: Int
+    var username: String
     
     
     init(firstName: String = "",
@@ -29,6 +35,12 @@ struct User {
         self.username = username
         self.id = id
         self.isLoggedIn = isLoggedIn
+        
+        self.lastRelocTimestamp = 0
+        self.lastTickTimestamp = 0
+        self.points = 0
+        self.streak = 0
+        self.unredeemedPoints = 0
     }
          
 }

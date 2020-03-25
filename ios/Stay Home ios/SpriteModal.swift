@@ -11,6 +11,7 @@ import Firebase
 import SDWebImageSwiftUI
 import SDWebImage
 
+
 struct SpriteModal: View {
     @Environment(\.presentationMode) var presentationMode
     
@@ -204,6 +205,7 @@ struct SpriteModal: View {
                 Spacer()
             }
         }.onAppear {
+            
             let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
             
             ref.child("Points").observe(.value) { (snapshot) in

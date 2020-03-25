@@ -17,6 +17,7 @@ final class UserDataViewModel: ObservableObject {
     @Published var isNewUser: Bool?
     @Published var errorMessage = ""
     
+    
     func reset(){
         self.user = User()
     }
@@ -42,8 +43,30 @@ final class UserDataViewModel: ObservableObject {
                         ref.child("Streak").setValue(0)
                         ref.child("UnredeemedPoints").setValue(0)
                     } else {
-                        self.isNewUser = false
                         print("Existing user!")
+                        ref.observe(.value) { (snapshot) in
+                            if let lastRelocTimestamp = snapshot.childSnapshot(forPath: "lastRelocTimestamp").value as? Double {
+                                self.user?.lastRelocTimestamp = lastRelocTimestamp
+                            }
+                            if let lastTickTimestamp = snapshot.childSnapshot(forPath: "lastTickTimestamp").value as? Double {
+                                self.user?.lastTickTimestamp = lastTickTimestamp
+                            }
+                            if let points = snapshot.childSnapshot(forPath: "Points").value as? Int {
+                                self.user?.points = points
+                            }
+                            if let streak = snapshot.childSnapshot(forPath: "Streak").value as? Int {
+                                self.user?.streak = streak
+                            }
+                            if let unredeemedPoints = snapshot.childSnapshot(forPath: "unredeemedPoints").value as? Int {
+                                self.user?.unredeemedPoints = unredeemedPoints
+                            }
+                            if let username = snapshot.childSnapshot(forPath: "Username").value as? String {
+                                self.user?.username = username
+                            }
+                        }
+                        
+                        
+                        self.isNewUser = false
                     }
                 }
                 

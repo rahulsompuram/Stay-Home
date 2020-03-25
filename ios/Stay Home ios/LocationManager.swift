@@ -13,7 +13,7 @@ import FirebaseAuth
 
 
 class LocationManager: NSObject, ObservableObject {
-    
+        
     private let locationManager = CLLocationManager()
     
     private let maxDistanceFromHome: Double = 100.0 // meters

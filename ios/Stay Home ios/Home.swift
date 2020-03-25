@@ -12,6 +12,8 @@ import Firebase
 
 struct Home: View {
     
+    @EnvironmentObject var userData: UserDataViewModel
+    
     let pointsPerLevel = 50000
     static let url = "https://rahulsompuram.github.io/Stay-Home/"
     

@@ -65,6 +65,8 @@ struct Leaderboard: View {
     // for sprite image based off user points
     @State var userSprite = ""
     @State var spriteDict = [1: "pinkboi", 2: "soapboi", 3: "maskboi", 4: "gloveboi", 5: "sanitizer", 6: "Window", 7: "TP", 8: "Sir_Six_Feet", 9: "Juiceboi", 10: "lungs"]
+    
+    @EnvironmentObject var userData: UserDataViewModel
 
   
     var body: some View {
@@ -111,6 +113,8 @@ struct Leaderboard: View {
                     
                     }.onAppear() {
                         
+                        print("POINTS: \(self.userData.user?.points ?? 12345)")
+                                                
                         UITableView.appearance().separatorColor = .clear
                         UITableView.appearance().backgroundColor = UIColor(red: 78/255, green: 89/255, blue: 140/255, alpha: 1.0)
                         UITableViewCell.appearance().backgroundColor = UIColor(red: 78/255, green: 89/255, blue: 140/255, alpha: 1.0)
