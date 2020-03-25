@@ -22,6 +22,8 @@ struct SpriteModal: View {
     
     @State var isAnimating = true
     
+    @State var pointBonus = 0
+    
     @State var sprites = ["pinkboi", "soapboi", "maskboi", "gloveboi", "sanitizer", "Window", "TP", "Sir_Six_Feet", "Juiceboi", "lungs"]
     
     @State var spriteDict = ["1": ["name": "pinkboi", "gif": url + "pinkboi.gif", "nickname": "Viral Vince", "desc": "Together we can beat germs like me!"],
@@ -74,10 +76,18 @@ struct SpriteModal: View {
                 self.plusOneActive.toggle()
                 
                 if let user = self.userData.user {
+                    
+                    let rand = Int.random(in: 0 ..< 10)
+                    if (rand == 0) {
+                        self.pointBonus = 25
+                    } else {
+                        self.pointBonus = 10
+                    }
+                    
                     let ref = Database.database().reference()
-                    ref.child("Users").child(Auth.auth().currentUser!.uid).child("Points").setValue(user.points + 1)
-                    ref.child("Users").child(Auth.auth().currentUser!.uid).child("unredeemedPoints").setValue(user.unredeemedPoints)
-                    ref.child("Leaderboard").child(user.username).setValue(user.unredeemedPoints + 1)
+                    ref.child("Users").child(Auth.auth().currentUser!.uid).child("Points").setValue(user.points + self.pointBonus)
+                    ref.child("Users").child(Auth.auth().currentUser!.uid).child("unredeemedPoints").setValue(user.unredeemedPoints + self.pointBonus)
+                    ref.child("Leaderboard").child(user.username).setValue(user.points + self.pointBonus)
                 }
                 
                 // wait 0.5s then toggle +1 off
@@ -114,14 +124,14 @@ struct SpriteModal: View {
                 VStack(alignment: .center) {
                     ZStack{
                         HStack{
-                            Text("+1")
+                            Text("+\(self.pointBonus)")
                                 .foregroundColor(Color(red: 240/255, green: 176/255, blue: 175/255))
                                 .opacity(self.plusOneActive ? 1 : 0)
                                 .scaleEffect(self.plusOneActive ? 3 : 1)
                                 .animation(.default)
                                 .padding(.leading, 50)
                             Spacer()
-                            Text("+1")
+                            Text("+\(self.pointBonus)")
                                 .foregroundColor(Color(red: 240/255, green: 176/255, blue: 175/255))
                                 .opacity(self.plusOneActive ? 1 : 0)
                                 .scaleEffect(self.plusOneActive ? 3 : 1)
