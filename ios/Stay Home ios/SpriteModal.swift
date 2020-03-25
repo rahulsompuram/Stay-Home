@@ -22,8 +22,6 @@ struct SpriteModal: View {
     
     @State var isAnimating = true
     
-    @State var firebaseLoading = true
-    
     @State var sprites = ["pinkboi", "soapboi", "maskboi", "gloveboi", "sanitizer", "Window", "TP", "Sir_Six_Feet", "Juiceboi", "lungs"]
     
     @State var spriteDict = ["1": ["name": "pinkboi", "gif": url + "pinkboi.gif", "nickname": "Viral Vince", "desc": "Together we can beat germs like me!"],
@@ -39,26 +37,23 @@ struct SpriteModal: View {
     ]
     @State var reverseDict = ["pinkboi": 1, "soapboi": 2, "maskboi": 3, "gloveboi": 4, "sanitizer": 5, "Window": 6, "TP": 7, "Sir_Six_Feet": 8, "Juiceboi": 9, "lungs": 10]
     
-    // Shows unlocked sprites based off user level
-    @State var userLevel = 1
-    @State var points: Int = 0
-    @State var pointsToNextLevel: Int = 0
-    
     // For progress bar for next sprite unlock
     @State var progress : CGFloat = 1
     @State var outOfProgess : CGFloat = 6
     
     func getUnlockedSprites() -> [String] {
+        guard let user = self.userData.user else { return [] }
+        
         var counter = 0
         var unlockedSprites : [String] = []
-        var levelCounter = userLevel + 1
+        var levelCounter = user.level + 1
         
-        while (counter < self.userLevel && counter < 10) {
+        while (counter < user.level && counter < 10) {
             unlockedSprites.append(sprites[counter])
             counter += 1
         }
         
-        let leftover = sprites.count - userLevel
+        let leftover = sprites.count - user.level
         
         if leftover > 0 {
             for _ in (1...leftover) {
@@ -133,9 +128,8 @@ struct SpriteModal: View {
                                 .animation(.default)
                                 .padding(.trailing, 50)
                         }
-                        if(!self.firebaseLoading){
                             
-                            WebImage(url: URL(string: self.spriteDict["\(self.userLevel)"]!["gif"]!), isAnimating: $isAnimating)
+                            WebImage(url: URL(string: self.spriteDict["\(self.userData.user?.level ?? 1)"]!["gif"]!), isAnimating: $isAnimating)
                                 .resizable() // Resizable like SwiftUI.Image, you must use this modifier or the view will use the image bitmap size
                                 .placeholder(Image(systemName: "photo")) // Placeholder Image
                                 .placeholder {
@@ -147,17 +141,14 @@ struct SpriteModal: View {
                                 .scaledToFit()
                                 .frame(width: 150, height: 150, alignment: .center)
                                 .gesture(tapSprite)
-                        }else{
-                            Spacer().frame(height: 150)
-                        }
                         
                     }
                     
                     VStack(alignment: .center) {
-                        Text(self.spriteDict["\(self.userLevel)"]!["nickname"]!).font(.custom("AvenirNext-Bold", size: 22)).foregroundColor(Color.white)
+                        Text(self.spriteDict["\(self.userData.user?.level ?? 1)"]!["nickname"]!).font(.custom("AvenirNext-Bold", size: 22)).foregroundColor(Color.white)
                         HStack {
                             Spacer()
-                            Text(self.spriteDict["\(self.userLevel)"]!["desc"]!).font(.custom("AvenirNext-Medium", size: 16)).foregroundColor(Color.white).multilineTextAlignment(.center)
+                            Text(self.spriteDict["\(self.userData.user?.level ?? 1)"]!["desc"]!).font(.custom("AvenirNext-Medium", size: 16)).foregroundColor(Color.white).multilineTextAlignment(.center)
                             Spacer()
                         }
                     }
@@ -189,23 +180,16 @@ struct SpriteModal: View {
                 Spacer()
                 
                 VStack(alignment: .center) {
-                    if (self.pointsToNextLevel == 999999999) {
+                    if (self.userData.user?.pointsToNextLevel == 999999999) {
                         Text("All current levels are unlocked!").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color(red: 89/255, green: 123/255, blue: 235/255)).padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
                         ProgressBar(progress: .constant(CGFloat(1.0)), width: 300, height: 15)
                     } else {
-                        Text("\(self.pointsToNextLevel) points until next sprite unlock").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color(red: 89/255, green: 123/255, blue: 235/255)).padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
-                        ProgressBar(progress: .constant(1 - CGFloat(self.pointsToNextLevel) / CGFloat(self.pointsPerLevel)), width: 300, height: 15)
+                        Text("\(self.userData.user?.pointsToNextLevel ?? 0) points until next sprite unlock").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color(red: 89/255, green: 123/255, blue: 235/255)).padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
+                        ProgressBar(progress: .constant(1 - CGFloat(self.userData.user?.pointsToNextLevel ?? 0) / CGFloat(self.pointsPerLevel)), width: 300, height: 15)
                     }
                 }.padding()
                 
                 Spacer()
-            }
-        }.onAppear {
-            
-            if let user = self.userData.user {
-                self.userLevel = user.level
-                self.pointsToNextLevel = user.pointsToNextLevel
-                self.firebaseLoading = false
             }
         }
     }
