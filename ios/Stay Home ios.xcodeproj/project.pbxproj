@@ -251,6 +251,7 @@
 				B79E4B572422734A001863F7 /* Frameworks */,
 				B79E4B582422734A001863F7 /* Resources */,
 				99A8BC458F4DBFBFFD16ECCD /* [CP] Embed Pods Frameworks */,
+				B760721C242BDBCF006C2B8E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -455,6 +456,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stay Home ios/Pods-Stay Home ios-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B760721C242BDBCF006C2B8E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		CBDEEFF20E04A4A5EFCA52FB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -669,8 +688,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Stay Home ios/Preview Content\"";
-				DEVELOPMENT_TEAM = B2Q3T3P8HP;
+				DEVELOPMENT_TEAM = S8WL7YS543;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Stay Home ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -693,7 +713,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Stay Home ios/Preview Content\"";
-				DEVELOPMENT_TEAM = B2Q3T3P8HP;
+				DEVELOPMENT_TEAM = S8WL7YS543;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Stay Home ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
