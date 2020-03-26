@@ -17,10 +17,13 @@ struct SignInView: View {
     @State var showForgotPasswordView: Bool = false
     @State var showSignupView: Bool = false
     
+    @State private var showingAlert = false
+    
     func signIn() {
         userData.signInCustom(email: email, password: password) { (res, error) in
             if let error = error {
                 print(error.localizedDescription)
+                self.showingAlert.toggle()
                 return
             } else {
                 self.email = ""
@@ -106,7 +109,9 @@ struct SignInView: View {
                         Spacer()
                     }
                 }
-
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Invalid email or password"), message: Text("Try again, or press 'Forgot Password?' if you don't remember your password."), dismissButton: .default(Text("Got it!")))
+                }
             }
         }
     }

@@ -15,10 +15,13 @@ struct SignUpView: View {
     
     @State var goBackView: Bool = false
     
+    @State private var showingAlert = false
+    
     func signUp() {
         userData.signUpCustom(email: email, password: password) { (res, error) in
             if let error = error {
                 print(error.localizedDescription)
+                self.showingAlert.toggle()
                 return
             } else {
                 self.email = ""
@@ -76,7 +79,9 @@ struct SignUpView: View {
                         Spacer()
                     }
                 }
-
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Invalid email or password"), message: Text("Please enter a valid email and password (must be at least 6 characters long)"), dismissButton: .default(Text("Got it!")))
+                }
             }
         }
     }
