@@ -50,19 +50,19 @@ struct GetStartedView: View {
                             if(self.username.trimmingCharacters(in: .whitespacesAndNewlines) == ""){
                                 self.popupMessage = "Username can't be empty"
                                 self.showingAlert = true
-                            }else if (self.username.count > 12) {
+                            } else if (self.username.count > 12) {
                                 self.popupMessage = "Username cannot be more than 12 characters"
                                 self.showingAlert = true
                             } else {
                                 var ref: DatabaseReference!
                                 ref = Database.database().reference()
                                 ref.child("UsernameList").observeSingleEvent(of: .value) { (snapshot) in
-                                    if (snapshot.hasChild(self.username.lowercased())) {
+                                    if (snapshot.hasChild(self.username.lowercased().trimmingCharacters(in: .whitespacesAndNewlines))) {
                                         self.popupMessage = "Username already taken"
                                         self.showingAlert = true
                                     } else {
-                                        ref.child("UsernameList").child(self.username.lowercased()).setValue(getDate())
-                                        ref.child("Users").child(Auth.auth().currentUser!.uid).child("Username").setValue(self.username.lowercased())
+                                        ref.child("UsernameList").child(self.username.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)).setValue(getDate())
+                                        ref.child("Users").child(Auth.auth().currentUser!.uid).child("Username").setValue(self.username.lowercased().trimmingCharacters(in: .whitespacesAndNewlines))
                                         
                                         ref.child("TotalUsers").observeSingleEvent(of: .value) { (snapshot) in
                                             if let totalUsers = snapshot.value as? Int {
