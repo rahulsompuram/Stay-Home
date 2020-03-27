@@ -62,7 +62,7 @@ final class UserDataViewModel: ObservableObject {
         self.user = User()
     }
     
-    let pointsPerLevel = 50000
+    let pointsPerLevel: Double = 50000
     
     func trackAuthState() {
         _ = Auth.auth().addStateDidChangeListener({ (auth, user) in
@@ -93,7 +93,7 @@ final class UserDataViewModel: ObservableObject {
                             if let lastTickTimestamp = snapshot.childSnapshot(forPath: "lastTickTimestamp").value as? Double {
                                 self.user?.lastTickTimestamp = lastTickTimestamp
                             }
-                            if let points = snapshot.childSnapshot(forPath: "Points").value as? Int {
+                            if let points = snapshot.childSnapshot(forPath: "Points").value as? Double {
                                 self.user?.points = points
                                                                 
                                 var level = Int(points / self.pointsPerLevel) + 1
@@ -105,13 +105,13 @@ final class UserDataViewModel: ObservableObject {
                                 if (level == 10) {
                                     self.user?.pointsToNextLevel = 999999999
                                 } else {
-                                    self.user?.pointsToNextLevel = self.pointsPerLevel - (points % self.pointsPerLevel)
+                                    self.user?.pointsToNextLevel = Int(self.pointsPerLevel) - (Int(points) % Int(self.pointsPerLevel))
                                 }
                             }
-                            if let streak = snapshot.childSnapshot(forPath: "Streak").value as? Int {
+                            if let streak = snapshot.childSnapshot(forPath: "Streak").value as? Double {
                                 self.user?.streak = streak
                             }
-                            if let unredeemedPoints = snapshot.childSnapshot(forPath: "unredeemedPoints").value as? Int {
+                            if let unredeemedPoints = snapshot.childSnapshot(forPath: "unredeemedPoints").value as? Double {
                                 self.user?.unredeemedPoints = unredeemedPoints
                             }
                             if let username = snapshot.childSnapshot(forPath: "Username").value as? String {

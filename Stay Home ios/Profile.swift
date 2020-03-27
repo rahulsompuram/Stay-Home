@@ -74,22 +74,7 @@ struct Profile: View {
                 }
             }
         }.onAppear {
-            let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
-            ref.observe(.value) { (snapshot) in
-                if let username = snapshot.childSnapshot(forPath: "Username").value as? String {
-                    self.username = username
-                }
-                
-                if let points = snapshot.childSnapshot(forPath: "Points").value as? Int {
-                    self.points = points
-                    
-                    var level = Int(points / self.pointsPerLevel) + 1
-                    if (level > 10) {
-                        level = 10
-                    }
-                    self.level = level
-                }
-            }
+
         }
     }
 }

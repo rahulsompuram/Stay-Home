@@ -91,7 +91,7 @@ struct Leaderboard: View {
                                 Text(self.userData.user?.username ?? "").font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
                                 Spacer()
                                 VStack(alignment: .trailing) {
-                                    Text("\(self.userData.user?.points ?? 0) pts").font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
+                                    Text("\(Int(self.userData.user?.points ?? 0)) pts").font(.custom("AvenirNext-Medium", size: 18)).foregroundColor(Color.white)
                                 }
                             }
                             Text("out of \(totalUsers) users").padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0)).font(.custom("AvenirNext-Medium", size: 16)).foregroundColor(Color.white)
@@ -119,7 +119,7 @@ struct Leaderboard: View {
                     
                     var localRows: [Row] = []
                     
-                    var oneHundredthRankPoints = 0
+                    var oneHundredthRankPoints: Double = 0
                     ref.child("Leaderboard").queryLimited(toFirst: 100).queryOrderedByValue().observeSingleEvent(of: .value) { (snapshot) in
                         
                         var rank = snapshot.childrenCount
@@ -136,8 +136,8 @@ struct Leaderboard: View {
                                 
                                 username = username.padding(toLength: 12, withPad: " ", startingAt: 0)
                                 
-                                if let points = user.value as? IntegerLiteralType {
-                                    localRows.append(Row(rank: rank, username: username, points: points))
+                                if let points = user.value as? Double {
+                                    localRows.append(Row(rank: rank, username: username, points: Int(points)))
                                     rank -= 1
                                     oneHundredthRankPoints = points
                                 }
@@ -154,7 +154,8 @@ struct Leaderboard: View {
                             
                             // if not inside the top 100, estimate
                             if (self.estimatedRank == 0) {
-                                self.estimatedRank = UInt(101 + (self.totalUsers - 100) * (1 - localUser.points / oneHundredthRankPoints))
+                                let percentile = 1 - localUser.points / oneHundredthRankPoints
+                                self.estimatedRank = UInt(101 + Double(self.totalUsers - 100) * percentile)
                             }
                         }
                         

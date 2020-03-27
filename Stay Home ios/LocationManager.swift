@@ -49,17 +49,18 @@ class LocationManager: NSObject, ObservableObject {
             
             // look out for phony ticks
             if (timeSinceLastTick > 1500) {
+                print("phony tick")
                 return
             }
             
             // they are at home
             if (isHome) {
-                let currentStreak = snapshot.childSnapshot(forPath: "Streak").value as? IntegerLiteralType ?? 0
-                let currentPoints = snapshot.childSnapshot(forPath: "Points").value as? IntegerLiteralType ?? 0
-                let currentUnredeemedPoints = snapshot.childSnapshot(forPath: "UnredeemedPoints").value as? IntegerLiteralType ?? 0
-                
-                let additionalPoints = Int(timeSinceLastTick)
-                let newStreak = currentStreak + Int(timeSinceLastTick)
+                let currentStreak = snapshot.childSnapshot(forPath: "Streak").value as? Double ?? 0
+                let currentPoints = snapshot.childSnapshot(forPath: "Points").value as? Double ?? 0
+                let currentUnredeemedPoints = snapshot.childSnapshot(forPath: "UnredeemedPoints").value as? Double ?? 0
+                            
+                let additionalPoints = timeSinceLastTick
+                let newStreak = currentStreak + timeSinceLastTick
                 
 //                if (newStreak % 3600 == 0) {
 //                    additionalPoints += 1000

@@ -16,9 +16,9 @@ struct User {
     
     var lastRelocTimestamp: Double
     var lastTickTimestamp: Double
-    var points: Int
-    var streak: Int
-    var unredeemedPoints: Int
+    var points: Double
+    var streak: Double
+    var unredeemedPoints: Double
     var username: String
     
     var pointsToNextLevel: Int
