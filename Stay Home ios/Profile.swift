@@ -11,11 +11,6 @@ import Firebase
 
 struct Profile: View {
     
-    @State var username = ""
-    @State var points = 0
-    @State var level = 1
-    let pointsPerLevel = 50000
-    
     @EnvironmentObject var userData: UserDataViewModel
     
     // sprite image to choose based off user points
@@ -38,17 +33,17 @@ struct Profile: View {
 
                     VStack {
                         VStack {
-                            Image(self.spriteDict[self.level]!).resizable().frame(width: 150, height: 150, alignment: .center)
+                            Image(self.spriteDict[self.userData.user?.level ?? 1] ?? "").resizable().frame(width: 150, height: 150, alignment: .center)
                             .shadow(radius: 10)
                             
-                            Text("\(self.username)").font(.custom("AvenirNext-Bold", size: 26)).foregroundColor(Color.white)
+                            Text("\(self.userData.user?.username ?? "")").font(.custom("AvenirNext-Bold", size: 26)).foregroundColor(Color.white)
                         }.padding()
 
                         HStack {
                             Spacer()
                             VStack(alignment: .center) {
                                 Text("my points").font(.custom("AvenirNext-Medium", size: 20)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
-                                Text("\(self.points)").font(.custom("AvenirNext-Bold", size: 26)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 15))
+                                Text("\(Int(self.userData.user?.points ?? 0))").font(.custom("AvenirNext-Bold", size: 26)).foregroundColor(Color.white).padding(EdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 15))
                             }
                             Spacer()
                         }
@@ -73,8 +68,6 @@ struct Profile: View {
                     Login().frame(width: 300, height: 50).padding(EdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 15))
                 }
             }
-        }.onAppear {
-
         }
     }
 }
