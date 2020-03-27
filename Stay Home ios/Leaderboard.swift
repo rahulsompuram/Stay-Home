@@ -124,29 +124,33 @@ struct Leaderboard: View {
                         
                         var rank = snapshot.childrenCount
                         
-                        for user in snapshot.children.allObjects as! [DataSnapshot] {
+                        if let objects = snapshot.children.allObjects as? [DataSnapshot] {
                             
-                            var username = user.key
-                            
-                            if (username == localUser.username) {
-                                self.estimatedRank = rank
+                            for user in objects {
+                                
+                                var username = user.key
+                                
+                                if (username == localUser.username) {
+                                    self.estimatedRank = rank
+                                }
+                                
+                                username = username.padding(toLength: 12, withPad: " ", startingAt: 0)
+                                
+                                if let points = user.value as? IntegerLiteralType {
+                                    localRows.append(Row(rank: rank, username: username, points: points))
+                                    rank -= 1
+                                    oneHundredthRankPoints = points
+                                }
                             }
-                            
-                            username = username.padding(toLength: 12, withPad: " ", startingAt: 0)
-                            
-                            let points = user.value as! IntegerLiteralType
-                            
-                            localRows.append(Row(rank: rank, username: username, points: points))
-                            
-                            rank -= 1
-                            oneHundredthRankPoints = points
                         }
                         
                         localRows.reverse()
                         self.rows = localRows
                         
                         ref.child("TotalUsers").observeSingleEvent(of: .value) { (snapshot) in
-                            self.totalUsers = snapshot.value as! Int
+                            if let totalUsers = snapshot.value as? Int {
+                                self.totalUsers = totalUsers
+                            }
                             
                             // if not inside the top 100, estimate
                             if (self.estimatedRank == 0) {
