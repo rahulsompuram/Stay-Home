@@ -1,6 +1,0 @@
-framework module Pods_Stay_Home_ios {
-  umbrella header "Pods-Stay Home ios-umbrella.h"
-
-  export *
-  module * { export * }
-}
