@@ -25,7 +25,7 @@ struct Home: View {
     
     @ObservedObject var locationManager = LocationManager()
     
-    @State var firebaseDataLoaded = false
+    @State var homeLocationLoaded = false
     
     @State var isAnimating = true
     
@@ -42,7 +42,7 @@ struct Home: View {
         ZStack {
             ZStack {
                 
-                if(self.locationManager.lastLocation != nil && self.firebaseDataLoaded){
+                if(self.locationManager.lastLocation != nil && self.homeLocationLoaded){
                     MapView(homeCoordinates: $locationManager.homeCoordinates, lastLocation: $locationManager.lastLocation, annotations: locations, homePin: homePin)
                         .saturation(0)
                         .edgesIgnoringSafeArea(.vertical)
@@ -89,29 +89,28 @@ struct Home: View {
                                 
                                 if let lastLocation = self.locationManager.lastLocation {
                                     
+                                    let ref = Database.database().reference().child("Users").child(currentUser.uid)
                                     let timeInterval = NSDate().timeIntervalSince1970
                                     
-                                    let ref = Database.database().reference().child("Users").child(currentUser.uid)
-                                    
-                                    // check if there's already been a relocation in the last 24 hours
                                     ref.child("LastRelocTimestamp").observeSingleEvent(of: .value) { (snapshot) in
                                         let lastRelocTimestamp = snapshot.value as! Double
                                         let delta_t = timeInterval - lastRelocTimestamp
                                         
-                                        if (delta_t < 86400 && lastRelocTimestamp != 0) {
+                                        if (delta_t < 86400 && lastRelocTimestamp != 0){
                                             self.showingAlert = true
                                         } else {
                                             // set home to the most recent location
                                             self.locationManager.homeCoordinates = lastLocation
                                             
-                                            // push new home location to firebase
-                                            ref.child("HomeLat").setValue(lastLocation.coordinate.latitude)
-                                            ref.child("HomeLong").setValue(lastLocation.coordinate.longitude)
-                                            
-                                            // set home pin
+                                            // set the home pin
                                             let newHomePin = MKPointAnnotation()
                                             newHomePin.coordinate = CLLocationCoordinate2D(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude)
                                             self.homePin = newHomePin
+                                            
+                                            // save the updated data to the plist
+                                            let newHomeLocation = HomeLocation(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude)
+                                            
+                                            HomeLocationLoader.write(homeLocation: newHomeLocation)
                                             
                                             if lastRelocTimestamp != 0 {
                                                 ref.child("LastRelocTimestamp").setValue(NSDate().timeIntervalSince1970)
@@ -120,7 +119,6 @@ struct Home: View {
                                             }
                                         }
                                     }
-                                    
                                 }
                             }) {
                                 Text(self.locationManager.homeCoordinates == nil ? "Set Home" : "Change Home")
@@ -145,31 +143,22 @@ struct Home: View {
         }
             
         .onAppear {
-            // check firebase for existing home location
-            let ref = Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid)
-            ref.observeSingleEvent(of: .value) { (snapshot) in
-                var homeLat: Double = 0.0
-                var homeLong: Double = 0.0
+            // read in home location from plist
+            let homeLocation = HomeLocationLoader.load()
+            
+            if(homeLocation.latitude != 0 && homeLocation.longitude != 0){
                 
-                if let hlat = snapshot.childSnapshot(forPath: "HomeLat").value as? Double {
-                    homeLat = hlat
-                }
-                if let hlong = snapshot.childSnapshot(forPath: "HomeLong").value as? Double {
-                    homeLong = hlong
-                }
+                // set home coordinates
+                self.locationManager.homeCoordinates = CLLocation(latitude: homeLocation.latitude, longitude: homeLocation.longitude)
                 
-                if (homeLat != 0 && homeLong != 0){
-                    // if home coordinates exist in firebase, set them locally.
-                    self.locationManager.homeCoordinates = CLLocation(latitude: homeLat, longitude: homeLong)
-                    
-                    // add a pin for the new home location
-                    let newHomePin = MKPointAnnotation()
-                    newHomePin.coordinate = CLLocationCoordinate2D(latitude: homeLat, longitude: homeLong)
-                    self.homePin = newHomePin
-                }
-                
-                self.firebaseDataLoaded = true
+                // add a pin for the home location
+                let newHomePin = MKPointAnnotation()
+                newHomePin.coordinate = CLLocationCoordinate2D(latitude: homeLocation.latitude, longitude: homeLocation.longitude)
+                self.homePin = newHomePin
             }
+            
+            self.homeLocationLoaded = true
+            
         }
     }
 }
