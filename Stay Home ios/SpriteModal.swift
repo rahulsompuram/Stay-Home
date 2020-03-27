@@ -87,7 +87,7 @@ struct SpriteModal: View {
                     let ref = Database.database().reference()
                     ref.child("Users").child(Auth.auth().currentUser!.uid).child("Points").setValue(user.points + self.pointBonus)
                     ref.child("Users").child(Auth.auth().currentUser!.uid).child("unredeemedPoints").setValue(user.unredeemedPoints + self.pointBonus)
-                    ref.child("Leaderboard").child(user.username).setValue(user.points + self.pointBonus)
+                    ref.child("Leaderboard").child(user.username).setValue(Int(user.points + self.pointBonus))
                 }
                 
                 // wait 0.5s then toggle +1 off

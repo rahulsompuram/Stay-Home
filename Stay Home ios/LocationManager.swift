@@ -76,7 +76,7 @@ class LocationManager: NSObject, ObservableObject {
                 
                 // update global leaderboard
                 if let username = snapshot.childSnapshot(forPath: "Username").value as? String {
-                    Database.database().reference().child("Leaderboard").child(username).setValue(currentPoints + additionalPoints)
+                    Database.database().reference().child("Leaderboard").child(username).setValue(Int(currentPoints + additionalPoints))
                 }
                 
             } else {
