@@ -1,0 +1,905 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		21617D984612385169C54279 /* Pods_Stay_Home_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6ACC7C7222FE95DE964D9B /* Pods_Stay_Home_iosTests.framework */; };
+		46A94E1ED82930C35C980581 /* Pods_Stay_Home_ios_Stay_Home_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93BC670982A86725BC64BA7 /* Pods_Stay_Home_ios_Stay_Home_iosUITests.framework */; };
+		70D3DEEDF347797917409FCD /* Pods_Stay_Home_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6956D34DBF22D22E7F02EB7F /* Pods_Stay_Home_ios.framework */; };
+		7746BFA1242293F5000E3D66 /* TabHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA0242293F5000E3D66 /* TabHomeView.swift */; };
+		7746BFA324229453000E3D66 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA224229453000E3D66 /* Leaderboard.swift */; };
+		7746BFA524229467000E3D66 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA424229467000E3D66 /* Home.swift */; };
+		7746BFA724229471000E3D66 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA624229471000E3D66 /* Profile.swift */; };
+		7746BFA92422A1E0000E3D66 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFA82422A1E0000E3D66 /* MapView.swift */; };
+		7746BFAF2422C8C0000E3D66 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746BFAE2422C8C0000E3D66 /* LocationManager.swift */; };
+		775E64122425682300F2ABE0 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 775E64112425682300F2ABE0 /* SDWebImageSwiftUI */; };
+		B7607222242C07BA006C2B8E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7607221242C07BA006C2B8E /* SignUpView.swift */; };
+		B7607224242C09BB006C2B8E /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7607223242C09BB006C2B8E /* SignInView.swift */; };
+		B7607226242C0E18006C2B8E /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7607225242C0E18006C2B8E /* ForgotPasswordView.swift */; };
+		B76BFCC92422AA6C00ED44D8 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCC82422AA6C00ED44D8 /* StartView.swift */; };
+		B76BFCCE2422B0C300ED44D8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCCD2422B0C300ED44D8 /* User.swift */; };
+		B76BFCD12422B15F00ED44D8 /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCD02422B15F00ED44D8 /* UserDataViewModel.swift */; };
+		B76BFCD5242332A100ED44D8 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCD4242332A100ED44D8 /* GetStartedView.swift */; };
+		B76BFCDB242435E100ED44D8 /* GameInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCDA242435E100ED44D8 /* GameInfoView.swift */; };
+		B76BFCDD242563A000ED44D8 /* MoreInfoModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCDC2425639F00ED44D8 /* MoreInfoModal.swift */; };
+		B76BFCDF2426C49200ED44D8 /* SpriteModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76BFCDE2426C49200ED44D8 /* SpriteModal.swift */; };
+		B79E4B5E2422734A001863F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B5D2422734A001863F7 /* AppDelegate.swift */; };
+		B79E4B602422734A001863F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B5F2422734A001863F7 /* SceneDelegate.swift */; };
+		B79E4B632422734A001863F7 /* Stay_Home_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B612422734A001863F7 /* Stay_Home_ios.xcdatamodeld */; };
+		B79E4B652422734A001863F7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B642422734A001863F7 /* ContentView.swift */; };
+		B79E4B6724227352001863F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B79E4B6624227352001863F7 /* Assets.xcassets */; };
+		B79E4B6A24227352001863F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B79E4B6924227352001863F7 /* Preview Assets.xcassets */; };
+		B79E4B6D24227352001863F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B79E4B6B24227352001863F7 /* LaunchScreen.storyboard */; };
+		B79E4B7824227352001863F7 /* Stay_Home_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B7724227352001863F7 /* Stay_Home_iosTests.swift */; };
+		B79E4B8324227352001863F7 /* Stay_Home_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79E4B8224227352001863F7 /* Stay_Home_iosUITests.swift */; };
+		B79E4B9124227448001863F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B79E4B9024227448001863F7 /* GoogleService-Info.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B79E4B7424227352001863F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B79E4B522422734A001863F7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B79E4B592422734A001863F7;
+			remoteInfo = "Stay Home ios";
+		};
+		B79E4B7F24227352001863F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B79E4B522422734A001863F7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B79E4B592422734A001863F7;
+			remoteInfo = "Stay Home ios";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4E081DB93900BA6FCC719AA6 /* Pods-Stay Home ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stay Home ios.debug.xcconfig"; path = "Target Support Files/Pods-Stay Home ios/Pods-Stay Home ios.debug.xcconfig"; sourceTree = "<group>"; };
+		4E8B462C9A4D4460D379902F /* Pods-Stay Home iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stay Home iosTests.release.xcconfig"; path = "Target Support Files/Pods-Stay Home iosTests/Pods-Stay Home iosTests.release.xcconfig"; sourceTree = "<group>"; };
+		4EF9FE5EAB1152FF1433FAD6 /* Pods-Stay Home ios-Stay Home iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stay Home ios-Stay Home iosUITests.release.xcconfig"; path = "Target Support Files/Pods-Stay Home ios-Stay Home iosUITests/Pods-Stay Home ios-Stay Home iosUITests.release.xcconfig"; sourceTree = "<group>"; };
+		62D41EC1AB8DB80AA5380B40 /* Pods-Stay Home iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stay Home iosTests.debug.xcconfig"; path = "Target Support Files/Pods-Stay Home iosTests/Pods-Stay Home iosTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6956D34DBF22D22E7F02EB7F /* Pods_Stay_Home_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stay_Home_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7746BFA0242293F5000E3D66 /* TabHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHomeView.swift; sourceTree = "<group>"; };
+		7746BFA224229453000E3D66 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
+		7746BFA424229467000E3D66 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		7746BFA624229471000E3D66 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		7746BFA82422A1E0000E3D66 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		7746BFAE2422C8C0000E3D66 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		B7607221242C07BA006C2B8E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		B7607223242C09BB006C2B8E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		B7607225242C0E18006C2B8E /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		B76BFCC82422AA6C00ED44D8 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		B76BFCCD2422B0C300ED44D8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B76BFCD02422B15F00ED44D8 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
+		B76BFCD4242332A100ED44D8 /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
+		B76BFCDA242435E100ED44D8 /* GameInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoView.swift; sourceTree = "<group>"; };
+		B76BFCDC2425639F00ED44D8 /* MoreInfoModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoModal.swift; sourceTree = "<group>"; };
+		B76BFCDE2426C49200ED44D8 /* SpriteModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteModal.swift; sourceTree = "<group>"; };
+		B79E4B5A2422734A001863F7 /* Stay Home.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stay Home.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B79E4B5D2422734A001863F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B79E4B5F2422734A001863F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B79E4B622422734A001863F7 /* Stay_Home_ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stay_Home_ios.xcdatamodel; sourceTree = "<group>"; };
+		B79E4B642422734A001863F7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B79E4B6624227352001863F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B79E4B6924227352001863F7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B79E4B6C24227352001863F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B79E4B6E24227352001863F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B79E4B7324227352001863F7 /* Stay Home iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stay Home iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B79E4B7724227352001863F7 /* Stay_Home_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stay_Home_iosTests.swift; sourceTree = "<group>"; };
+		B79E4B7924227352001863F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B79E4B7E24227352001863F7 /* Stay Home iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stay Home iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B79E4B8224227352001863F7 /* Stay_Home_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stay_Home_iosUITests.swift; sourceTree = "<group>"; };
+		B79E4B8424227352001863F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B79E4B9024227448001863F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B93BC670982A86725BC64BA7 /* Pods_Stay_Home_ios_Stay_Home_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stay_Home_ios_Stay_Home_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C801A782A6EF78A8F08B9656 /* Pods-Stay Home ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stay Home ios.release.xcconfig"; path = "Target Support Files/Pods-Stay Home ios/Pods-Stay Home ios.release.xcconfig"; sourceTree = "<group>"; };
+		DE6ACC7C7222FE95DE964D9B /* Pods_Stay_Home_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stay_Home_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEADE70E0FD79142C4D83E05 /* Pods-Stay Home ios-Stay Home iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stay Home ios-Stay Home iosUITests.debug.xcconfig"; path = "Target Support Files/Pods-Stay Home ios-Stay Home iosUITests/Pods-Stay Home ios-Stay Home iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B79E4B572422734A001863F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				775E64122425682300F2ABE0 /* SDWebImageSwiftUI in Frameworks */,
+				70D3DEEDF347797917409FCD /* Pods_Stay_Home_ios.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B79E4B7024227352001863F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21617D984612385169C54279 /* Pods_Stay_Home_iosTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B79E4B7B24227352001863F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46A94E1ED82930C35C980581 /* Pods_Stay_Home_ios_Stay_Home_iosUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		43B26B40DFF1A725D21C55F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6956D34DBF22D22E7F02EB7F /* Pods_Stay_Home_ios.framework */,
+				B93BC670982A86725BC64BA7 /* Pods_Stay_Home_ios_Stay_Home_iosUITests.framework */,
+				DE6ACC7C7222FE95DE964D9B /* Pods_Stay_Home_iosTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B76BFCCC2422B0B700ED44D8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B76BFCCD2422B0C300ED44D8 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B76BFCCF2422B14000ED44D8 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B76BFCD02422B15F00ED44D8 /* UserDataViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B79E4B512422734A001863F7 = {
+			isa = PBXGroup;
+			children = (
+				B79E4B5C2422734A001863F7 /* Stay Home ios */,
+				B79E4B7624227352001863F7 /* Stay Home iosTests */,
+				B79E4B8124227352001863F7 /* Stay Home iosUITests */,
+				B79E4B5B2422734A001863F7 /* Products */,
+				CC4376588199AD8C52A6C4B6 /* Pods */,
+				43B26B40DFF1A725D21C55F1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B79E4B5B2422734A001863F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B79E4B5A2422734A001863F7 /* Stay Home.app */,
+				B79E4B7324227352001863F7 /* Stay Home iosTests.xctest */,
+				B79E4B7E24227352001863F7 /* Stay Home iosUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B79E4B5C2422734A001863F7 /* Stay Home ios */ = {
+			isa = PBXGroup;
+			children = (
+				B76BFCCF2422B14000ED44D8 /* ViewModels */,
+				B76BFCCC2422B0B700ED44D8 /* Models */,
+				B79E4B9024227448001863F7 /* GoogleService-Info.plist */,
+				B79E4B5D2422734A001863F7 /* AppDelegate.swift */,
+				B79E4B5F2422734A001863F7 /* SceneDelegate.swift */,
+				B79E4B642422734A001863F7 /* ContentView.swift */,
+				7746BFAE2422C8C0000E3D66 /* LocationManager.swift */,
+				7746BFA0242293F5000E3D66 /* TabHomeView.swift */,
+				7746BFA224229453000E3D66 /* Leaderboard.swift */,
+				7746BFA424229467000E3D66 /* Home.swift */,
+				B76BFCDE2426C49200ED44D8 /* SpriteModal.swift */,
+				B76BFCDC2425639F00ED44D8 /* MoreInfoModal.swift */,
+				B76BFCC82422AA6C00ED44D8 /* StartView.swift */,
+				B7607223242C09BB006C2B8E /* SignInView.swift */,
+				B7607221242C07BA006C2B8E /* SignUpView.swift */,
+				B7607225242C0E18006C2B8E /* ForgotPasswordView.swift */,
+				B76BFCD4242332A100ED44D8 /* GetStartedView.swift */,
+				B76BFCDA242435E100ED44D8 /* GameInfoView.swift */,
+				7746BFA82422A1E0000E3D66 /* MapView.swift */,
+				7746BFA624229471000E3D66 /* Profile.swift */,
+				B79E4B6624227352001863F7 /* Assets.xcassets */,
+				B79E4B6B24227352001863F7 /* LaunchScreen.storyboard */,
+				B79E4B6E24227352001863F7 /* Info.plist */,
+				B79E4B612422734A001863F7 /* Stay_Home_ios.xcdatamodeld */,
+				B79E4B6824227352001863F7 /* Preview Content */,
+			);
+			path = "Stay Home ios";
+			sourceTree = "<group>";
+		};
+		B79E4B6824227352001863F7 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B79E4B6924227352001863F7 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B79E4B7624227352001863F7 /* Stay Home iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				B79E4B7724227352001863F7 /* Stay_Home_iosTests.swift */,
+				B79E4B7924227352001863F7 /* Info.plist */,
+			);
+			path = "Stay Home iosTests";
+			sourceTree = "<group>";
+		};
+		B79E4B8124227352001863F7 /* Stay Home iosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B79E4B8224227352001863F7 /* Stay_Home_iosUITests.swift */,
+				B79E4B8424227352001863F7 /* Info.plist */,
+			);
+			path = "Stay Home iosUITests";
+			sourceTree = "<group>";
+		};
+		CC4376588199AD8C52A6C4B6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4E081DB93900BA6FCC719AA6 /* Pods-Stay Home ios.debug.xcconfig */,
+				C801A782A6EF78A8F08B9656 /* Pods-Stay Home ios.release.xcconfig */,
+				EEADE70E0FD79142C4D83E05 /* Pods-Stay Home ios-Stay Home iosUITests.debug.xcconfig */,
+				4EF9FE5EAB1152FF1433FAD6 /* Pods-Stay Home ios-Stay Home iosUITests.release.xcconfig */,
+				62D41EC1AB8DB80AA5380B40 /* Pods-Stay Home iosTests.debug.xcconfig */,
+				4E8B462C9A4D4460D379902F /* Pods-Stay Home iosTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B79E4B592422734A001863F7 /* Stay Home ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B79E4B8724227352001863F7 /* Build configuration list for PBXNativeTarget "Stay Home ios" */;
+			buildPhases = (
+				54387B4857859D47C25CD11B /* [CP] Check Pods Manifest.lock */,
+				B79E4B562422734A001863F7 /* Sources */,
+				B79E4B572422734A001863F7 /* Frameworks */,
+				B79E4B582422734A001863F7 /* Resources */,
+				99A8BC458F4DBFBFFD16ECCD /* [CP] Embed Pods Frameworks */,
+				B760721C242BDBCF006C2B8E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Stay Home ios";
+			packageProductDependencies = (
+				775E64112425682300F2ABE0 /* SDWebImageSwiftUI */,
+			);
+			productName = "Stay Home ios";
+			productReference = B79E4B5A2422734A001863F7 /* Stay Home.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B79E4B7224227352001863F7 /* Stay Home iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B79E4B8A24227352001863F7 /* Build configuration list for PBXNativeTarget "Stay Home iosTests" */;
+			buildPhases = (
+				CBDEEFF20E04A4A5EFCA52FB /* [CP] Check Pods Manifest.lock */,
+				B79E4B6F24227352001863F7 /* Sources */,
+				B79E4B7024227352001863F7 /* Frameworks */,
+				B79E4B7124227352001863F7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B79E4B7524227352001863F7 /* PBXTargetDependency */,
+			);
+			name = "Stay Home iosTests";
+			productName = "Stay Home iosTests";
+			productReference = B79E4B7324227352001863F7 /* Stay Home iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B79E4B7D24227352001863F7 /* Stay Home iosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B79E4B8D24227352001863F7 /* Build configuration list for PBXNativeTarget "Stay Home iosUITests" */;
+			buildPhases = (
+				45D7D909495B3F30DD0FFFD1 /* [CP] Check Pods Manifest.lock */,
+				B79E4B7A24227352001863F7 /* Sources */,
+				B79E4B7B24227352001863F7 /* Frameworks */,
+				B79E4B7C24227352001863F7 /* Resources */,
+				0784C3AD8E275E55CC0DD596 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B79E4B8024227352001863F7 /* PBXTargetDependency */,
+			);
+			name = "Stay Home iosUITests";
+			productName = "Stay Home iosUITests";
+			productReference = B79E4B7E24227352001863F7 /* Stay Home iosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B79E4B522422734A001863F7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Stay Home";
+				TargetAttributes = {
+					B79E4B592422734A001863F7 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					B79E4B7224227352001863F7 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = B79E4B592422734A001863F7;
+					};
+					B79E4B7D24227352001863F7 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = B79E4B592422734A001863F7;
+					};
+				};
+			};
+			buildConfigurationList = B79E4B552422734A001863F7 /* Build configuration list for PBXProject "Stay Home ios" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B79E4B512422734A001863F7;
+			packageReferences = (
+				775E64102425682300F2ABE0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
+			productRefGroup = B79E4B5B2422734A001863F7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B79E4B592422734A001863F7 /* Stay Home ios */,
+				B79E4B7224227352001863F7 /* Stay Home iosTests */,
+				B79E4B7D24227352001863F7 /* Stay Home iosUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B79E4B582422734A001863F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B79E4B6D24227352001863F7 /* LaunchScreen.storyboard in Resources */,
+				B79E4B9124227448001863F7 /* GoogleService-Info.plist in Resources */,
+				B79E4B6A24227352001863F7 /* Preview Assets.xcassets in Resources */,
+				B79E4B6724227352001863F7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B79E4B7124227352001863F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B79E4B7C24227352001863F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0784C3AD8E275E55CC0DD596 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stay Home ios-Stay Home iosUITests/Pods-Stay Home ios-Stay Home iosUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stay Home ios-Stay Home iosUITests/Pods-Stay Home ios-Stay Home iosUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stay Home ios-Stay Home iosUITests/Pods-Stay Home ios-Stay Home iosUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		45D7D909495B3F30DD0FFFD1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Stay Home ios-Stay Home iosUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		54387B4857859D47C25CD11B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Stay Home ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99A8BC458F4DBFBFFD16ECCD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stay Home ios/Pods-Stay Home ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stay Home ios/Pods-Stay Home ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stay Home ios/Pods-Stay Home ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B760721C242BDBCF006C2B8E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
+		CBDEEFF20E04A4A5EFCA52FB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Stay Home iosTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B79E4B562422734A001863F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B79E4B632422734A001863F7 /* Stay_Home_ios.xcdatamodeld in Sources */,
+				B7607226242C0E18006C2B8E /* ForgotPasswordView.swift in Sources */,
+				B76BFCC92422AA6C00ED44D8 /* StartView.swift in Sources */,
+				7746BFA724229471000E3D66 /* Profile.swift in Sources */,
+				7746BFA324229453000E3D66 /* Leaderboard.swift in Sources */,
+				B79E4B5E2422734A001863F7 /* AppDelegate.swift in Sources */,
+				7746BFA524229467000E3D66 /* Home.swift in Sources */,
+				B79E4B652422734A001863F7 /* ContentView.swift in Sources */,
+				7746BFA1242293F5000E3D66 /* TabHomeView.swift in Sources */,
+				7746BFA92422A1E0000E3D66 /* MapView.swift in Sources */,
+				B79E4B602422734A001863F7 /* SceneDelegate.swift in Sources */,
+				B76BFCDD242563A000ED44D8 /* MoreInfoModal.swift in Sources */,
+				7746BFAF2422C8C0000E3D66 /* LocationManager.swift in Sources */,
+				B76BFCD5242332A100ED44D8 /* GetStartedView.swift in Sources */,
+				B76BFCDF2426C49200ED44D8 /* SpriteModal.swift in Sources */,
+				B7607224242C09BB006C2B8E /* SignInView.swift in Sources */,
+				B7607222242C07BA006C2B8E /* SignUpView.swift in Sources */,
+				B76BFCCE2422B0C300ED44D8 /* User.swift in Sources */,
+				B76BFCDB242435E100ED44D8 /* GameInfoView.swift in Sources */,
+				B76BFCD12422B15F00ED44D8 /* UserDataViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B79E4B6F24227352001863F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B79E4B7824227352001863F7 /* Stay_Home_iosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B79E4B7A24227352001863F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B79E4B8324227352001863F7 /* Stay_Home_iosUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B79E4B7524227352001863F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B79E4B592422734A001863F7 /* Stay Home ios */;
+			targetProxy = B79E4B7424227352001863F7 /* PBXContainerItemProxy */;
+		};
+		B79E4B8024227352001863F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B79E4B592422734A001863F7 /* Stay Home ios */;
+			targetProxy = B79E4B7F24227352001863F7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B79E4B6B24227352001863F7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B79E4B6C24227352001863F7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B79E4B8524227352001863F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B79E4B8624227352001863F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B79E4B8824227352001863F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E081DB93900BA6FCC719AA6 /* Pods-Stay Home ios.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"Stay Home ios/Preview Content\"";
+				DEVELOPMENT_TEAM = S8WL7YS543;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Stay Home ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stayhome.stayhome2020ios;
+				PRODUCT_NAME = "Stay Home";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B79E4B8924227352001863F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C801A782A6EF78A8F08B9656 /* Pods-Stay Home ios.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_ASSET_PATHS = "\"Stay Home ios/Preview Content\"";
+				DEVELOPMENT_TEAM = S8WL7YS543;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Stay Home ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stayhome.stayhome2020ios;
+				PRODUCT_NAME = "Stay Home";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B79E4B8B24227352001863F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62D41EC1AB8DB80AA5380B40 /* Pods-Stay Home iosTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S8WL7YS543;
+				INFOPLIST_FILE = "Stay Home iosTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Stay-Home.Stay-Home-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stay Home ios.app/Stay Home ios";
+			};
+			name = Debug;
+		};
+		B79E4B8C24227352001863F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E8B462C9A4D4460D379902F /* Pods-Stay Home iosTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S8WL7YS543;
+				INFOPLIST_FILE = "Stay Home iosTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Stay-Home.Stay-Home-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stay Home ios.app/Stay Home ios";
+			};
+			name = Release;
+		};
+		B79E4B8E24227352001863F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEADE70E0FD79142C4D83E05 /* Pods-Stay Home ios-Stay Home iosUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S8WL7YS543;
+				INFOPLIST_FILE = "Stay Home iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Stay-Home.Stay-Home-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Stay Home ios";
+			};
+			name = Debug;
+		};
+		B79E4B8F24227352001863F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4EF9FE5EAB1152FF1433FAD6 /* Pods-Stay Home ios-Stay Home iosUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S8WL7YS543;
+				INFOPLIST_FILE = "Stay Home iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Stay-Home.Stay-Home-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Stay Home ios";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B79E4B552422734A001863F7 /* Build configuration list for PBXProject "Stay Home ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B79E4B8524227352001863F7 /* Debug */,
+				B79E4B8624227352001863F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B79E4B8724227352001863F7 /* Build configuration list for PBXNativeTarget "Stay Home ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B79E4B8824227352001863F7 /* Debug */,
+				B79E4B8924227352001863F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B79E4B8A24227352001863F7 /* Build configuration list for PBXNativeTarget "Stay Home iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B79E4B8B24227352001863F7 /* Debug */,
+				B79E4B8C24227352001863F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B79E4B8D24227352001863F7 /* Build configuration list for PBXNativeTarget "Stay Home iosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B79E4B8E24227352001863F7 /* Debug */,
+				B79E4B8F24227352001863F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		775E64102425682300F2ABE0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		775E64112425682300F2ABE0 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 775E64102425682300F2ABE0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		B79E4B612422734A001863F7 /* Stay_Home_ios.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B79E4B622422734A001863F7 /* Stay_Home_ios.xcdatamodel */,
+			);
+			currentVersion = B79E4B622422734A001863F7 /* Stay_Home_ios.xcdatamodel */;
+			path = Stay_Home_ios.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B79E4B522422734A001863F7 /* Project object */;
+}
