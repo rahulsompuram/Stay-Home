@@ -41,15 +41,16 @@ class LocationManager: NSObject, ObservableObject {
         let userID = user.uid
         ref = Database.database().reference().child("Users").child(userID)
         let timeInterval = NSDate().timeIntervalSince1970
-        
-//        // only tick every 5 seconds
-//        if (timeSinceLastTick < 5) {
-//            return
-//        }
+
         
         ref.observeSingleEvent(of: .value) { (snapshot) in
             let lastTickTimestamp = snapshot.childSnapshot(forPath: "LastTickTimestamp").value as? Double ?? 0.0
             let timeSinceLastTick = timeInterval - lastTickTimestamp
+            
+            // look out for phony ticks
+            if (timeSinceLastTick > 1500) {
+                return
+            }
             
             // they are at home
             if (isHome) {
