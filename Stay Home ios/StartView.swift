@@ -45,10 +45,10 @@ struct StartView: View {
                                     .font(.custom("AvenirNext-Medium", size: 18))
                                     .padding()
                                     .frame(width: 300, height: 50, alignment: .center)
-                                    .background(Color(red: 240/255, green: 176/255, blue: 175/255))
+                                    .background(Color(red: 89/255, green: 123/255, blue: 235/255))
                                     .foregroundColor(.white)
-                                    .border(Color(red: 240/255, green: 176/255, blue: 175/255), width: 1)
-                                    .cornerRadius(25)
+                                    .border(Color(red: 89/255, green: 123/255, blue: 235/255), width: 1)
+                                    .cornerRadius(5)
                             }.padding()
                             
                             Button(action: {
@@ -60,7 +60,7 @@ struct StartView: View {
                                     .foregroundColor(.white)
                                     Text("Create an account")
                                     .font(.custom("AvenirNext-Bold", size: 18))
-                                    .foregroundColor(Color(red: 240/255, green: 176/255, blue: 175/255))
+                                    .foregroundColor(Color(red: 89/255, green: 123/255, blue: 235/255))
                                 }
                             }.padding(EdgeInsets(top: 5, leading: 15, bottom: 30, trailing: 15))
                         }
