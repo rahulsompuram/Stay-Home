@@ -123,20 +123,14 @@ struct SpriteModal: View {
                 }
                 VStack(alignment: .center) {
                     ZStack{
-                        HStack{
-                            Text("+\(self.pointBonus)")
+                        VStack{
+                            Text("+\(Int(self.pointBonus))")
                                 .foregroundColor(Color(red: 240/255, green: 176/255, blue: 175/255))
-                                .opacity(self.plusOneActive ? 1 : 0)
-                                .scaleEffect(self.plusOneActive ? 3 : 1)
-                                .animation(.default)
-                                .padding(.leading, 50)
+                                .offset(x: self.plusOneActive ? -15: 0, y: self.plusOneActive ? -50: 0)
+                                .scaleEffect(self.plusOneActive ? 2 : 0)
+                                .animation(Animation.spring(response: 0.5, dampingFraction: 1.0, blendDuration: 0).delay(Double(0.0)))
+                                .padding()
                             Spacer()
-                            Text("+\(self.pointBonus)")
-                                .foregroundColor(Color(red: 240/255, green: 176/255, blue: 175/255))
-                                .opacity(self.plusOneActive ? 1 : 0)
-                                .scaleEffect(self.plusOneActive ? 3 : 1)
-                                .animation(.default)
-                                .padding(.trailing, 50)
                         }
                             
                             WebImage(url: URL(string: self.spriteDict["\(self.userData.user?.level ?? 1)"]!["gif"]!), isAnimating: $isAnimating)
