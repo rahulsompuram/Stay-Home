@@ -49,6 +49,7 @@ class LocationManager: NSObject, ObservableObject {
             
             // look out for phony ticks
             if (timeSinceLastTick > 1500) {
+                ref.child("LastTickTimestamp").setValue(timeInterval)
                 print("phony tick")
                 return
             }
