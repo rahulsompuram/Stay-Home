@@ -51,21 +51,25 @@ struct Profile: View {
                 }
                 
                 Spacer()
-                VStack {
-                    Button(action: {
-                        self.userData.signoutCustom()
-                    }) {
-                        Text("Log out")
-                            .font(.custom("AvenirNext-Medium", size: 20))
-                            .padding()
-                            .frame(width: 300, height: 50, alignment: .center)
-                            .background(Color(red: 240/255, green: 176/255, blue: 175/255))
-                            .foregroundColor(.white)
-                            .border(Color(red: 240/255, green: 176/255, blue: 175/255), width: 1)
-                            .cornerRadius(25)
-                            .shadow(radius: 10)
-                    }.padding()
-                    Login().frame(width: 300, height: 50).padding(EdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 15))
+                
+                Group {
+                    if (self.userData.user?.authType == 1) {
+                        Button(action: {
+                            self.userData.signoutCustom()
+                        }) {
+                            Text("Log out")
+                                .font(.custom("AvenirNext-Medium", size: 20))
+                                .padding()
+                                .frame(width: 300, height: 50, alignment: .center)
+                                .background(Color(red: 240/255, green: 176/255, blue: 175/255))
+                                .foregroundColor(.white)
+                                .border(Color(red: 240/255, green: 176/255, blue: 175/255), width: 1)
+                                .cornerRadius(25)
+                                .shadow(radius: 10)
+                        }.padding(EdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 15))
+                    } else {
+                        Login().frame(width: 300, height: 50).padding(EdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 15))
+                    }
                 }
             }
         }

@@ -17,19 +17,13 @@ final class UserDataViewModel: ObservableObject {
     @Published var isNewUser: Bool?
     @Published var errorMessage = ""
     
+    var authType: Int = 0
+    
     // begin custom sign up / login
-//    func listen() {
-//        handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
-//            if let user = user {
-//                self.session = User(firstName: "", lastName: "", email: user.email ?? "", username: "", id: user.uid, isLoggedIn: false)
-//            } else {
-//                self.session = nil
-//            }
-//        })
-//    }
     var handle: AuthStateDidChangeListenerHandle?
     
-    func signUpCustom(email: String, password: String, handler: @escaping AuthDataResultCallback) {
+    func signUpCustom(email: String, password: String, authType: Int, handler: @escaping AuthDataResultCallback) {
+        self.authType = authType
         Auth.auth().createUser(withEmail: email, password: password, completion: handler)
     }
     
@@ -57,6 +51,16 @@ final class UserDataViewModel: ObservableObject {
     }
     // end custom sign up / login
     
+    // reset password
+    func resetPassword(email: String, onSuccess: @escaping() -> Void, onError: @escaping(_ message: String) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            if error == nil {
+                onSuccess()
+            } else {
+                onError(error!.localizedDescription)
+            }
+        }
+    }
     
     func reset(){
         self.user = User()
@@ -84,9 +88,15 @@ final class UserDataViewModel: ObservableObject {
                         ref.child("LastTickTimestamp").setValue(0)
                         ref.child("Streak").setValue(0)
                         ref.child("UnredeemedPoints").setValue(0)
+                        // AuthType: facebook = 0, custom = 1
+                        ref.child("AuthType").setValue(self.authType)
                     } else {
                         print("Existing user!")
                         ref.observe(.value) { (snapshot) in
+                            if let authType = snapshot.childSnapshot(forPath: "AuthType").value as? Int {
+                                self.user?.authType = authType
+                            }
+                            
                             if let lastRelocTimestamp = snapshot.childSnapshot(forPath: "lastRelocTimestamp").value as? Double {
                                 self.user?.lastRelocTimestamp = lastRelocTimestamp
                             }

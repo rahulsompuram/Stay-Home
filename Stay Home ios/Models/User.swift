@@ -24,6 +24,8 @@ struct User {
     var pointsToNextLevel: Int
     var level: Int
     
+    var authType: Int
+    
     
     init(firstName: String = "",
          lastName: String = "",
@@ -47,6 +49,8 @@ struct User {
         
         self.pointsToNextLevel = 0
         self.level = 0
+
+        self.authType = 0
     }
          
 }

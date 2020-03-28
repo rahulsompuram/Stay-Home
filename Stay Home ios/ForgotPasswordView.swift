@@ -11,11 +11,22 @@ import SwiftUI
 struct ForgotPasswordView: View {
     @State var email: String = ""
     @State var goBackView: Bool = false
+    @EnvironmentObject var userData: UserDataViewModel
+    
+    @State private var showingAlert = false
+    @State private var showingAlertError = false
+    @State var popupMessage = "blah"
     
     var body: some View {
         Group {
             if (self.goBackView) {
-                SignInView()
+                if (self.showingAlert) {
+                    SignInView().alert(isPresented: $showingAlert) {
+                        Alert(title: Text("Password Reset Link Sent"), message: Text("Check your email for a link to reset your password."), dismissButton: .default(Text("Got it!")))
+                    }
+                } else {
+                    SignInView()
+                }
             } else {
                 ZStack {
                     Color.init(red: 78/255, green: 89/255, blue: 140/255)
@@ -47,7 +58,16 @@ struct ForgotPasswordView: View {
                         TextFieldWithLine(placeholder: "Email", text: $email, isSecure:  false).foregroundColor(Color.white).padding(25)
                         
                         Button(action: {
-                            // TODO
+                            // resets password
+                            self.userData.resetPassword(email: self.email, onSuccess: {
+                                print("Success resetting password")
+                                self.showingAlert.toggle()
+                                self.goBackView.toggle()
+                            }, onError: { error in
+                                print("Error resetting password: ", error)
+                                self.popupMessage = error
+                                self.showingAlertError.toggle()
+                            })
                         }) {
                             Text("Done")
                                 .font(.custom("AvenirNext-Medium", size: 20))
@@ -63,6 +83,8 @@ struct ForgotPasswordView: View {
                         Spacer()
                         Spacer()
                     }
+                }.alert(isPresented: $showingAlertError) {
+                    Alert(title: Text("Error"), message: Text(self.popupMessage), dismissButton: .default(Text("Got it!")))
                 }
             }
         }

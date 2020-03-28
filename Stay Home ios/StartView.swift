@@ -34,7 +34,7 @@ struct StartView: View {
                         Spacer()
                         
                         VStack(alignment: .center) {
-                            Login().frame(width: 300, height: 50).padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
+                            Login().frame(width: 300, height: 50).padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
                             Text("or").font(.custom("AvenirNext-Bold", size: 18)).foregroundColor(Color.white)
                             .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
                             
@@ -60,7 +60,7 @@ struct StartView: View {
                                     .foregroundColor(.white)
                                     Text("Create an account")
                                     .font(.custom("AvenirNext-Bold", size: 18))
-                                    .foregroundColor(Color(red: 89/255, green: 123/255, blue: 235/255))
+                                    .foregroundColor(Color(red: 240/255, green: 176/255, blue: 175/255))
                                 }
                             }.padding(EdgeInsets(top: 5, leading: 15, bottom: 30, trailing: 15))
                         }

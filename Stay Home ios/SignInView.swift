@@ -18,11 +18,13 @@ struct SignInView: View {
     @State var showSignupView: Bool = false
     
     @State private var showingAlert = false
+    @State var popupMessage = "blah"
     
     func signIn() {
         userData.signInCustom(email: email, password: password) { (res, error) in
             if let error = error {
                 print(error.localizedDescription)
+                self.popupMessage = error.localizedDescription
                 self.showingAlert.toggle()
                 return
             } else {
@@ -110,7 +112,7 @@ struct SignInView: View {
                     }
                 }
                 .alert(isPresented: $showingAlert) {
-                    Alert(title: Text("Invalid email or password"), message: Text("Try again, or press 'Forgot Password?' if you don't remember your password."), dismissButton: .default(Text("Got it!")))
+                    Alert(title: Text("Error"), message: Text(self.popupMessage), dismissButton: .default(Text("Got it!")))
                 }
             }
         }
